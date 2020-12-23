@@ -5,19 +5,19 @@
   
 
   
-  <title>建立Blog | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>Maven中的dependency的Scope功用 | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用Hexo + Node.js + Github 搭建簡易Blog">
+  <meta name="description" content="Maven中的dependency的Scope功用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="建立Blog">
-<meta property="og:url" content="https://hand79.github.io/2020/02/22/%E5%BB%BA%E7%AB%8BBlog/index.html">
+<meta property="og:title" content="Maven中的dependency的Scope功用">
+<meta property="og:url" content="https://hand79.github.io/2020/11/24/maven-dependancy-scope/index.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="用Hexo + Node.js + Github 搭建簡易Blog">
+<meta property="og:description" content="Maven中的dependency的Scope功用">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-02-22T10:50:21.000Z">
-<meta property="article:modified_time" content="2020-02-23T12:12:45.162Z">
+<meta property="article:published_time" content="2020-11-24T11:10:00.000Z">
+<meta property="article:modified_time" content="2020-12-23T06:39:13.648Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Maven">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -71,14 +71,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-建立Blog" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Maven中的dependency的Scope功用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/2020/02/22/%E5%BB%BA%E7%AB%8BBlog/" class="article-date">
-  <time datetime="2020-02-22T10:50:21.000Z" itemprop="datePublished">2020-02-22 18:50:21</time>
+    <a href="/Blog/2020/11/24/maven-dependancy-scope/" class="article-date">
+  <time datetime="2020-11-24T11:10:00.000Z" itemprop="datePublished">2020-11-24 19:10:00</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Hexo/">Hexo</a>
+    <a class="article-category-link" href="/Blog/categories/Maven/">Maven</a>
   </div>
 
   </div>
@@ -89,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      建立Blog
+      Maven中的dependency的Scope功用
     </h1>
   
 
@@ -97,36 +97,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>用Hexo + Node.js + Github 搭建簡易Blog</p>
+        <p>Maven中的dependency的Scope功用</p>
 <a id="more"></a>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>. 安裝 Node.js<br>. 安裝 Hexo Git</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>. 安裝 Hexo - 使用 npm(須先安裝 Node.js)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<h3 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init blog    <span class="comment"># 初始化 blog</span></span><br><span class="line">$ <span class="built_in">cd</span> blog           <span class="comment"># 移動到剛創建的 blog 資料夾裡</span></span><br><span class="line">$ npm install		<span class="comment"># 安裝相關套件</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Github-新建一個倉庫"><a href="#Github-新建一個倉庫" class="headerlink" title="Github 新建一個倉庫"></a>Github 新建一個倉庫</h3><p>. 倉庫名稱為 yourname</p>
-<h3 id="blog-資料夾-內容設定"><a href="#blog-資料夾-內容設定" class="headerlink" title="blog 資料夾 內容設定"></a>blog 資料夾 內容設定</h3><p>再來到 blog 資料夾下找一個 _config.yml 開啟(root路徑設定為 “/repository/“，沒設定好css、js會抓不到)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: https://yourname.github.io</span><br><span class="line">root: /Blog/</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: http://github.com/yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<h3 id="產生靜態文件和deploy-上-GitHub"><a href="#產生靜態文件和deploy-上-GitHub" class="headerlink" title="產生靜態文件和deploy 上 GitHub"></a>產生靜態文件和deploy 上 GitHub</h3><p>. clean 清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。<br>. d是佈署<br>. g產生靜態文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/zh-tw/docs/commands.html" target="_blank" rel="noopener">Commands</a></p>
+<h2 id="config-yml-內容設定"><a href="#config-yml-內容設定" class="headerlink" title="_config.yml 內容設定"></a>_config.yml 內容設定</h2><p>###compile</p>
+<p> 預設值，jar是所有階段需要， 部署時將一起被打包到jar/war裡面。</p>
+<p>###test</p>
+<p>此jar檔只有在測試時才需要使用，部署時將不會打包到jar/war裡面。如 junit jar 等。</p>
+<h3 id="runtime"><a href="#runtime" class="headerlink" title="runtime"></a>runtime</h3><p>表示此jar在運行時，才需要使用。如jdbc jar等。</p>
+<p>###provided</p>
+<p>運行時該jar檔由JDK、Tomcat及jboss等來提供。如 servlet.jar、jsp-api.jar 等。<br> 部署時將不會打包到jar/war裡面。</p>
+<h3 id="system"><a href="#system" class="headerlink" title="system"></a>system</h3><p>jar檔由系統提供，跟provided相似。在maven repository是無法找到，須提供需指定systemPath來使用。<br>以外部JAR檔的形式提供。</p>
+<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><p>僅支援<dependencyManagement>區塊中且type僅為pom</p>
+<p>dependencyManagement 和 dependencies的使用區別:</p>
+<ul>
+<li>dependencyManagement裡只是聲明依賴，並不實現引入，因此子項目需要顯示的聲明需要用的依賴。</li>
+<li>如果不在子項目中聲明依賴，是不會從父項目中繼承下來的。</li>
+<li>只有在子項目中寫了該依賴項且沒有指定具體版本，才會從讀取父項目中的pom繼承該項 version和scope。如果子項目中指定了版本號，那麼會使用子項目中指定的jar版本。</li>
+</ul>
+<p>More info: <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html" target="_blank" rel="noopener">Maven Scope</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hand79.github.io/2020/02/22/%E5%BB%BA%E7%AB%8BBlog/" data-id="ck6z04uzf0000dsw1eiprfiub" class="article-share-link">Share</a>
+      <a data-url="https://hand79.github.io/2020/11/24/maven-dependancy-scope/" data-id="ckj0rujr500005kw13jm5gyp9" class="article-share-link">Share</a>
       
-        <a href="https://hand79.github.io/2020/02/22/%E5%BB%BA%E7%AB%8BBlog/#disqus_thread" class="article-comment-link">留言</a>
+        <a href="https://hand79.github.io/2020/11/24/maven-dependancy-scope/#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Maven/" rel="tag">Maven</a></li></ul>
 
     </footer>
   </div>
@@ -134,15 +133,11 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/2020/02/23/%E6%96%87%E7%AB%A0%E6%99%82%E9%96%93%E8%A8%AD%E5%AE%9A/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          文章時間設定
-        
-      </div>
-    </a>
   
+    <a href="/Blog/2020/02/23/hexo-tag-category/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Tag 與 Category設定</div>
+    </a>
   
 </nav>
 
@@ -205,19 +200,19 @@
       <ul>
         
           <li>
-            <a href="/Blog/2020/11/24/Maven%E4%B8%AD%E7%9A%84dependency%E7%9A%84Scope%E5%8A%9F%E7%94%A8/">Maven中的dependency的Scope功用</a>
+            <a href="/Blog/2020/11/24/maven-dependancy-scope/">Maven中的dependency的Scope功用</a>
           </li>
         
           <li>
-            <a href="/Blog/2020/02/23/Tag%E8%88%87Categories%E8%A8%AD%E5%AE%9A/">Tag 與 Category設定</a>
+            <a href="/Blog/2020/02/23/hexo-tag-category/">Tag 與 Category設定</a>
           </li>
         
           <li>
-            <a href="/Blog/2020/02/23/%E6%96%87%E7%AB%A0%E6%99%82%E9%96%93%E8%A8%AD%E5%AE%9A/">文章時間設定</a>
+            <a href="/Blog/2020/02/23/article-date-time-config/">文章時間設定</a>
           </li>
         
           <li>
-            <a href="/Blog/2020/02/22/%E5%BB%BA%E7%AB%8BBlog/">建立Blog</a>
+            <a href="/Blog/2020/02/22/hexo-bulid-blog/">建立Blog</a>
           </li>
         
       </ul>
@@ -249,7 +244,7 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/2020/02/22/%E5%BB%BA%E7%AB%8BBlog/';
+  var disqus_url = 'https://hand79.github.io/2020/11/24/maven-dependancy-scope/';
   
   (function(){
     var dsq = document.createElement('script');
