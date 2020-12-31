@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2020-12-31T14:22:52.433Z</updated>
+  <updated>2020-12-31T14:45:18.935Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo與SEO</title>
+    <link href="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-seo.html"/>
+    <id>https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-seo.html</id>
+    <published>2020-12-31T14:37:00.000Z</published>
+    <updated>2020-12-31T14:45:18.935Z</updated>
+    
+    <content type="html"><![CDATA[<p>寫到這邊才發現我忘了SEO這回事了，這邊寫個筆記。</p><a id="more"></a><h3 id="安裝-Hexo-外掛"><a href="#安裝-Hexo-外掛" class="headerlink" title="安裝 Hexo 外掛"></a>安裝 Hexo 外掛</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure><h3 id="config-yml檔案加入："><a href="#config-yml檔案加入：" class="headerlink" title="_config.yml檔案加入："></a>_config.yml檔案加入：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br></pre></td></tr></table></figure><p>hexo g -d，重新編譯發佈，以下網址驗證一下是否建出</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://hand79.github.io/Blog//sitemap.xml</span><br></pre></td></tr></table></figure><h3 id="提交至-Google-Search-Console"><a href="#提交至-Google-Search-Console" class="headerlink" title="提交至 Google Search Console"></a>提交至 Google Search Console</h3><ol><li>打開 Google Search Console</li><li>進入「索引 &gt; Sitemap」</li><li>「新增 Sitemap」：sitemap.xml</li></ol><p>註: 若網站google-site-verification還沒處理，google會有幾個方案給你驗證網站的所有權，我選擇meta方案。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"google-site-verification"</span> content=<span class="string">"XXXXX"</span> /&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;寫到這邊才發現我忘了SEO這回事了，這邊寫個筆記。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Hexo" scheme="https://hand79.github.io/Blog/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="https://hand79.github.io/Blog/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo與LocalSearch</title>
