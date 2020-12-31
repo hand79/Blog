@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2020-12-31T13:26:06.047Z</updated>
+  <updated>2020-12-31T13:39:07.853Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo與LocalSearch</title>
+    <link href="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html"/>
+    <id>https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html</id>
+    <published>2020-12-31T13:35:00.000Z</published>
+    <updated>2020-12-31T13:39:07.853Z</updated>
+    
+    <content type="html"><![CDATA[<p>添加本站搜尋功能</p><a id="more"></a><h2 id="安裝-hexo-generator-searchdb"><a href="#安裝-hexo-generator-searchdb" class="headerlink" title="安裝 hexo-generator-searchdb"></a>安裝 hexo-generator-searchdb</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure><h2 id="config-yml-設定"><a href="#config-yml-設定" class="headerlink" title="_config.yml 設定"></a>_config.yml 設定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure><h2 id="啟用Local搜索功能："><a href="#啟用Local搜索功能：" class="headerlink" title="啟用Local搜索功能："></a>啟用Local搜索功能：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;添加本站搜尋功能&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Hexo" scheme="https://hand79.github.io/Blog/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="https://hand79.github.io/Blog/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo與RSS</title>
@@ -80,11 +101,11 @@
   </entry>
   
   <entry>
-    <title>Hexo鏈結的中文標題問題.md</title>
+    <title>Hexo鏈結的中文標題問題</title>
     <link href="https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html"/>
     <id>https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html</id>
     <published>2020-12-23T08:30:00.000Z</published>
-    <updated>2020-12-23T08:43:00.711Z</updated>
+    <updated>2020-12-31T13:35:16.969Z</updated>
     
     <content type="html"><![CDATA[<p>版本: Hexo 4.20</p><a id="more"></a><h2 id="處理方式-config-yml修改"><a href="#處理方式-config-yml修改" class="headerlink" title="處理方式(_config.yml修改)"></a>處理方式(_config.yml修改)</h2><p>. 用urlname處理，並在各文章添加其值。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">permalink: posts&#x2F;:category&#x2F;:year:month:day-:urlname.html</span><br><span class="line">permalink_defaults:</span><br><span class="line">  lang: en</span><br></pre></td></tr></table></figure><p>. 套件處理</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># permalink: :year&#x2F;:month&#x2F;:day&#x2F;:title&#x2F;</span><br><span class="line"># permalink_defaults:</span><br><span class="line">permalink: posts&#x2F;:abbrlink.html</span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32  # crc16(default) and crc32</span><br><span class="line">  rep: hex    # dec(default) and hex</span><br></pre></td></tr></table></figure><p>More info: <a href="https://github.com/rozbo/hexo-abbrlink" target="_blank" rel="noopener">hexo-abbrlink</a></p>]]></content>
     
@@ -101,11 +122,11 @@
   </entry>
   
   <entry>
-    <title>Hexo設定permalink.md</title>
+    <title>Hexo設定permalink</title>
     <link href="https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html"/>
     <id>https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html</id>
     <published>2020-12-23T07:56:00.000Z</published>
-    <updated>2020-12-23T08:43:10.028Z</updated>
+    <updated>2020-12-31T13:35:00.931Z</updated>
     
     <content type="html"><![CDATA[<p>版本: Hexo 4.20</p><a id="more"></a><h2 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a>_config.yml</h2><p>. 用github為範例，{yourname}為名稱<br>. 主要是根節點的設定 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &#39;http:&#x2F;&#x2F;yoursite.com&#x2F;child&#39; and root as &#39;&#x2F;child&#x2F;&#39;</span><br><span class="line">url: https:&#x2F;&#x2F;&#123;yourname&#125;.github.io&#x2F;Blog&#x2F;</span><br><span class="line">root: &#x2F;Blog&#x2F;</span><br></pre></td></tr></table></figure><p>More info: <a href="https://github.com/hexojs/hexo/issues/1812" target="_blank" rel="noopener">舊版的問題</a><br>More info: <a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">相關設定</a></p>]]></content>
     

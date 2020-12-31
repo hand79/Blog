@@ -5,24 +5,19 @@
   
 
   
-  <title>Category: Linux | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>Hexo與LocalSearch | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="研究、學習、記錄">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:url" content="https://hand79.github.io/Blog/categories/Linux/index.html">
+  <meta name="description" content="添加本站搜尋功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo與LocalSearch">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="研究、學習、記錄">
+<meta property="og:description" content="添加本站搜尋功能">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-12-31T13:35:00.000Z">
+<meta property="article:modified_time" content="2020-12-31T13:39:07.853Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="開發">
-<meta property="article:tag" content="研究">
-<meta property="article:tag" content="學習">
-<meta property="article:tag" content="記錄">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content=" Javascript">
-<meta property="article:tag" content=" CSS">
-<meta property="article:tag" content=" Html">
+<meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -76,41 +71,78 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html" class="archive-article-date">
-  <time datetime="2020-12-31T11:00:00.000Z" itemprop="datePublished">12月 31</time>
+        <section id="main"><article id="post-Hexo與localSearch" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/posts/Hexo/20201231-hexo-localsearch.html" class="article-date">
+  <time datetime="2020-12-31T13:35:00.000Z" itemprop="datePublished">2020-12-31 21:35:00</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Hexo/">Hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html">Ubuntu install deb file</a>
+    <h1 class="article-title" itemprop="name">
+      Hexo與LocalSearch
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>添加本站搜尋功能</p>
+<a id="more"></a>
+<h2 id="安裝-hexo-generator-searchdb"><a href="#安裝-hexo-generator-searchdb" class="headerlink" title="安裝 hexo-generator-searchdb"></a>安裝 hexo-generator-searchdb</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="config-yml-設定"><a href="#config-yml-設定" class="headerlink" title="_config.yml 設定"></a>_config.yml 設定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">path: search.xml</span><br><span class="line">field: post</span><br><span class="line">format: html</span><br><span class="line">limit: 10000</span><br></pre></td></tr></table></figure>
+
+<h2 id="啟用Local搜索功能："><a href="#啟用Local搜索功能：" class="headerlink" title="啟用Local搜索功能："></a>啟用Local搜索功能：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html" data-id="ckjcwa2650000tgw1gqa55md8" class="article-share-link">Share</a>
+      
+        <a href="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/posts/Hexo/20201231-hexo-plugin-rss.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo與RSS</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -210,11 +242,13 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
