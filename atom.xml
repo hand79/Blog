@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2020-12-31T13:05:37.902Z</updated>
+  <updated>2020-12-31T13:23:58.181Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo與RSS</title>
+    <link href="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-plugin-rss.html"/>
+    <id>https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-plugin-rss.html</id>
+    <published>2020-12-31T13:10:00.000Z</published>
+    <updated>2020-12-31T13:23:58.181Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hexo的主題上面一直有這個東西沒弄，到最後手癢還是找了方法弄了一下。</p><a id="more"></a><h3 id="安裝-Hexo-外掛"><a href="#安裝-Hexo-外掛" class="headerlink" title="安裝 Hexo 外掛"></a>安裝 Hexo 外掛</h3><p>。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-generator-feed</span><br></pre></td></tr></table></figure><p>_config.yml檔案加入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plugins: hexo-generator-feed</span><br><span class="line">rss: /atom.xml</span><br></pre></td></tr></table></figure><p>hexo g之後執行發佈</p><p>More info: <a href="https://zh.wikipedia.org/wiki/RSS" target="_blank" rel="noopener">RSS是什麼?，參考wiki</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Hexo的主題上面一直有這個東西沒弄，到最後手癢還是找了方法弄了一下。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Hexo" scheme="https://hand79.github.io/Blog/categories/Hexo/"/>
+    
+    
+    <category term="Hexo" scheme="https://hand79.github.io/Blog/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu install deb file</title>
@@ -34,27 +55,6 @@
     
     
     <category term="Ubuntu" scheme="https://hand79.github.io/Blog/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo與RSS</title>
-    <link href="https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-plugin-rss.html"/>
-    <id>https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-plugin-rss.html</id>
-    <published>2020-12-23T13:10:00.000Z</published>
-    <updated>2020-12-31T13:22:21.742Z</updated>
-    
-    <content type="html"><![CDATA[<p>Hexo的主題上面一直有這個東西沒弄，到最後手癢還是找了方法弄了一下。</p><a id="more"></a><h3 id="安裝-Hexo-外掛"><a href="#安裝-Hexo-外掛" class="headerlink" title="安裝 Hexo 外掛"></a>安裝 Hexo 外掛</h3><p>。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-generator-feed</span><br></pre></td></tr></table></figure><p>_config.yml檔案加入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plugins: hexo-generator-feed</span><br><span class="line">rss: /atom.xml</span><br></pre></td></tr></table></figure><p>hexo g之後執行發佈</p><p>More info: <a href="https://zh.wikipedia.org/wiki/RSS" target="_blank" rel="noopener">RSS是什麼?，參考wiki</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Hexo的主題上面一直有這個東西沒弄，到最後手癢還是找了方法弄了一下。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Hexo" scheme="https://hand79.github.io/Blog/categories/Hexo/"/>
-    
-    
-    <category term="Hexo" scheme="https://hand79.github.io/Blog/tags/Hexo/"/>
     
   </entry>
   
