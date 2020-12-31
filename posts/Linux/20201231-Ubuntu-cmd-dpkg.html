@@ -5,19 +5,19 @@
   
 
   
-  <title>Hexo設定permalink.md | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>Ubuntu install deb file | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版本: Hexo 4.20">
+  <meta name="description" content="RedHat, Centos 這系列的是用rpm在裝，因為一些個人需求開始用ubuntu，弄個紀錄。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo設定permalink.md">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html">
+<meta property="og:title" content="Ubuntu install deb file">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="版本: Hexo 4.20">
+<meta property="og:description" content="RedHat, Centos 這系列的是用rpm在裝，因為一些個人需求開始用ubuntu，弄個紀錄。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-12-23T07:56:00.000Z">
-<meta property="article:modified_time" content="2020-12-23T08:43:10.028Z">
+<meta property="article:published_time" content="2020-12-31T11:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-31T12:35:18.125Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Ubuntu">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -71,14 +71,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Hexo設定permalink遇到的問題" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Ubuntu install deb file" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/posts/Hexo/20201223-hexo-permalink-blog.html" class="article-date">
-  <time datetime="2020-12-23T07:56:00.000Z" itemprop="datePublished">2020-12-23 15:56:00</time>
+    <a href="/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html" class="article-date">
+  <time datetime="2020-12-31T11:00:00.000Z" itemprop="datePublished">2020-12-31 19:00:00</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Hexo/">Hexo</a>
+    <a class="article-category-link" href="/Blog/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -89,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo設定permalink.md
+      Ubuntu install deb file
     </h1>
   
 
@@ -97,23 +97,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>版本: Hexo 4.20</p>
+        <p>RedHat, Centos 這系列的是用rpm在裝，因為一些個人需求開始用ubuntu，弄個紀錄。 </p>
 <a id="more"></a>
 
-<h2 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a>_config.yml</h2><p>. 用github為範例，{yourname}為名稱<br>. 主要是根節點的設定 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &#39;http:&#x2F;&#x2F;yoursite.com&#x2F;child&#39; and root as &#39;&#x2F;child&#x2F;&#39;</span><br><span class="line">url: https:&#x2F;&#x2F;&#123;yourname&#125;.github.io&#x2F;Blog&#x2F;</span><br><span class="line">root: &#x2F;Blog&#x2F;</span><br></pre></td></tr></table></figure>
+<h3 id="dpkg"><a href="#dpkg" class="headerlink" title="dpkg"></a>dpkg</h3><p>Ubuntu軟體包格式為deb,安裝方法如下:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo dpkg -i xxxxx.deb (安裝用root權限，xxxx檔案名稱) or dpkg -i xxxxx.deb </span><br><span class="line"></span><br><span class="line">其他指令參考:</span><br><span class="line">dpkg -r xxxxx 刪除該包</span><br><span class="line">dpkg -P xxxxx 刪除該包(包括配置檔案)</span><br><span class="line">dpkg -L xxxxx 列出與該包關聯的檔案</span><br><span class="line">dpkg -l xxxxx 顯示該包的版本</span><br><span class="line">dpkg –unpack xxxxx.deb 解壓 deb</span><br><span class="line">dpkg -S xxxxx 搜尋所屬的包內容</span><br><span class="line">dpkg -l 列出當前已安裝的deb</span><br><span class="line">dpkg -c xxxxx.deb 列出 deb 包的內容</span><br><span class="line">dpkg –configure xxxxx 配置包</span><br><span class="line">man dpkg 詳細指令</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://github.com/hexojs/hexo/issues/1812" target="_blank" rel="noopener">舊版的問題</a><br>More info: <a href="https://hexo.io/docs/configuration.html" target="_blank" rel="noopener">相關設定</a></p>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html" data-id="ckj162d8s0001lcw106kn45rb" class="article-share-link">Share</a>
+      <a data-url="https://hand79.github.io/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html" data-id="ckjcsrodk0000bww13vr4a7sd" class="article-share-link">Share</a>
       
-        <a href="https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html#disqus_thread" class="article-comment-link">留言</a>
+        <a href="https://hand79.github.io/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Ubuntu/" rel="tag">Ubuntu</a></li></ul>
 
     </footer>
   </div>
@@ -121,19 +121,10 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/posts/Hexo/20201223-hexo-permalink-blog.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hexo鏈結的中文標題問題.md
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog/posts/Maven/20201124-maven-dependancy-scope.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/posts/Hexo/20201223-hexo-add-disqus-blog.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Maven中的dependency的Scope功用</div>
+      <div class="article-nav-title">Add Disqus.md</div>
     </a>
   
 </nav>
@@ -246,7 +237,7 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-permalink-blog.html';
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html';
   
   (function(){
     var dsq = document.createElement('script');
