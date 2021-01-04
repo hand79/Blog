@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2020-12-31T14:45:18.935Z</updated>
+  <updated>2021-01-04T07:26:17.423Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Rest 無狀態的解釋</title>
+    <link href="https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html"/>
+    <id>https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html</id>
+    <published>2021-01-04T06:30:30.000Z</published>
+    <updated>2021-01-04T07:26:17.423Z</updated>
+    
+    <content type="html"><![CDATA[<p>每次都忘怎麼解釋，寫一下。</p><a id="more"></a><h3 id="Wiki-Rest擷取"><a href="#Wiki-Rest擷取" class="headerlink" title="Wiki Rest擷取"></a>Wiki Rest擷取</h3><ul><li>無狀態（Stateless）<ul><li>伺服器不能儲存客戶端的資訊,每一次從客戶端傳送的請求中, 要包含所有的必須的狀態資訊, 對談資訊由客戶端儲存, 伺服器端根據這些狀態資訊來處理請求. 伺服器可以將對談狀態資訊傳遞給其他服務, 比如資料庫服務, 這樣可以保持一段時間的狀態資訊, 從而實現認證功能. 當客戶端可以切換到一個新狀態的時候傳送請求資訊. 當一個或者多個請求被傳送之後, 客戶端就處於一個狀態變遷過程中. 每一個應用的狀態描述可以被客戶端用來初始化下一次的狀態變遷.</li></ul></li></ul><p>每次過頭直接看這段Wiki翻的和原文我真心看不懂!!直到看了這個無狀態Server的解釋。</p><h3 id="無狀態Server"><a href="#無狀態Server" class="headerlink" title="無狀態Server"></a>無狀態Server</h3><ul><li>無狀態伺服器是指一種把每個請求作為與之前任何請求都無關的獨立的事務的伺服器。</li></ul><h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><ul><li>無狀態 (Stateless) 是指從 Client 到 Server 的所有請求，皆需包含『 用於理解該次請求 』的 所有 相關信息，不得利用任何儲存在 Server 的上下文。</li><li>Server不得假定同一連接 上的兩個請求來自同一個 User Agent。</li><li>REST 中的『 狀態 』，是指 資源 與 表示 的狀態，而非無狀態 (Stateless) 架構約束中的 會話(Session)狀態。</li></ul><p>More info: <a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">Representational State Transfer (Rest)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">Stateless protocol (無狀態協議)</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;每次都忘怎麼解釋，寫一下。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Web" scheme="https://hand79.github.io/Blog/categories/Web/"/>
+    
+    
+    <category term="Web" scheme="https://hand79.github.io/Blog/tags/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Session, Cookie, JWT相關概念</title>
+    <link href="https://hand79.github.io/Blog/posts/Web/20210104-jwt-session-cookie.html"/>
+    <id>https://hand79.github.io/Blog/posts/Web/20210104-jwt-session-cookie.html</id>
+    <published>2021-01-04T05:30:20.000Z</published>
+    <updated>2021-01-04T07:25:00.552Z</updated>
+    
+    <content type="html"><![CDATA[<p>概念整理。</p><a id="more"></a><h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><ul><li>原理: Client端連上Server時，Server會創建Session出來，Server向Client端瀏覽器傳送一個名為JSESSIONID的Cookie會以Cookie的形式傳回Client端，Session依據該Cookie來識別是否為同一使用者。<ul><li>該Cookie為伺服器自動生成的，它的maxAge屬性一般為–1，表示僅當前瀏覽器內有效，關閉瀏覽器就會失效。</li><li>Cookie被禁止時會以，URL重寫的方式來處理，表現形式為http://…../xxx?jsessionid=xxxxx。</li></ul><ul><li>常有的錯誤想法:<ul><li>只要關閉瀏覽器，Session就消失了。沒有主動Call Server做登出的動作其實不會消除Session，Server會一直保留，因為Server這邊不會知道已經關閉瀏覽器了。會有這種錯覺，是大部分Session機制都使用Cookie來儲存Session id(瀏覽器上會看到jsessionid儲存這部分的資訊)， 而關閉瀏覽器後這個Session id就消失了，再次連線Server也就無法找到原來的Session。</li><li>如果Server產生的Cookie被儲存或者使用某種手段改寫瀏覽器發出的HTTP請求頭，把原來的Session id傳送給Server，則再次開啟瀏覽器仍然能夠找到原來的Session。</li><li>關閉瀏覽器不會導致Session被刪除，Server會為seesion設定了一個失效時間，當距離客戶端上一次使用Session的時間超過這個失效時間時，Server就可以認為Client端已經停止了活動，才會把Session刪除以節省儲存空間。</li></ul></li></ul></li></ul><h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><ul><li>不可跨域，會綁單一域名。</li><li>Cookie的maxAge決定著Cookie的有效期，單位為秒（Second)。</li><li>如果maxAge為負數，則表示該Cookie僅在本瀏覽器視窗以及本視窗開啟的子視窗內有效，關閉視窗後該Cookie即失效。maxAge為負數的Cookie，為臨時性Cookie，不會被持久化，不會被寫到Cookie檔案中。Cookie資訊儲存在瀏覽器記憶體中，因此關閉瀏覽器該Cookie就消失了。Cookie預設的maxAge值為–1。</li><li>如果maxAge為0，則表示刪除該Cookie。Cookie機制沒有提供刪除Cookie的方法，因此通過設定該Cookie即時失效實現刪除Cookie的效果。失效的Cookie會被瀏覽器從Cookie檔案或者記憶體中刪除。</li><li>不希望Cookie在HTTP等非安全協議中傳輸，可以設定Cookie的secure屬性為true。瀏覽器只會在HTTPS和SSL等安全協議中傳輸此類Cookie。<ul><li>secure屬性並不能對Cookie內容執行加密，因而不能保證絕對的安全性。若需要高安全性，需要在程式中對Cookie內容加密、解密，以防洩密。</li></ul></li></ul><h3 id="Session和Cookie的主要區別"><a href="#Session和Cookie的主要區別" class="headerlink" title="Session和Cookie的主要區別"></a>Session和Cookie的主要區別</h3><ul><li>安全性: Session比 Cookie安全<ul><li>Session是儲存Server端。</li><li>Cookie是儲存Client端，因此敏感資料不可放在這。</li></ul></li><li>存取類型:<ul><li>Cookie只支持存文字類型，想存其他類型的需做轉換(例: 用base64)。</li><li>Session可以儲存任意數據類型。</li></ul></li><li>儲存大小:<ul><li>Cookie: 至多4k。</li><li>Session: 遠高於Cookie，但過多的資料會佔用過多Server的資源。</li></ul></li><li>效期:<ul><li>Cookie: 關閉瀏覽器即失效、30天內有效與永久有效。通過設定Cookie的age屬性來實現。</li><li>Session: 至多上限24小時，實務上預設是30分鐘。</li></ul></li></ul><h3 id="JWT-JSON-Web-Token"><a href="#JWT-JSON-Web-Token" class="headerlink" title="JWT(JSON Web Token)"></a>JWT(JSON Web Token)</h3><ul><li>使用時機 :<ul><li>跨域下的請求。</li><li>一次性、時效短的請求。</li><li>身份驗證單點登入(SSO)。</li><li>Call Web API(eg. RESTful API)。</li></ul></li><li>JWT 主要分為三段，個別為 Header、Payload 與 Signature，以.做區隔，每一段都是透過 Base64去編碼，中間的 payload中有敏感資料會加密。<br>Header.Payload.Signature<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span><br></pre></td></tr></table></figure></li><li>資料結構:<ul><li>Header</li></ul><ul><li>一個JSON對象， alg屬性表示簽名的算法（algorithm），默認為HMAC SHA256（寫成HS256）； typ屬性表示該令牌（token）的類型（type），JWT令牌統一寫為JWT。</li></ul></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;, # 加密的方法: HMAC、SHA256、RSA等</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>Payload<ul><li>一個JSON對象，用於存放實際需要傳遞的資料。JWT規定了7個官方參數供選擇(建議但不強制使用)。</li><li>實際上這裡是明文，不適合儲存敏感資料(例如:使用者帳號密碼)。</li></ul></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iss (issuer)：發行人</span><br><span class="line">exp (expiration time)：過期時間</span><br><span class="line">sub (subject)：主题</span><br><span class="line">aud (audience)：接收jwt的一方</span><br><span class="line">nbf (Not Before)：定義在什麼時間之前，該jwt都是不可用的，生效時間</span><br><span class="line">iat (Issued At)：簽發時間</span><br><span class="line">jti (JWT ID)：編號， jwt的唯一身份標識，主要用來作為一次性token,從而迴避replay attack</span><br></pre></td></tr></table></figure><ul><li>Signature<ul><li>針對Header與Payload產生，目的是防止資料竄改。</li><li>指定一個secret，只有Server知道secret才知道，不可洩漏給用戶，然後使用 Header裡面指定的簽名演算法。</li></ul></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),  secret)</span><br></pre></td></tr></table></figure><p>Header、Payload 與 Signature之後用.串起來就是JWT，一般JWT放在HTTP的Authorization標頭中跟請求一起帶出去。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: Bearer &lt;token&gt;</span><br></pre></td></tr></table></figure><ul><li><p>安全的使用JWT:</p><ul><li>header: 確保指定唯一的decode algorithm。</li><li>payload: 不放入密鑰或敏感數據、設置置過期時間(exp)不要太長、驗證部分聲明(iss、aud等關鍵參數)。</li><li>signature: 密鑰的安全性(長度、密碼複雜度)、指定decode函數的簽名驗證等。</li><li>開啟 Http only 防止Token被擷取，是常見的來 XSS防護方法之一。</li><li>使用 Https 確保在授權的時候不會被竊取。</li><li>用來加密的 Secret要保存在 Server不應外流 。</li><li>replay attacks的問題可以多宣告 jti, exp處理。</li><li>黑名單機制(針對使用不當或不明原因進行手動防禦機制)、刷新機制。</li><li>Server端保有JWT權限的控制權(例如: 把JWT儲存Cache server中，移除及消除該JWT權限)。</li><li>權限的授權與token分離(該token只是帳密認證過，擁有什麼權限依然掌握在Server這邊的設定)。</li></ul></li><li><p>JWT vs Session 一些個人結論，認為都有可取之處:</p><ul><li>安全機制: JWT安全機制的細節較Session處理而言較為繁雜。</li><li>擴展: JWT較為方便，不過Session這邊也有不少解決方案(硬體: F5, 軟體: nginx, AWS: ELB等方案，關鍵字: sticky session)。</li></ul></li></ul><h3 id="Single-sign-on-SSO"><a href="#Single-sign-on-SSO" class="headerlink" title="Single sign-on (SSO)"></a>Single sign-on (SSO)</h3><ul><li>降低存取第三方網站的風險。</li><li>減少相同身份重新輸入密碼所花費的時間。</li><li>不同的使用者名稱和密碼組合衍生的問題(例如:忘記某一組帳號密碼)。</li><li>跨域認證: 一般橫跨不同伺服器的架構上身份驗證Server是獨立出來，Single sign-on(SSO)的方式來處理。<ul><li>Java類似的方案有:</li></ul><ul><li>Java Spring + Redis(利用Cache server的特性， 使用Redis存入Session或JWT的方式，讓Redis管理其時效，不同AP可以從中取得相關訊息)。</li></ul></li></ul><p>More info: <a href="https://en.wikipedia.org/wiki/JSON_Web_Token" target="_blank" rel="noopener">JSON Web Token(JWT)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/Base64" target="_blank" rel="noopener">Base64 編碼</a><br>More info: <a href="https://en.wikipedia.org/wiki/Single_sign-on" target="_blank" rel="noopener">Single sign-on(SSO)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB" target="_blank" rel="noopener">Replay attack</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;概念整理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Web" scheme="https://hand79.github.io/Blog/categories/Web/"/>
+    
+    
+    <category term="Web" scheme="https://hand79.github.io/Blog/tags/Web/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo與SEO</title>
