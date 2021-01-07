@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="mWgoNzG3TVNS-feQ3K-JpdegLev-LdDB23tvHMphDqc" />
+  
+
+  
+  <title>CI/CD 相關內容概念 | Max&#39;s Blog-程式學習研究記錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念解釋。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CI&#x2F;CD 相關內容概念">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Development/20210107-CI-CD.html">
+<meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
+<meta property="og:description" content="概念解釋。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://www.redhat.com/cms/managed-files/ci-cd-flow-desktop_1.png">
+<meta property="article:published_time" content="2021-01-07T06:30:30.000Z">
+<meta property="article:modified_time" content="2021-01-07T07:24:49.098Z">
+<meta property="article:author" content="MaxHanChen">
+<meta property="article:tag" content="Development">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.redhat.com/cms/managed-files/ci-cd-flow-desktop_1.png">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Max&#39;s Blog-程式學習研究記錄</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">求生是激發人的成長與潛能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hand79.github.io/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CI_CD" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/posts/Development/20210107-CI-CD.html" class="article-date">
+  <time datetime="2021-01-07T06:30:30.000Z" itemprop="datePublished">2021-01-07 14:30:30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Development/">Development</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CI/CD 相關內容概念
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>概念解釋。</p>
+<a id="more"></a>
+
+<h3 id="Continuous-integration-CI，持續性整合"><a href="#Continuous-integration-CI，持續性整合" class="headerlink" title="Continuous integration(CI，持續性整合)"></a>Continuous integration(CI，持續性整合)</h3><ul>
+<li>將開發人員對應用程序的更改被合併，系統將會通過自動生成應用並運行不同級別的自動化測試（通常是單元測試和整合測試）來驗證，確保這些更改沒有對程式功能造成破壞。測試內容涵蓋了從類和函數到構成整個應用的不同模塊。如果自動化測試發現新代碼和現有代碼之間存在衝突，可以更加輕鬆地快速修復這些錯誤。     </li>
+<li>目的: 完成各程式碼的整合。應用程序的新更改會定期構建，測試並合併到共享存儲庫中，解決在一次開發中有太多應用分支，從而導致相互衝突的問題。</li>
+</ul>
+<h3 id="Continuous-Delivery-CD，持續性交付"><a href="#Continuous-Delivery-CD，持續性交付" class="headerlink" title="Continuous Delivery(CD，持續性交付)"></a>Continuous Delivery(CD，持續性交付)</h3><ul>
+<li>完成CI中生成及單元測試和整合測試的自動化流程後，持續交付可自動將已驗證的程式碼發佈到存儲庫。為了實現高效的持續交付流程，必須確保CI已內置於開發管道。</li>
+<li>目的: 是擁有一個可隨時部署到生產環境的程式庫。</li>
+</ul>
+<h3 id="Continuous-Deployment-CD，持續性部署"><a href="#Continuous-Deployment-CD，持續性部署" class="headerlink" title="Continuous Deployment(CD，持續性部署)"></a>Continuous Deployment(CD，持續性部署)</h3><ul>
+<li>最後的階段是持續部署，自動部署到指定環境。</li>
+<li>目的: 自動將預定的程式版本發佈到程式碼存儲庫的延伸，自動將程式發佈到生產環境。</li>
+</ul>
+<h2 id="CI-CD總結"><a href="#CI-CD總結" class="headerlink" title="CI/CD總結"></a>CI/CD總結</h2><ul>
+<li>CI/CD 就是程式開發完畢後，把開發完成的程式碼進行測試與Code Review，通過後經過合併於主線(Main branch)後直接發佈上線(Prod, UAT等環境)，這樣的過程就是所謂的 CI/CD。</li>
+<li>CI/CD常用工具:    <ul>
+<li>GitLab CI</li>
+<li>Travis CI</li>
+<li>Bamboo (Atlassian家出的 CI)</li>
+<li>Circle CI</li>
+<li>Jenkins</li>
+<li>Ansible </li>
+</ul>
+</li>
+</ul>
+<p>*<em>流程參考 Redhat *</em><br><img src="https://www.redhat.com/cms/managed-files/ci-cd-flow-desktop_1.png" alt="Redhat_CI_CD"></p>
+<h3 id="Unit-Testing-單元測試"><a href="#Unit-Testing-單元測試" class="headerlink" title="Unit Testing (單元測試)"></a>Unit Testing (單元測試)</h3><ul>
+<li>針對程式中的模組來進行正確性檢驗的測試工作，一個單元的定義可以是單個程式、函式、過程等內容，作為一個單元。(對於物件導向程式設計，最小單元就是方法，包括基礎類別（超類）、抽象類、或者衍生類別（子類）中的方法。)</li>
+</ul>
+<h3 id="System-Integration-Testing-SIT，整合測試"><a href="#System-Integration-Testing-SIT，整合測試" class="headerlink" title="System Integration Testing (SIT，整合測試)"></a>System Integration Testing (SIT，整合測試)</h3><ul>
+<li>在單獨的軟體模組被合併作為一個組測試。在單元測試之後和在系統測試之前。整合測試在已經被單元測試檢驗後進行作為它的輸入，組織在更大的集合，和遞送，作為它的輸出，整合系統為系統測試做準備。</li>
+<li>目的: 整合測試的目的是校驗功能、效能和可靠性要求，配置在主設計專案中。</li>
+</ul>
+<h3 id="System-Testing-系統測試"><a href="#System-Testing-系統測試" class="headerlink" title="System Testing (系統測試)"></a>System Testing (系統測試)</h3><ul>
+<li>系統測試的涵蓋面很廣，主要包括功能測試、介面測試、可靠性測試、易用性測試、效能測試。 功能測試主要針對包括功能可用性、功能實現程度（功能流程&amp;業務流程、資料處理&amp;業務資料處理）方面測試。</li>
+<li>壓力測試與效能測試差異<ul>
+<li>壓力測試要求進行超過規定效能指標的測試。例如一個網站請求是100qps，壓力測試就要是採用120qps個同時請求的條件測試。<ul>
+<li>判斷準則： 系統能夠恢復、壓力過程中不要有明顯效能下降</li>
+</ul>
+</li>
+<li>效能測試是就是該系統的效能標準(eg. 80tps)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Stress-Testing-壓力測試"><a href="#Stress-Testing-壓力測試" class="headerlink" title="Stress Testing (壓力測試)"></a>Stress Testing (壓力測試)</h3><ul>
+<li>測驗系統在當下的軟硬體環境下能夠承受的請求有多少，用來計算出系統的極限。</li>
+</ul>
+<h3 id="User-Acceptance-Testing-UAT，使用者驗收測試"><a href="#User-Acceptance-Testing-UAT，使用者驗收測試" class="headerlink" title="User Acceptance Testing(UAT，使用者驗收測試)"></a>User Acceptance Testing(UAT，使用者驗收測試)</h3><ul>
+<li>通常是由一般的使用者（通常這些使用者不瞭解軟體的具體邏輯，但對業務邏輯非常熟悉）進行的測試，因此是面向終端使用者的測試，結束後通常就可以佈署到正式環境了(Production)。</li>
+</ul>
+<p>###　其他</p>
+<ul>
+<li>TPS（每秒事務數）代表每秒執行的事務數量，由資料庫管理系統和用戶用於描述每秒鐘的資料庫操作數。例如，用戶每分鐘執行6個事務，TPS為6 / 60s = 0.10 TPS。</li>
+<li>QPS：Queries Per Second意思是「每秒查詢率」，是一台伺服器每秒能夠相應的”查詢次數”，是對一個特定的查詢伺服器在規定時間內所處理流量多少的衡量標準。<br>More info: <a href="https://kknews.cc/zh-tw/code/nax2lv3.html" target="_blank" rel="noopener">相關參考1</a><br>More info: <a href="https://kknews.cc/news/zejoy8l.html" target="_blank" rel="noopener">相關參考2</a></li>
+</ul>
+<p>More info: <a href="https://zh.wikipedia.org/wiki/%E6%8C%81%E7%BA%8C%E6%95%B4%E5%90%88" target="_blank" rel="noopener">Continuous integration(wiki)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E6%8C%81%E7%BA%8C%E4%BA%A4%E4%BB%98" target="_blank" rel="noopener">Continuous Delivery(wiki)</a><br>More info: <a href="https://www.redhat.com/zh/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">CI/CD(RedHat)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95" target="_blank" rel="noopener">Software Testing(wiki)</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hand79.github.io/Blog/posts/Development/20210107-CI-CD.html" data-id="ckjmizsxc0000fcw1fxls2htt" class="article-share-link">Share</a>
+      
+        <a href="https://hand79.github.io/Blog/posts/Development/20210107-CI-CD.html#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/posts/Web/20210104-rest-stateless.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Rest 無狀態的解釋</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Development/">Development</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Web/">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Web/" rel="tag">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Development/" style="font-size: 10px;">Development</a> <a href="/Blog/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/Blog/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/Blog/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/Blog/tags/Web/" style="font-size: 15px;">Web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">時間</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/posts/Development/20210107-CI-CD.html">CI/CD 相關內容概念</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Web/20210104-rest-stateless.html">Rest 無狀態的解釋</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Web/20210104-jwt-session-cookie.html">Session, Cookie, JWT相關概念</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Hexo/20201231-hexo-seo.html">Hexo與SEO</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Hexo/20201231-hexo-localsearch.html">Hexo與LocalSearch</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 MaxHanChen<br/>
+      E-mail: <a href="mailto: maxdjkl@gmail.com"><u>maxdjkl@gmail.com</u></a><br/>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'maxhanchen';
+  
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Development/20210107-CI-CD.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
