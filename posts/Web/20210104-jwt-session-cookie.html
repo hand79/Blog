@@ -16,7 +16,7 @@
 <meta property="og:description" content="概念整理。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-01-04T05:30:20.000Z">
-<meta property="article:modified_time" content="2021-01-04T07:25:00.552Z">
+<meta property="article:modified_time" content="2021-01-07T01:55:24.191Z">
 <meta property="article:author" content="MaxHanChen">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -104,7 +104,7 @@
 <h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><ul>
 <li>原理: Client端連上Server時，Server會創建Session出來，Server向Client端瀏覽器傳送一個名為JSESSIONID的Cookie會以Cookie的形式傳回Client端，Session依據該Cookie來識別是否為同一使用者。<ul>
 <li>該Cookie為伺服器自動生成的，它的maxAge屬性一般為–1，表示僅當前瀏覽器內有效，關閉瀏覽器就會失效。</li>
-<li>Cookie被禁止時會以，URL重寫的方式來處理，表現形式為http://…../xxx?jsessionid=xxxxx。</li>
+<li>Cookie被禁止時會以URL重寫的方式來處理，表現形式為http://…../xxx?jsessionid=xxxxx。</li>
 </ul>
 <ul>
 <li>常有的錯誤想法:<ul>
