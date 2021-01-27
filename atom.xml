@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-01-18T06:24:20.764Z</updated>
+  <updated>2021-01-27T07:29:28.089Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shallow Copy VS Deep Copy (JavaScript)</title>
+    <link href="https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html"/>
+    <id>https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html</id>
+    <published>2021-01-27T07:00:00.000Z</published>
+    <updated>2021-01-27T07:29:28.089Z</updated>
+    
+    <content type="html"><![CDATA[<p>Shallow Copy VS Deep Copy　</p><a id="more"></a><p><img src="http://i.imgur.com/abBTAP3.png" alt="Shallow Copy VS Deep Copy"></p><ul><li>Shallow Copy(淺拷貝): 只複製指向某個物件的指標，而不複製物件本身，新舊物件還是共用同一塊記憶體。</li><li>Deep Copy(深拷貝): 會另外創造一個一模一樣的物件，新物件跟原物件不共用記憶體，修改新物件不會改到原物件內容。</li></ul><h2 id="如何-Deep-Copy"><a href="#如何-Deep-Copy" class="headerlink" title="如何 Deep Copy"></a>如何 Deep Copy</h2><ol><li>手動複製(建立一個物件，手動把值弄進去)</li><li>Object.assign(ES6語法，該語法先建立一個空物件，再把指定值塞進去，限單層，多層需另外處理)</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123; a: 1, b: 2, c: 3 &#125;;</span><br><span class="line">var obj2 &#x3D; Object.assign(&#123;&#125;, obj1);</span><br><span class="line">obj2.b &#x3D; 100;</span><br><span class="line">console.log(obj1); &#x2F;&#x2F; &#123; a: 1, b: 2, c: 3 &#125; &lt;-- 值不變</span><br><span class="line">console.log(obj2); &#x2F;&#x2F; &#123; a: 1, b: 100, c: 3 &#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>轉成 JSON 再轉回來(用JSON.stringify把物件轉成字串，再用JSON.parse把字串轉成新的物件，多層可以，有function情境不可，function沒辦法轉成JSON)</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123; fun: function()&#123; console.log(123) &#125; &#125;;</span><br><span class="line">var obj2 &#x3D; JSON.parse(JSON.stringify(obj1));</span><br><span class="line"></span><br><span class="line">console.log(typeof obj1.fun); &#x2F;&#x2F; &#39;function&#39;</span><br><span class="line">console.log(typeof obj2.fun); &#x2F;&#x2F; &#39;undefined&#39; &lt;-- 會undefined，</span><br></pre></td></tr></table></figure><ol start="4"><li>透過library處理，此處用JQuery處理</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: &#123; f: &#123; g: 2 &#125; &#125;,</span><br><span class="line">    c: [4, 5, 6]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var obj2 &#x3D; $.extend(true, &#123;&#125;, obj1);</span><br><span class="line">console.log(obj1.b.f &#x3D;&#x3D;&#x3D; obj2.b.f); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Shallow Copy VS Deep Copy　&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>資料庫的問題</title>
@@ -185,11 +206,11 @@
   </entry>
   
   <entry>
-    <title>Add Disqus.md</title>
+    <title>Add Disqus</title>
     <link href="https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-add-disqus-blog.html"/>
     <id>https://hand79.github.io/Blog/posts/Hexo/20201223-hexo-add-disqus-blog.html</id>
     <published>2020-12-23T08:39:00.000Z</published>
-    <updated>2020-12-23T08:49:58.332Z</updated>
+    <updated>2021-01-27T07:00:44.301Z</updated>
     
     <content type="html"><![CDATA[<p>Disqus留言板的添加</p><a id="more"></a><h2 id="處理流程"><a href="#處理流程" class="headerlink" title="處理流程"></a>處理流程</h2><p>. 先申請Disqus帳號<br>. 到後台管理區設定網址<br>. 複製提供的js程式碼，到需要用的位置(若本身Hexo就提供該功能可以省略，本文使用landscape)<br>. _config.yml 設定參數，主題若有其他參數需參考該主題</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">disqus_enabled: true</span><br><span class="line">disqus_shortname: xxxx (Disqus後台設定的名稱)</span><br><span class="line">disqus_count: true (計數)</span><br></pre></td></tr></table></figure><p>More info: <a href="https://disqus.com/" target="_blank" rel="noopener">Disqus</a></p>]]></content>
     
