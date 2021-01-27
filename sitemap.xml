@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html</loc>
+    <loc>https://hand79.github.io/Blog/posts/Development/20210127-java-web-tool.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html</loc>
+    <loc>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-sync-time.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
@@ -17,6 +17,13 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-runlevel.html</loc>
+    
+    <lastmod>2021-01-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html</loc>
     
     <lastmod>2021-01-27</lastmod>
     
