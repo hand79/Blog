@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-01-27T07:29:28.089Z</updated>
+  <updated>2021-01-27T08:42:17.554Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>運行級別 CentOS(6, 7)修改</title>
+    <link href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-runlevel.html"/>
+    <id>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-runlevel.html</id>
+    <published>2021-01-27T07:34:00.000Z</published>
+    <updated>2021-01-27T08:42:17.554Z</updated>
+    
+    <content type="html"><![CDATA[<p>不同版本用法不太一樣</p><a id="more"></a><p>運行級別</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Default runlevel. The runlevels used are:</span><br><span class="line">#   0 - halt (Do NOT set initdefault to this)</span><br><span class="line">#   1 - Single user mode</span><br><span class="line">#   2 - Multiuser, without NFS (The same as 3, if you do not have networking)</span><br><span class="line">#   3 - Full multiuser mode</span><br><span class="line">#   4 - unused</span><br><span class="line">#   5 - X11</span><br><span class="line">#   6 - reboot (Do NOT set initdefault to this)</span><br></pre></td></tr></table></figure><p>** 從一種運行模式可以切換到另一種運行模式**</p><ol><li>重啟系統切換運行級別<br>　　命令行模式——&gt;圖形界面模式：init 5<br>　　圖形界面模式——&gt;命令行模式：init 3</li><li>臨時切換</li></ol><ul><li>命令行模式——&gt; 圖形界面模式：startx</li><li>圖形界面模式——&gt;命令行模式：在X-window圖形操作界面中按Ctrl+Alt+Fn(n=1-6) 就可以進入Console字符操作界面。按Ctrl+Alt+F7即可回到剛才的X-window中。 </li></ul><h1 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h1><p>修改/ etc / inittab文件中的重置運行等級即可。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;inittab</span><br></pre></td></tr></table></figure><p>修改內容後，重新啟動。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#默認命令模式</span><br><span class="line">id:3:initdefault:</span><br><span class="line"></span><br><span class="line">#默認GUI模式</span><br><span class="line">id:5:initdefault:</span><br></pre></td></tr></table></figure><h1 id="CentOS-7"><a href="#CentOS-7" class="headerlink" title="CentOS 7"></a>CentOS 7</h1><p>改用Systemd處理了，原有的inittab已無用<br>systemd使用targets的取代了原有的運行級別runlevels。</p><p>默認兩個主要目標：</p><p>多用戶目標等價於原來的運行級別3<br>graphic.target等價於原來的運行級別5</p><ul><li>查看默認的運行等級</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl get-default</span><br></pre></td></tr></table></figure><ul><li>設置默認的運行等級</li></ul><p>切換命令模式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl isolate multi-user.target</span><br></pre></td></tr></table></figure><p>切換 GUI模式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl isolate graphical.target</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#設定開機啟動至命令模式（runlevel 3）</span><br><span class="line">systemctl set-default multi-user.target</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#設定開機啟動至 GUI 模式</span><br><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></table></figure><p>More info: <a href="https://www.cnblogs.com/rouqinglangzi/p/11077443.html" target="_blank" rel="noopener">參考</a><br>More info: <a href="http://technote.aven-network.com/852/using-systemctl-control-target" target="_blank" rel="noopener">使用 systemctl 操作系統層級 target</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;不同版本用法不太一樣&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>網卡IP查詢</title>
+    <link href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html"/>
+    <id>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html</id>
+    <published>2021-01-27T07:30:00.000Z</published>
+    <updated>2021-01-27T08:42:33.824Z</updated>
+    
+    <content type="html"><![CDATA[<p>#網卡IP查詢</p><a id="more"></a><h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h2><ul><li>ipconfig</li></ul><h2 id="Ubuntu-CentOS"><a href="#Ubuntu-CentOS" class="headerlink" title="Ubuntu, CentOS"></a>Ubuntu, CentOS</h2><ul><li>ifconfig</li><li>假如指令無效net-tools需要裝</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install net-tools</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;#網卡IP查詢&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如果root忘了密碼(Centos 6)</title>
+    <link href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-root-password.html"/>
+    <id>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-root-password.html</id>
+    <published>2021-01-27T07:30:00.000Z</published>
+    <updated>2021-01-27T08:16:27.554Z</updated>
+    
+    <content type="html"><![CDATA[<p>#如果root忘了密碼，過單用戶模式重設root帳號的密碼，進入到單用戶模式，root不用密碼就可以登入</p><a id="more"></a><p>步驟:<br>開機時在引導時輸入enter-&gt;看到介面輸入e-&gt;選擇kernel-&gt;<br>輸入e-&gt; 在這這行最後面寫 1-&gt;再輸入enter -&gt; 再輸入小b(單用戶模式)-&gt;可以修改root密碼(passwd)</p><p>#安全性的疑慮:<br>用這招必須在當台電腦或機房前才有用(遠程無用)</p><p>More info: <a href="https://kknews.cc/zh-tw/code/k9oxl6q.html" target="_blank" rel="noopener">其他版本相關</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;#如果root忘了密碼，過單用戶模式重設root帳號的密碼，進入到單用戶模式，root不用密碼就可以登入&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>時間同步(網路校時)</title>
+    <link href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html"/>
+    <id>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html</id>
+    <published>2021-01-27T07:30:00.000Z</published>
+    <updated>2021-01-27T09:11:21.056Z</updated>
+    
+    <content type="html"><![CDATA[<p>#CentOS 時間同步</p><a id="more"></a><h2 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate pool.ntp.org # ntpdate [ip]</span><br></pre></td></tr></table></figure><h2 id="CentOS-8-7開始提供使用Chrony"><a href="#CentOS-8-7開始提供使用Chrony" class="headerlink" title="CentOS 8 (7開始提供使用Chrony)"></a>CentOS 8 (7開始提供使用Chrony)</h2><ul><li>只能使用Chrony</li></ul><p>安裝</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install chrony</span><br></pre></td></tr></table></figure><p>啟動</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start chronyd.service 或  systemctl start chronyd</span><br></pre></td></tr></table></figure><p>設置開機後就自動執行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable chronyd.service 或  systemctl enable chronyd</span><br></pre></td></tr></table></figure><p>設定檔位於路徑 </p><ul><li>/etc/chrony.conf</li></ul><p>預設值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server 0.centos.pool.ntp.org iburst</span><br><span class="line">server 1.centos.pool.ntp.org iburst</span><br><span class="line">server 2.centos.pool.ntp.org iburst</span><br><span class="line">server 3.centos.pool.ntp.org iburst</span><br></pre></td></tr></table></figure><p>想改用台灣本地的時間主機，如下台灣本地的時間主機</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server tock.stdtime.gov.tw prefer</span><br><span class="line">server tick.stdtime.gov.tw</span><br><span class="line">server time.stdtime.gov.tw</span><br></pre></td></tr></table></figure><p>查看 chronyd運行狀態</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status chronyd.service</span><br></pre></td></tr></table></figure><p>查看 chronyc 校時來源server</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure><p>查看 chronyc 校時來源server狀態</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sourcestats</span><br></pre></td></tr></table></figure><p>查看最後一次取得的校時資料</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc tracking</span><br></pre></td></tr></table></figure><p>如果系統時間與網路時間差異較大，不想等chrony慢慢校時，手動執行強制校時指令 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc -a makestep</span><br></pre></td></tr></table></figure><p>參考:<a href="http://linux.vbird.org/linux_server/0440ntp/0440ntp-centos5.php#ntpdate" target="_blank" rel="noopener">ntpdate from 鳥哥</a><br>參考: [RedHat] (<a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-differences_between_ntpd_and_chronyd" target="_blank" rel="noopener">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-differences_between_ntpd_and_chronyd</a>)<br>參考:<a href="https://kknews.cc/zh-tw/code/8ga39xl.html" target="_blank" rel="noopener">RHEL8或CentOS8上配置NTP伺服器和客戶端</a><br>參考:<a href="https://blog.gtwang.org/linux/linux-ntp-installation-and-configuration-tutorial/" target="_blank" rel="noopener">Linux 設定 NTP 同步系統時間，自動網路校時教學</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;#CentOS 時間同步&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Shallow Copy VS Deep Copy (JavaScript)</title>

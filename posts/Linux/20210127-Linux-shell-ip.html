@@ -6,19 +6,19 @@
   
 
   
-  <title>Tag 與 Category設定 | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>時間同步(網路校時) | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文章的Tag 與 Category設定">
+  <meta name="description" content="#CentOS 時間同步">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tag 與 Category設定">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/Hexo/20200223-hexo-tag-category.html">
+<meta property="og:title" content="時間同步(網路校時)">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="文章的Tag 與 Category設定">
+<meta property="og:description" content="#CentOS 時間同步">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-02-23T11:10:00.000Z">
-<meta property="article:modified_time" content="2020-12-31T13:01:45.811Z">
+<meta property="article:published_time" content="2021-01-27T07:30:00.000Z">
+<meta property="article:modified_time" content="2021-01-27T09:11:21.056Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -72,14 +72,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Hexo/Tag與Categories設定" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Linux/時間同步" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/posts/Hexo/20200223-hexo-tag-category.html" class="article-date">
-  <time datetime="2020-02-23T11:10:00.000Z" itemprop="datePublished">2020-02-23 19:10:00</time>
+    <a href="/Blog/posts/Linux/20210127-Linux-shell-ip.html" class="article-date">
+  <time datetime="2021-01-27T07:30:00.000Z" itemprop="datePublished">2021-01-27 15:30:00</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Hexo/">Hexo</a>
+    <a class="article-category-link" href="/Blog/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -90,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Tag 與 Category設定
+      時間同步(網路校時)
     </h1>
   
 
@@ -98,26 +98,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>文章的Tag 與 Category設定</p>
+        <p>#CentOS 時間同步</p>
 <a id="more"></a>
 
-<h3 id="config-yml-內容設定"><a href="#config-yml-內容設定" class="headerlink" title="_config.yml 內容設定"></a>_config.yml 內容設定</h3><p>blog 資料夾下 _config.yml設定。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">  Hexo: Hexo</span><br><span class="line"> </span><br><span class="line">tag_map: </span><br><span class="line">  Hexo: Hexo</span><br></pre></td></tr></table></figure>
+<h2 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate pool.ntp.org # ntpdate [ip]</span><br></pre></td></tr></table></figure>
 
-<p>.md 檔中加入設定再發布，就可以看效果。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">categories: Hexo</span><br><span class="line">tags: [Hexo]</span><br></pre></td></tr></table></figure>
+<h2 id="CentOS-8-7開始提供使用Chrony"><a href="#CentOS-8-7開始提供使用Chrony" class="headerlink" title="CentOS 8 (7開始提供使用Chrony)"></a>CentOS 8 (7開始提供使用Chrony)</h2><ul>
+<li>只能使用Chrony</li>
+</ul>
+<p>安裝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install chrony</span><br></pre></td></tr></table></figure>
 
+<p>啟動</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start chronyd.service 或  systemctl start chronyd</span><br></pre></td></tr></table></figure>
 
+<p>設置開機後就自動執行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable chronyd.service 或  systemctl enable chronyd</span><br></pre></td></tr></table></figure>
+
+<p>設定檔位於路徑 </p>
+<ul>
+<li>/etc/chrony.conf</li>
+</ul>
+<p>預設值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server 0.centos.pool.ntp.org iburst</span><br><span class="line">server 1.centos.pool.ntp.org iburst</span><br><span class="line">server 2.centos.pool.ntp.org iburst</span><br><span class="line">server 3.centos.pool.ntp.org iburst</span><br></pre></td></tr></table></figure>
+
+<p>想改用台灣本地的時間主機，如下台灣本地的時間主機</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server tock.stdtime.gov.tw prefer</span><br><span class="line">server tick.stdtime.gov.tw</span><br><span class="line">server time.stdtime.gov.tw</span><br></pre></td></tr></table></figure>
+
+<p>查看 chronyd運行狀態</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status chronyd.service</span><br></pre></td></tr></table></figure>
+
+<p>查看 chronyc 校時來源server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure>
+
+<p>查看 chronyc 校時來源server狀態</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sourcestats</span><br></pre></td></tr></table></figure>
+
+<p>查看最後一次取得的校時資料</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc tracking</span><br></pre></td></tr></table></figure>
+
+<p>如果系統時間與網路時間差異較大，不想等chrony慢慢校時，手動執行強制校時指令 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc -a makestep</span><br></pre></td></tr></table></figure>
+
+<p>參考:<a href="http://linux.vbird.org/linux_server/0440ntp/0440ntp-centos5.php#ntpdate" target="_blank" rel="noopener">ntpdate from 鳥哥</a><br>參考: [RedHat] (<a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-differences_between_ntpd_and_chronyd" target="_blank" rel="noopener">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-differences_between_ntpd_and_chronyd</a>)<br>參考:<a href="https://kknews.cc/zh-tw/code/8ga39xl.html" target="_blank" rel="noopener">RHEL8或CentOS8上配置NTP伺服器和客戶端</a><br>參考:<a href="https://blog.gtwang.org/linux/linux-ntp-installation-and-configuration-tutorial/" target="_blank" rel="noopener">Linux 設定 NTP 同步系統時間，自動網路校時教學</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/Hexo/20200223-hexo-tag-category.html" data-id="ckkf4tsnu000njww153akbetc" class="article-share-link">Share</a>
+      <a data-url="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html" data-id="ckkf6ia5z0000b4w10s157sa3" class="article-share-link">Share</a>
       
-        <a href="https://hand79.github.io/Blog/posts/Hexo/20200223-hexo-tag-category.html#disqus_thread" class="article-comment-link">留言</a>
+        <a href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Linux/" rel="tag">Linux</a></li></ul>
 
     </footer>
   </div>
@@ -125,19 +158,19 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/posts/Maven/20201124-maven-dependancy-scope.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Blog/posts/Linux/20210127-Linux-shell-root-password.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Maven中的dependency的Scope功用
+          如果root忘了密碼(Centos 6)
         
       </div>
     </a>
   
   
-    <a href="/Blog/posts/Hexo/20200223-article-date-time-config.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/posts/JavaScript/20210127-java-script-obj-copy.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">文章時間設定</div>
+      <div class="article-nav-title">Shallow Copy VS Deep Copy (JavaScript)</div>
     </a>
   
 </nav>
@@ -250,7 +283,7 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/Hexo/20200223-hexo-tag-category.html';
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html';
   
   (function(){
     var dsq = document.createElement('script');
