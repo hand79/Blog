@@ -6,19 +6,19 @@
   
 
   
-  <title>Rest 無狀態的解釋 | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>電信業即時計費系統 | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="每次都忘怎麼解釋，寫一下。">
+  <meta name="description" content="某電信業即時計費系統簡易系統設計描述，大概整理下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rest 無狀態的解釋">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html">
+<meta property="og:title" content="電信業即時計費系統">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Development/20210128-java-telecommunications-system-design.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="每次都忘怎麼解釋，寫一下。">
+<meta property="og:description" content="某電信業即時計費系統簡易系統設計描述，大概整理下。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-01-04T06:30:30.000Z">
-<meta property="article:modified_time" content="2021-01-07T03:30:50.981Z">
+<meta property="article:published_time" content="2021-01-28T10:30:30.000Z">
+<meta property="article:modified_time" content="2021-01-28T10:04:12.474Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Development">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -72,14 +72,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Development/Rest無狀態的解釋" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Development/電信業即時收費系統設計" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/posts/Web/20210104-rest-stateless.html" class="article-date">
-  <time datetime="2021-01-04T06:30:30.000Z" itemprop="datePublished">2021-01-04 14:30:30</time>
+    <a href="/Blog/posts/Development/20210128-java-telecommunications-system-design.html" class="article-date">
+  <time datetime="2021-01-28T10:30:30.000Z" itemprop="datePublished">2021-01-28 18:30:30</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Web/">Web</a>
+    <a class="article-category-link" href="/Blog/categories/Development/">Development</a>
   </div>
 
   </div>
@@ -90,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Rest 無狀態的解釋
+      電信業即時計費系統
     </h1>
   
 
@@ -98,35 +98,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>每次都忘怎麼解釋，寫一下。</p>
+        <p>某電信業即時計費系統簡易系統設計描述，大概整理下。</p>
 <a id="more"></a>
 
-<h3 id="Wiki-Rest擷取"><a href="#Wiki-Rest擷取" class="headerlink" title="Wiki Rest擷取"></a>Wiki Rest擷取</h3><ul>
-<li>無狀態（Stateless）<ul>
-<li>伺服器不能儲存客戶端的資訊,每一次從客戶端傳送的請求中, 要包含所有的必須的狀態資訊, 對談資訊由客戶端儲存, 伺服器端根據這些狀態資訊來處理請求. 伺服器可以將對談狀態資訊傳遞給其他服務, 比如資料庫服務, 這樣可以保持一段時間的狀態資訊, 從而實現認證功能. 當客戶端可以切換到一個新狀態的時候傳送請求資訊. 當一個或者多個請求被傳送之後, 客戶端就處於一個狀態變遷過程中. 每一個應用的狀態描述可以被客戶端用來初始化下一次的狀態變遷.</li>
+<h2 id="門號申裝流程"><a href="#門號申裝流程" class="headerlink" title="門號申裝流程"></a>門號申裝流程</h2><ol>
+<li>電信申租門號(月租型、預付卡)</li>
+<li>選號(手機號碼)</li>
+<li>服務方案、優惠(後頭供裝在特定門號優惠服務)</li>
+<li>門號啟用(使門號生效進行打電話、上網等服務)</li>
+</ol>
+<p>服務內容包括:</p>
+<ul>
+<li>資費設定、變更資費</li>
+<li>用量查詢</li>
+<li>計費周期(BillCycle)，出帳的週期</li>
+<li>加值服務(數據加包價購，預付卡儲值等)</li>
+<li>用量簡訊(到達特定亮時給予提醒)</li>
+<li>到期簡訊(服務到期、數據包到期、預付卡到期等)</li>
+<li>用罄簡訊(eg. 上網數據包用罄發送通知)</li>
+<li>服務群組設定</li>
+<li>優惠內容設定</li>
 </ul>
-</li>
-</ul>
-<p>每次回過頭直接看這段Wiki翻的和原文我真心看不懂!!直到看了這個無狀態Server的解釋。</p>
-<h3 id="無狀態Server"><a href="#無狀態Server" class="headerlink" title="無狀態Server"></a>無狀態Server</h3><ul>
-<li>無狀態伺服器是指一種把每個請求作為與之前任何請求都無關的獨立的事務的伺服器。</li>
-</ul>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><ul>
-<li>無狀態 (Stateless) 是指從 Client 到 Server 的所有請求，皆需包含『 用於理解該次請求 』的 所有 相關信息，不得利用任何儲存在 Server 的上下文。</li>
-<li>Server不得假定同一連接 上的兩個請求來自同一個 User Agent。</li>
-<li>REST 中的『 狀態 』，是指 資源 與 表示 的狀態，而非無狀態 (Stateless) 架構約束中的 會話(Session)狀態。</li>
-</ul>
-<p>More info: <a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">Representational State Transfer (Rest)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">Stateless protocol (無狀態協議)</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html" data-id="ckkf4tsnf0000jww18sv4b7mr" class="article-share-link">Share</a>
+      <a data-url="https://hand79.github.io/Blog/posts/Development/20210128-java-telecommunications-system-design.html" data-id="ckkgoyzc70000k0w11g2a2ems" class="article-share-link">Share</a>
       
-        <a href="https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html#disqus_thread" class="article-comment-link">留言</a>
+        <a href="https://hand79.github.io/Blog/posts/Development/20210128-java-telecommunications-system-design.html#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Web/" rel="tag">Web</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li></ul>
 
     </footer>
   </div>
@@ -134,19 +136,10 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/posts/Development/20210107-CI-CD.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          CI/CD 相關內容概念
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog/posts/Web/20210104-jwt-session-cookie.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/posts/JavaScript/20210128-java-callback-hell.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Session, Cookie, JWT相關概念</div>
+      <div class="article-nav-title">Callback hell 處理(jQuery,Promise, async/await)</div>
     </a>
   
 </nav>
@@ -259,7 +252,7 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html';
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Development/20210128-java-telecommunications-system-design.html';
   
   (function(){
     var dsq = document.createElement('script');

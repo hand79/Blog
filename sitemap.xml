@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hand79.github.io/Blog/posts/Development/20210128-java-web-tool.html</loc>
+    <loc>https://hand79.github.io/Blog/posts/Development/20210128-java-insurance-system-design.html</loc>
+    
+    <lastmod>2021-01-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/posts/Development/20210128-java-telecommunications-system-design.html</loc>
+    
+    <lastmod>2021-01-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/posts/JavaScript/20210128-java-callback-hell.html</loc>
     
     <lastmod>2021-01-28</lastmod>
     

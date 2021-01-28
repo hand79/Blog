@@ -6,20 +6,22 @@
   
 
   
-  <title>Rest 無狀態的解釋 | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>Callback hell 處理(jQuery,Promise, async/await) | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="每次都忘怎麼解釋，寫一下。">
+  <meta name="description" content="在某家壽險業解過這類似的鬼東西，整理一下解釋。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rest 無狀態的解釋">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html">
+<meta property="og:title" content="Callback hell 處理(jQuery,Promise, async&#x2F;await)">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/JavaScript/20210128-java-callback-hell.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="每次都忘怎麼解釋，寫一下。">
+<meta property="og:description" content="在某家壽險業解過這類似的鬼東西，整理一下解釋。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-01-04T06:30:30.000Z">
-<meta property="article:modified_time" content="2021-01-07T03:30:50.981Z">
+<meta property="og:image" content="https://d1dwq032kyr03c.cloudfront.net/upload/images/20181014/201103713ObcIuaSP4.jpg">
+<meta property="article:published_time" content="2021-01-28T09:30:33.000Z">
+<meta property="article:modified_time" content="2021-01-28T09:43:17.287Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Web">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://d1dwq032kyr03c.cloudfront.net/upload/images/20181014/201103713ObcIuaSP4.jpg">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
   
@@ -72,14 +74,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Development/Rest無狀態的解釋" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JavaScript/callback hell" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/posts/Web/20210104-rest-stateless.html" class="article-date">
-  <time datetime="2021-01-04T06:30:30.000Z" itemprop="datePublished">2021-01-04 14:30:30</time>
+    <a href="/Blog/posts/JavaScript/20210128-java-callback-hell.html" class="article-date">
+  <time datetime="2021-01-28T09:30:33.000Z" itemprop="datePublished">2021-01-28 17:30:33</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Web/">Web</a>
+    <a class="article-category-link" href="/Blog/categories/JavaScript/">JavaScript</a>
   </div>
 
   </div>
@@ -90,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Rest 無狀態的解釋
+      Callback hell 處理(jQuery,Promise, async/await)
     </h1>
   
 
@@ -98,35 +100,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>每次都忘怎麼解釋，寫一下。</p>
+        <p>在某家壽險業解過這類似的鬼東西，整理一下解釋。</p>
 <a id="more"></a>
 
-<h3 id="Wiki-Rest擷取"><a href="#Wiki-Rest擷取" class="headerlink" title="Wiki Rest擷取"></a>Wiki Rest擷取</h3><ul>
-<li>無狀態（Stateless）<ul>
-<li>伺服器不能儲存客戶端的資訊,每一次從客戶端傳送的請求中, 要包含所有的必須的狀態資訊, 對談資訊由客戶端儲存, 伺服器端根據這些狀態資訊來處理請求. 伺服器可以將對談狀態資訊傳遞給其他服務, 比如資料庫服務, 這樣可以保持一段時間的狀態資訊, 從而實現認證功能. 當客戶端可以切換到一個新狀態的時候傳送請求資訊. 當一個或者多個請求被傳送之後, 客戶端就處於一個狀態變遷過程中. 每一個應用的狀態描述可以被客戶端用來初始化下一次的狀態變遷.</li>
+<p>如圖:<br>** 示意圖 **<br><img src="https://d1dwq032kyr03c.cloudfront.net/upload/images/20181014/201103713ObcIuaSP4.jpg" alt="Callback hell"></p>
+<p>-必須兼容IE處理方式:</p>
+<ul>
+<li>jQuery 的方式處理</li>
 </ul>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;參數&#125;)</span><br><span class="line">.then(callback_A)</span><br><span class="line">.then(callback_B)</span><br><span class="line">.then(callback_C)</span><br></pre></td></tr></table></figure>
+
+<p>適合解法</p>
+<ul>
+<li>Promise (ES6 的語法)<br>![Promise] (<a href="https://cdn.rawgit.com/Vectaio/a76330b025baf9bcdf07cb46e5a9ef9e/raw/26c4213a93dee1c39611dcd0ec12625811b20a26/js-promise.svg" target="_blank" rel="noopener">https://cdn.rawgit.com/Vectaio/a76330b025baf9bcdf07cb46e5a9ef9e/raw/26c4213a93dee1c39611dcd0ec12625811b20a26/js-promise.svg</a>)</li>
 </ul>
-<p>每次回過頭直接看這段Wiki翻的和原文我真心看不懂!!直到看了這個無狀態Server的解釋。</p>
-<h3 id="無狀態Server"><a href="#無狀態Server" class="headerlink" title="無狀態Server"></a>無狀態Server</h3><ul>
-<li>無狀態伺服器是指一種把每個請求作為與之前任何請求都無關的獨立的事務的伺服器。</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const promise1 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">    resolve(&#39;foo&#39;);</span><br><span class="line">  &#125;, 300);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise1.then((value) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(value);</span><br><span class="line">  &#x2F;&#x2F; expected output: &quot;foo&quot;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(promise1);</span><br><span class="line">&#x2F;&#x2F; expected output: [object Promise]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>async/await (ES7的語法)，可與Promise混合使用</li>
 </ul>
-<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2><ul>
-<li>無狀態 (Stateless) 是指從 Client 到 Server 的所有請求，皆需包含『 用於理解該次請求 』的 所有 相關信息，不得利用任何儲存在 Server 的上下文。</li>
-<li>Server不得假定同一連接 上的兩個請求來自同一個 User Agent。</li>
-<li>REST 中的『 狀態 』，是指 資源 與 表示 的狀態，而非無狀態 (Stateless) 架構約束中的 會話(Session)狀態。</li>
-</ul>
-<p>More info: <a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">Representational State Transfer (Rest)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">Stateless protocol (無狀態協議)</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">async function a()&#123;</span><br><span class="line">  await b();</span><br><span class="line">  .....       &#x2F;&#x2F; 等 b() 完成後才會執行</span><br><span class="line">  await c();</span><br><span class="line">  .....       &#x2F;&#x2F; 等 c() 完成後才會執行</span><br><span class="line">  await new Promise(resolve&#x3D;&gt;&#123;</span><br><span class="line">    .....</span><br><span class="line">  &#125;);</span><br><span class="line">  .....       &#x2F;&#x2F; 上方的 promise 完成後才會執行</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line">a().then(()&#x3D;&gt;&#123;</span><br><span class="line">  .....       &#x2F;&#x2F; 等 a() 完成後接著執行</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<p>參考: <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise MDN文件</a><br>參考: <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener">async MDN文件</a><br>參考: <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/await" target="_blank" rel="noopener">await MDN文件</a><br>參考: <a href="https://www.oxxostudio.tw/articles/201908/js-async-await.html" target="_blank" rel="noopener">簡單理解 JavaScript Async 和 Await</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html" data-id="ckkf4tsnf0000jww18sv4b7mr" class="article-share-link">Share</a>
+      <a data-url="https://hand79.github.io/Blog/posts/JavaScript/20210128-java-callback-hell.html" data-id="ckkgoyzcb0001k0w18ohghw6z" class="article-share-link">Share</a>
       
-        <a href="https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html#disqus_thread" class="article-comment-link">留言</a>
+        <a href="https://hand79.github.io/Blog/posts/JavaScript/20210128-java-callback-hell.html#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Web/" rel="tag">Web</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
 
     </footer>
   </div>
@@ -134,19 +140,19 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/posts/Development/20210107-CI-CD.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Blog/posts/Development/20210128-java-telecommunications-system-design.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          CI/CD 相關內容概念
+          電信業即時計費系統
         
       </div>
     </a>
   
   
-    <a href="/Blog/posts/Web/20210104-jwt-session-cookie.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/posts/Development/20210128-java-insurance-system-design.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Session, Cookie, JWT相關概念</div>
+      <div class="article-nav-title">壽險業系統設計</div>
     </a>
   
 </nav>
@@ -259,7 +265,7 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/Web/20210104-rest-stateless.html';
+  var disqus_url = 'https://hand79.github.io/Blog/posts/JavaScript/20210128-java-callback-hell.html';
   
   (function(){
     var dsq = document.createElement('script');
