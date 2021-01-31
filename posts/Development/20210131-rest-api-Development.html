@@ -16,7 +16,7 @@
 <meta property="og:description" content="RESTful API 設計之學習記錄">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-01-31T11:30:30.000Z">
-<meta property="article:modified_time" content="2021-01-31T13:42:36.228Z">
+<meta property="article:modified_time" content="2021-01-31T13:48:03.605Z">
 <meta property="article:author" content="MaxHanChen">
 <meta property="article:tag" content="Development">
 <meta name="twitter:card" content="summary">
@@ -123,7 +123,7 @@
 </li>
 <li>Stateless(無狀態)</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#How to understand “RESTful API is stateless”?(stackoverflow) (部分內容擷取)</span><br><span class="line">[...] each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client. [...]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#How to understand “RESTful API is stateless”?(stackoverflow) (部分內容擷取)</span><br><span class="line">[...] </span><br><span class="line"> each request from client to server must contain all of the information necessary to understand the request,</span><br><span class="line"> and cannot take advantage of any stored context on the server. </span><br><span class="line"> Session state is therefore kept entirely on the client. [...]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Cacheable(可快取)</li>
 <li>Client-Server(客戶伺服器分離模式，任何一個客戶端與伺服器都是可替換的)</li>
@@ -135,7 +135,7 @@
 </ul>
 <h2 id="REST設計"><a href="#REST設計" class="headerlink" title="REST設計"></a>REST設計</h2><p>符合REST設計風格的Web API稱為RESTful API。它從以下三個方面資源進行定義：</p>
 <ul>
-<li>直觀簡短的資源位址：URI，比如：<a href="http://example.com/resources。" target="_blank" rel="noopener">http://example.com/resources。</a></li>
+<li>直觀簡短的資源位址，比如: <a href="http://example.com/resources。" target="_blank" rel="noopener">http://example.com/resources。</a></li>
 <li>傳輸的資源：Web服務接受與返回的網際網路媒體類型，比如：JSON，XML，YAML等。</li>
 <li>對資源的操作：Web服務在該資源上所支援的一系列請求方法（比如：POST，GET，PUT或DELETE）。</li>
 </ul>
@@ -155,8 +155,8 @@
 <ul>
 <li>複數名詞命名資源，如 <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a></li>
 <li>取得特定ID資源(別另外設計單數)，如 <a href="https://api.example.com/v1/users/1" target="_blank" rel="noopener">https://api.example.com/v1/users/1</a></li>
-<li>取得特定複數資料查詢利用 query string做額外條件過濾或參數，<a href="https://api.example.com/v1/users?order=&quot;desc&quot;&amp;&amp;limit=10" target="_blank" rel="noopener">https://api.example.com/v1/users?order=&quot;desc&quot;&amp;&amp;limit=10</a></li>
-<li>URI 應加入 API 的版本號，如 <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a></li>
+<li>取得特定複數資料查詢利用 query string做額外條件過濾或參數，<br>(<a href="https://api.example.com/v1/users?order=&quot;desc&quot;&amp;&amp;limit=10" target="_blank" rel="noopener">https://api.example.com/v1/users?order=&quot;desc&quot;&amp;&amp;limit=10</a>)</li>
+<li>URI 應加入 API 的版本號，如<a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a></li>
 </ul>
 <h2 id="參考"><a href="#參考" class="headerlink" title="參考:"></a>參考:</h2><p><a href="https://www.crummy.com/writing/speaking/2008-QCon/act3.html" target="_blank" rel="noopener">REST 成熟度模型</a><br><a href="https://itbilu.com/other/relate/ry5IPQu8V.html" target="_blank" rel="noopener">成熟度模型-REST的实现步骤</a><br><a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE#%E5%B9%82%E7%AD%89%E6%96%B9%E6%B3%95" target="_blank" rel="noopener">HyperText Transfer Protocol，HTTP (wiki)</a><br><a href="https://stackoverflow.com/questions/34130036/how-to-understand-restful-api-is-stateless" target="_blank" rel="noopener">How to understand “RESTful API is stateless”?(stackoverflow)</a><br><a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">REST Wiki</a><br><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="noopener">RESTful API 设计指南 - 阮一峰的网络日志</a><br><a href="https://openhome.cc/Gossip/Spring/HATEOAS.html" target="_blank" rel="noopener">Hypermedia As The Engine Of Application State(HATEOAS) Spring HATEOAS</a><br><a href="https://github.com/TritonHo/slides/blob/master/Taipei%202019-06%20talk/RESTful%20API%20Design-tw-2.2.pdf" target="_blank" rel="noopener">Backend社團-紫色石虎-RESTful API淺談</a><br><a href="https://github.com/TritonHo/slides/blob/master/restful-demo.pdf" target="_blank" rel="noopener">Backend社團-紫色石虎-RESTful淺談  - demo</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/HTTP/Methods" target="_blank" rel="noopener">HTTP (MDN)</a></p>
 
@@ -175,6 +175,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/Blog/posts/Development/20210131-kubernetes.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Kubernetes 故障排除流程圖
+        
+      </div>
+    </a>
   
   
     <a href="/Blog/posts/Development/20210128-java-frontend-system-design.html" id="article-nav-older" class="article-nav-link-wrap">
@@ -243,6 +252,10 @@
       <ul>
         
           <li>
+            <a href="/Blog/posts/Development/20210131-kubernetes.html">Kubernetes 故障排除流程圖</a>
+          </li>
+        
+          <li>
             <a href="/Blog/posts/Development/20210131-rest-api-Development.html">RESTful API設計</a>
           </li>
         
@@ -256,10 +269,6 @@
         
           <li>
             <a href="/Blog/posts/JavaScript/20210128-java-callback-hell.html">Callback hell 處理(jQuery,Promise, async/await)</a>
-          </li>
-        
-          <li>
-            <a href="/Blog/posts/Development/20210128-java-insurance-system-design.html">壽險業系統設計Domain knowledge</a>
           </li>
         
       </ul>
