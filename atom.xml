@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-01-31T14:07:06.524Z</updated>
+  <updated>2021-02-04T15:07:38.277Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,71 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SOA架構 與 Microservice</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html</id>
+    <published>2021-02-04T15:07:30.000Z</published>
+    <updated>2021-02-04T15:07:38.277Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前遇到問題做個整理。</p><a id="more"></a><h2 id="Service-Oriented-Architecture-SOA-服務導向架構"><a href="#Service-Oriented-Architecture-SOA-服務導向架構" class="headerlink" title="Service Oriented Architecture(SOA) 服務導向架構"></a>Service Oriented Architecture(SOA) 服務導向架構</h2><p>特性:</p><ul><li>針對某特定要求的輸出，該服務就是運作一項商業邏輯</li><li>具有完備的特性（self-contained）</li><li>消費者並不需要瞭解此服務的運作過程</li><li>可能由底層其他服務組成</li></ul><p>原則:</p><ul><li>可重複使用、粒度、模組性、可組合型、物件化原件、構件化以及具互動操作性</li><li>符合開放標準（通用的或行業的）</li><li>服務的識別和分類，提供和發布，監控和跟蹤。</li></ul><h2 id="SOA-所解決的核心問題"><a href="#SOA-所解決的核心問題" class="headerlink" title="SOA 所解決的核心問題"></a>SOA 所解決的核心問題</h2><ul><li>系統整合(技術層面)</li><li>系統的服務化(技術層面)</li><li>業務的服務化(是以業務驅動把一個 業務單元封裝成一項服務）</li></ul><p><img src="https://img-blog.csdnimg.cn/20181029125611787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x4X0Zyb2xm,size_27,color_FFFFFF,t_70" alt="SOA"></p><h2 id="Microservices-微服務"><a href="#Microservices-微服務" class="headerlink" title="Microservices 微服務"></a>Microservices 微服務</h2><ul><li>通過服務實現元件化</li><li>按業務能力來劃分服務和開發團隊</li><li>去中心化</li><li>基礎設施自動化（devops、自動化部署）<br>與服務導向架構（Service-Oriented Architecture）不同，後者是整合各種業務的應用程式，但微服務只屬於一個應用程式。(強調單一業務組件化)</li></ul><h2 id="Microservices-特性"><a href="#Microservices-特性" class="headerlink" title="Microservices 特性"></a>Microservices 特性</h2><ul><li>每個服務都容易被取代。</li><li>服務是以能力來組織的，例如使用者介面、前端、推薦系統、帳單或是物流等。</li><li>由於功能被拆成多個服務，因此可以由不同的程式語言、資料庫實作。</li><li>架構是對稱而非分層（即生產者與消費者的關係）</li></ul><p><img src="http://www.45fan.com/uploads/allimg/190414/03110Jc9-1.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NTI1MzAw,size_16,color_FFFFFF,t_70" alt="Microservices"></p><h2 id="Microservices-資料庫三種設計模式"><a href="#Microservices-資料庫三種設計模式" class="headerlink" title="Microservices 資料庫三種設計模式"></a>Microservices 資料庫三種設計模式</h2><ol><li>每個服務都各有一個數據庫，同屬性的服務可共享同個資料庫。</li><li>所有服務都共享同個資料庫，但是不同表格，並且不會跨域存取。</li><li>每個服務都有自己的資料庫，就算是同屬性的也是，資料庫並不會共</li></ol><p>資料庫的可棄性:<br>實踐微服務架構中有許多的做法。但是其中一種的做法是將資料庫視作短期的儲存空間而不是長期的資料。因為他們可以在上線時從事件中心回覆，因此可以快速的從記憶體中快速存取（例：Redis）作為資料庫伺服器。這種做法需要將每個請求當作事件來進行廣播，這樣就可以從事件儲存中心重播所有的事件。</p><p>在微服務中，則通過 API 調用來完成。這些模塊或者服務間調用，大部分時候是為了共享數據。<br>共享數據最賤的方式當然就是採用一種共享資料庫的模式，也就是單體應用常用的方式。應用可以有多個系統模塊，但一般都是只有一個資料庫。</p><p><img src="https://twgreatdaily.com/images/elastic/SnG/SnG8WHMBiuFnsJQVaRyz.jpg" alt="一庫一服  vs 一庫多服"></p><p>一庫多服，這種架構模式通常會被認為是 微服務架構下的反範式，它的問題在於:</p><ul><li>單點故障：一個資料庫倒下，整批服務全部停止。何來的服務獨立性？</li><li>數據在同一個地方，會給貪圖方便的開發或者 DBA 工程師編寫很多數據間高度依賴的程序或者工具。</li><li>無法針對某一個服務進行精準優化或擴展。<br>所以一般推薦的做法，是為每一個微服務準備一個單獨的資料庫，也即一庫一服(Database per Service)模式。這種模式更加適合微服務架構，它滿足每一個服務是獨立開發、獨立部署、獨立擴展的特性。需要對一個服務進行升級或者數據架構改動的時候，不會影響到其他的服務。需要對某個服務進行擴展的時候，也可以手術式的對某一個服務進行局部擴容。</li></ul><h2 id="微服務的切割"><a href="#微服務的切割" class="headerlink" title="微服務的切割"></a>微服務的切割</h2><ol><li>domain-driven design (DDD) 領域驅動設計</li></ol><ul><li>Infrastructure（基礎實施層）</li><li>Domain（領域層）</li><li>Application（應用層）</li><li>Interfaces（表示層，也叫用戶界面層或是接口層）</li></ul><p><img src="https://res.cloudinary.com/dgzowpeqr/image/upload/v1562839291/levp4f9usxwzlrlk1dou.jpg" alt="domain-driven design(DDD)"></p><ol start="2"><li>資料結構</li></ol><h2 id="微服務的利和弊"><a href="#微服務的利和弊" class="headerlink" title="微服務的利和弊"></a>微服務的利和弊</h2><p><img src="https://res.cloudinary.com/dgzowpeqr/image/upload/v1562839370/wgkwtaplr4keahh9ojsa.jpg" alt="Microservices 利與弊"></p><ul><li>利: 單一服務組件化、可獨立部署、技術多樣性</li><li>弊: 分佈式的系統複雜性(各別服務的溝通複雜化)、最終一致性、運維複雜性</li></ul><h2 id="微服務-設計模式"><a href="#微服務-設計模式" class="headerlink" title="微服務(設計模式)"></a>微服務(設計模式)</h2><p><img src="https://codertw.com/wp-content/uploads/img/15JGg8G9K0.jpg" alt="鏈式設計模式"></p><p><img src="https://codertw.com/wp-content/uploads/img/IEq6ZUD3Og.jpg" alt="聚合器設計模式"></p><p><img src="https://i.iter01.com/images/a65374eb32d49af469d0f73fa247e018af4ad67156d77ca20232556c48804cb6.png" alt="代理設計模式"></p><p><img src="https://i.iter01.com/images/a6d2c4c0b8e7cde26918b623c0fdd67f0603e723d1090c6197711638a0a8b3f7.png" alt="分支設計模式"></p><p><img src="https://codertw.com/wp-content/uploads/img/2hmI3o1N3Y.jpg" alt="資料庫共享模式"></p><p><img src="https://codertw.com/wp-content/uploads/img/M2dJFZmv5O.jpg" alt="異部消息設計模式"></p><h2 id="Service-Oriented-Architecture-與-Microservice-差別"><a href="#Service-Oriented-Architecture-與-Microservice-差別" class="headerlink" title="Service Oriented Architecture 與 Microservice 差別"></a>Service Oriented Architecture 與 Microservice 差別</h2><ul><li>微服務不再強調傳統SOA架構裡面比較重的ESB(企業服務匯流排)，進入到單個業務系統內部實現真正的元件化。</li><li>SOA注重的是系統整合方面，而微服務關注的是組件服務完全分離 。<br>more info:<a href="https://en.wikipedia.org/wiki/Microservices" target="_blank" rel="noopener">Microservices wiki 英文</a><br>more info:<a href="https://zh.wikipedia.org/wiki/%E5%BE%AE%E6%9C%8D%E5%8B%99" target="_blank" rel="noopener">微服務(Microservices) wiki</a><br>more info:<a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/735003/" target="_blank" rel="noopener">微服務(Microservices) 設計模式</a><br>more info:<a href="https://iter01.com/513031.html" target="_blank" rel="noopener">架構設計思想-微服務架構設計模式</a><br>more info:<a href="https://twgreatdaily.com/I_S-V3MBfGB4SiUw1uN0.html" target="_blank" rel="noopener">如何在微服務架構下進行數據設計？</a><br>more info:<a href="https://www.cnblogs.com/takumicx/p/10021538.html" target="_blank" rel="noopener">微服務-柔性事务</a><br>more info:<a href="https://www.itread01.com/content/1542762129.html" target="_blank" rel="noopener">微服務-DB規劃</a><br>more info:<a href="https://morosedog.gitlab.io/technology-20200304-tech-10/" target="_blank" rel="noopener">技術觀念 | 淺談分散式系統 - 微服務淺談</a><br>more info:<a href="https://blog.csdn.net/xybelieve1990/article/details/84958671" target="_blank" rel="noopener">关于分布式事务BASE模型和柔性事务TCC</a><br>more info:<a href="https://www.itread01.com/content/1542394146.html" target="_blank" rel="noopener">SOA架構和微服務架構的比較</a><br>more info:<a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/588191/" target="_blank" rel="noopener">架構師必看：微服務架構綜述</a><br>more info:<a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">SOA Wiki</a><br>more info:<a href="https://www.ipshop.xyz/16625.html" target="_blank" rel="noopener">我只是下了個訂單，鬼知道我在微服務里經歷了什麼？ (DDD 領域驅動設計-微服務切割-訂單設計)</a><br>more info:<a href="https://kknews.cc/zh-tw/news/p95rx6e.html" target="_blank" rel="noopener">老司機避坑指南：如何快速搞定微服務架構？</a><br>more info:<a href="https://www.martinfowler.com/articles/microservices.html#HowBigIsAMicroservice" target="_blank" rel="noopener">martinfowler blog原文</a><br>more info:<a href="https://dzone.com/articles/6-data-management-patterns-for-microservices-1" target="_blank" rel="noopener">6 Data Management Patterns for Microservices</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;之前遇到問題做個整理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring註解 @Component @Service, @Controller, @Repository</title>
+    <link href="https://hand79.github.io/Blog/posts/Java/20210201-spring-annotation-component.html"/>
+    <id>https://hand79.github.io/Blog/posts/Java/20210201-spring-annotation-component.html</id>
+    <published>2021-02-01T14:47:33.000Z</published>
+    <updated>2021-02-04T13:51:20.482Z</updated>
+    
+    <content type="html"><![CDATA[<p>以前留下整理的資料的記錄。</p><a id="more"></a><h2 id="spring註解"><a href="#spring註解" class="headerlink" title="spring註解"></a>spring註解</h2><p>@Component, @Service, @Controller, @Repository是spring註解，註解後可以被spring框架所掃描並註入到spring容器來進行管理</p><ul><li>@Component是通用註解，其他三個註解是這個註解的拓展，並且具有了特定的功能(generic stereotype for any Spring-managed component)。</li><li>@Repository註解在持久層中，具有將數據庫操作拋出的原生異常翻譯轉化為spring的持久層異常的功能。(stereotype for persistence layer)</li><li>@Controller層是spring-mvc的註解，具有將請求進行轉發，重定向的功能。(stereotype for presentation layer)</li><li>@Service層是業務邏輯層註解，這個註解只是標註該類處於業務邏輯層。 (stereotype for service layer)<br>用這些註解對應用進行分層之後，就能將請求處理，義務邏輯處理，數據庫操作處理分離出來，為代碼解耦，也方便了以後項目的維護和開發。</li></ul><p>註解:<br>Spring2.0時提供的: @Repository(在Spring2.5有修改部分內容)<br>Spring2.5時提供的: @Component, @Controller, @Service</p><p>more info:<a href="https://stackoverflow.com/posts/6897038/edit" target="_blank" rel="noopener">stackoverflow 參考</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html" target="_blank" rel="noopener">@Repository doc</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html" target="_blank" rel="noopener">@Component doc</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html" target="_blank" rel="noopener">@Controller doc</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Service.html" target="_blank" rel="noopener">@Service doc</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;以前留下整理的資料的記錄。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
+    
+    <category term="Spring" scheme="https://hand79.github.io/Blog/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>悲觀鎖與樂觀鎖(資料庫交易)</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html</id>
+    <published>2021-02-01T11:47:30.000Z</published>
+    <updated>2021-02-04T10:54:54.350Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前遇上的問題，劃個重點留個整理記錄。</p><a id="more"></a><p>資料庫交易特性ACID中的交易隔離(Isolation)通常利用「鎖(locking)」來實現，目的為避免同一筆資料在併行交易(concurrent transaction)中被不同的交易同時修改以確保資料的完整性。<br>交易鎖又分為「悲觀鎖(pessimistic locking)」與「樂觀鎖(optimistic locking)」。</p><p>常用鎖處理的例子: 電商商品庫存、銀行轉帳業務</p><p>##悲觀鎖(Pessimistic Locking)<br>時機: 悲觀並行控制主要用於資料爭用激烈的環境或發生並發衝突時，”使用鎖保護資料的成本”要低於”回復交易的成本”的環境中。</p><ul><li>悲觀並行控制實際上是「先取鎖再訪問」的保守策略，為資料處理的安全提供了保證。</li><li>在效率方面，處理加鎖的機制會讓資料庫產生額外的開銷，還有增加產生”死鎖”的機會</li><li>在只讀型交易處理中由於不會產生衝突，就沒必要使用鎖，這樣做只能增加系統負載，還有會降低了並行性。</li><li>一個交易如果鎖定了某行資料，其他交易就必須等待該交易處理完才可以處理那行資料。(當下資料有對其他執行存取有排他性)<br>典型的使用: synchronized (java)</li></ul><p>##樂觀鎖(Optimistic Locking)<br>時機: 樂觀並行控制多數用於”資料爭用不大”、”衝突較少的環境”中，”偶爾回復交易的成本”會低於”讀取資料時鎖定資料的成本”，因此可以獲得”比其他並行控制方法更高的吞吐量”。</p><ul><li>假設”多使用者並行的交易在處理時不會彼此互相影響”，”各交易能夠在不產生鎖”的情況下”處理各自影響的那部分資料”。在提交資料更新之前，每個交易會”先檢查在該交易讀取資料後，有沒有其他交易又修改了該資料”。如果其他交易有更新的話，正在提交的交易會進行rollback。</li></ul><p>缺點: 樂觀並行控制相信交易之間的資料競爭(data race)的概率是比較小的，因此儘可能直接做下去，直到提交的時候才去鎖定，所以不會產生任何鎖和死結。但如果直接簡單這麽做，還是有可能會遇到不可預期的結果，例如兩個交易都讀取了資料庫的某一行，經過修改以後寫回資料庫，這時就遇到了問題。(ABA问题) </p><ul><li>需要添加重試機制，舉個例子: 資料異動時衝突(JPA中的@version)，重新在執行失敗的動作</li></ul><h4 id="樂觀並行控制的交易包括以下階段："><a href="#樂觀並行控制的交易包括以下階段：" class="headerlink" title="樂觀並行控制的交易包括以下階段："></a>樂觀並行控制的交易包括以下階段：</h4><ul><li>讀取：交易將資料讀入快取，這時系統會給交易分派一個時間戳。</li><li>校驗：交易執行完畢後，進行提交。這時同步校驗所有交易，如果交易所讀取的資料在讀取之後又被其他交易修改，則產生衝突，交易被中斷回復。</li><li>寫入：通過校驗階段後，將更新的資料寫入資料庫。<br>典型的使用: Compare and Swap (CAS)、 AtomicReference class、 @Version(Java JPA中的@version 版本控制處理方式)</li></ul><p>##總結<br>樂觀鎖適用於讀大於寫、衝突少的的場景(省去了鎖的開銷，加大了系統的整個吞吐量。如果經常產生衝突，上層應用會不斷的進行retry可能須考慮是否用悲觀鎖)<br>悲觀鎖寫大於讀、衝突大的的場景(併發量不大且不允許髒讀適合)</p><p>more info:<a href="https://www.cnblogs.com/kismetv/p/10787228.html" target="_blank" rel="noopener">資料參考</a><br>more info:<a href="https://en.wikipedia.org/wiki/Optimistic_concurrency_control" target="_blank" rel="noopener">Optimistic Concurrency wiki</a><br>more info:<a href="https://zh.wikipedia.org/wiki/%E6%82%B2%E8%A7%82%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6" target="_blank" rel="noopener">Pessimistic Concurrency wiki</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;之前遇上的問題，劃個重點留個整理記錄。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
   
   <entry>
     <title>Kubernetes 故障排除流程圖</title>
@@ -370,69 +435,6 @@
     
     
     <category term="Hexo" scheme="https://hand79.github.io/Blog/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo與LocalSearch</title>
-    <link href="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html"/>
-    <id>https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-localsearch.html</id>
-    <published>2020-12-31T13:35:00.000Z</published>
-    <updated>2020-12-31T14:22:52.433Z</updated>
-    
-    <content type="html"><![CDATA[<p>添加LocalSearch搜尋功能</p><a id="more"></a><h2 id="安裝-hexo-generator-searchdb"><a href="#安裝-hexo-generator-searchdb" class="headerlink" title="安裝 hexo-generator-searchdb"></a>安裝 hexo-generator-searchdb</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure><h2 id="config-yml-設定"><a href="#config-yml-設定" class="headerlink" title="_config.yml 設定"></a>_config.yml 設定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.json</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure><h2 id="啟用Local搜索功能："><a href="#啟用Local搜索功能：" class="headerlink" title="啟用Local搜索功能："></a>啟用Local搜索功能：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Local search</span><br><span class="line">local_search:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;添加LocalSearch搜尋功能&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Hexo" scheme="https://hand79.github.io/Blog/categories/Hexo/"/>
-    
-    
-    <category term="Hexo" scheme="https://hand79.github.io/Blog/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo與RSS</title>
-    <link href="https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-plugin-rss.html"/>
-    <id>https://hand79.github.io/Blog/posts/Hexo/20201231-hexo-plugin-rss.html</id>
-    <published>2020-12-31T13:10:00.000Z</published>
-    <updated>2020-12-31T13:26:06.047Z</updated>
-    
-    <content type="html"><![CDATA[<p>Hexo的主題上面一直有這個東西沒弄，到最後手癢還是找了方法弄了一下。</p><a id="more"></a><h3 id="安裝-Hexo-外掛"><a href="#安裝-Hexo-外掛" class="headerlink" title="安裝 Hexo 外掛"></a>安裝 Hexo 外掛</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-generator-feed</span><br></pre></td></tr></table></figure><p>_config.yml檔案加入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plugins: hexo-generator-feed</span><br><span class="line">rss: /atom.xml</span><br></pre></td></tr></table></figure><p>hexo g之後執行發佈</p><p>More info: <a href="https://zh.wikipedia.org/wiki/RSS" target="_blank" rel="noopener">RSS是什麼?，參考wiki</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Hexo的主題上面一直有這個東西沒弄，到最後手癢還是找了方法弄了一下。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Hexo" scheme="https://hand79.github.io/Blog/categories/Hexo/"/>
-    
-    
-    <category term="Hexo" scheme="https://hand79.github.io/Blog/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu install deb file</title>
-    <link href="https://hand79.github.io/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html"/>
-    <id>https://hand79.github.io/Blog/posts/Linux/20201231-Ubuntu-cmd-dpkg.html</id>
-    <published>2020-12-31T11:00:00.000Z</published>
-    <updated>2020-12-31T13:05:37.902Z</updated>
-    
-    <content type="html"><![CDATA[<p>RedHat, Centos 這系列的是用rpm在裝，因為一些個人需求開始用ubuntu，弄個紀錄。 </p><a id="more"></a><h3 id="dpkg"><a href="#dpkg" class="headerlink" title="dpkg"></a>dpkg</h3><p>Ubuntu軟體包格式為deb,安裝方法如下:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo dpkg -i xxxxx.deb (安裝用root權限，xxxx檔案名稱) or dpkg -i xxxxx.deb </span><br><span class="line"></span><br><span class="line">其他指令參考:</span><br><span class="line">dpkg -r xxxxx 刪除該包</span><br><span class="line">dpkg -P xxxxx 刪除該包(包括配置檔案)</span><br><span class="line">dpkg -L xxxxx 列出與該包關聯的檔案</span><br><span class="line">dpkg -l xxxxx 顯示該包的版本</span><br><span class="line">dpkg –unpack xxxxx.deb 解壓 deb</span><br><span class="line">dpkg -S xxxxx 搜尋所屬的包內容</span><br><span class="line">dpkg -l 列出當前已安裝的deb</span><br><span class="line">dpkg -c xxxxx.deb 列出 deb 包的內容</span><br><span class="line">dpkg –configure xxxxx 配置包</span><br><span class="line">man dpkg 詳細指令</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;RedHat, Centos 這系列的是用rpm在裝，因為一些個人需求開始用ubuntu，弄個紀錄。 &lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
-    
-    
-    <category term="Ubuntu" scheme="https://hand79.github.io/Blog/tags/Ubuntu/"/>
     
   </entry>
   
