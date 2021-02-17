@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="mWgoNzG3TVNS-feQ3K-JpdegLev-LdDB23tvHMphDqc" />
+  
+
+  
+  <title>Domain-Driven Design (DDD) | Max&#39;s Blog-程式學習研究記錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="閱讀DDD相關文章重點整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Domain-Driven Design (DDD)">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Development/20210217-domain-driven-design.html">
+<meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
+<meta property="og:description" content="閱讀DDD相關文章重點整理。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://img-blog.csdn.net/20171108161155976?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHJvdWJsZXNob290ZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://img-blog.csdn.net/20171108161246317?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHJvdWJsZXNob290ZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://ucc.alicdn.com/pic/developer-ecology/95ed0cc001e94a8ba9f32666113169c9.png">
+<meta property="og:image" content="https://ucc.alicdn.com/pic/developer-ecology/d92764a7963f43068273133f9a1ac6f9.png">
+<meta property="article:published_time" content="2021-02-17T11:30:30.000Z">
+<meta property="article:modified_time" content="2021-02-17T13:30:46.688Z">
+<meta property="article:author" content="MaxHanChen">
+<meta property="article:tag" content="Development">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20171108161155976?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHJvdWJsZXNob290ZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Max&#39;s Blog-程式學習研究記錄</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">求生是激發人的成長與潛能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hand79.github.io/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Development/Domain-Driven Design" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/posts/Development/20210217-domain-driven-design.html" class="article-date">
+  <time datetime="2021-02-17T11:30:30.000Z" itemprop="datePublished">2021-02-17 19:30:30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Development/">Development</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Domain-Driven Design (DDD)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>閱讀DDD相關文章重點整理。</p>
+<a id="more"></a> 
+
+<h2 id="Domain-Driven-Design"><a href="#Domain-Driven-Design" class="headerlink" title="Domain-Driven Design"></a>Domain-Driven Design</h2><p>價值: 把將商業領域的知識映照到程式碼中，解放「程式歸程式，業務歸業務」的傳統思維</p>
+<h2 id="模型中有以下概念"><a href="#模型中有以下概念" class="headerlink" title="模型中有以下概念"></a>模型中有以下概念</h2><ul>
+<li>上下文（Context）: 詞或句子出現的位置。</li>
+<li>領域（Domain）: 知識，影響，或活動。客戶使用軟體要處理旳問題種類即為軟體的領域。</li>
+<li>模型（Model）: 一類描述域的不同方面並可用於解決相關問題的系統化的抽象。</li>
+<li>統一術語（Ubiquitous Language）: 一種團隊成員使用，為了描述域模型而構造的語言。 用於如下:<ul>
+<li>User story 或RFC</li>
+<li>任意的會議</li>
+<li>書信往來</li>
+<li>技術文件</li>
+<li>流程或是行程</li>
+<li>程式碼</li>
+</ul>
+</li>
+</ul>
+<h2 id="Building-blocks"><a href="#Building-blocks" class="headerlink" title="Building blocks"></a>Building blocks</h2><p>在領域驅動設計一書中[2]闡述了一些高層次的概念和實踐，比如通用語言，這意味著領域模型應該形成領域專家為描述系統需求而提供的共同語言，同樣的，這些語言也需要能夠被商業使用者或贊助商和軟體開發商使用。本書專注於將領域層描述為具有多層體系結構的物件導向系統中的常見層次之一。在 DDD 中，有表示，建立和檢索域模型的工件：</p>
+<ul>
+<li>Entity: 一個不由自身屬性定義而是由標識線和它的身分定義的物件。<br>例如：大多數航空公司在每次航班上都獨特地區分每個座位。每個席位都是在這種情況下的一個實體。不過，西南航空，EasyJet 和瑞安航空並沒有區分每個座位；所有的座位都是一樣的。在這種情況下，一個席位實際上是一個Value Object</li>
+<li>Value Object: 只包含元素屬性的不可變物件。<br>例如：當人們交換名片時，他們一般不會區分每張獨特的名片；他們只關心印在卡片上的資訊。在這種情況下，名片是 Value Object</li>
+<li>Service: 強調與其他物件的關係，只定義了可以為客戶做什麼，不應該替代 Entity 和 Value Object 的所有行為。</li>
+<li>Module: 一種表達機制，劃分代碼和概念。</li>
+<li>Factory: 對於那些需要建立特定域物件的方法應該委派給工廠物件，因為這樣可以更容易的替換實現。</li>
+<li>Repository: 對於檢索特定域物件的方法應該委派給 Repository 物件，因為這樣可以很容易地互換替代儲存的實現。</li>
+<li>Aggregate: 由 ROOT ENTITY 繫結在一起的物件的集合，也稱為聚合根。聚合根通過禁止外部物件保持對其成員的參照來保證在聚合內進行的更改的一致性。<br>例如：駕駛汽車時，不必擔心向前移動車輪，使發動機燃燒火花和燃料等。你只是在開車。在這種情況下，汽車是其他幾個物件的集合，並作為所有其他系統的聚合根</li>
+<li>Domain Event: 一個域物件定義了一個事件。域事件是域專家所關心的事件。</li>
+</ul>
+<h2 id="貧血模型-Anemic-Model"><a href="#貧血模型-Anemic-Model" class="headerlink" title="貧血模型 (Anemic Model)"></a>貧血模型 (Anemic Model)</h2><p>特徵:<br>其中包含物件，許多物件會以領域空間中的名詞來命名，而且這些物件會透過真實領域模型所具有的豐富關聯性和結構來連接。<br>從行為上會看出端倪，並了解這些物件上幾乎沒有任何行為，比較像是一組 getter 和 setter。<br>使用 Anemic 領域模型時，會從一組擷取所有領域或商務邏輯的服務物件 (service，傳統上稱為「商務層」**) 來使用這些資料模型。 商務層位於資料模型最上層，其使用資料模型的方式就像是資料一樣。</p>
+<p>重點節錄(來自微軟)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Anemic 領域模型只是程序樣式設計。 Anemic 實體物件不是真正的物件，因為它們缺少行為 (方法)。</span><br><span class="line">它們只會保存資料屬性，因此不是物件導向設計。</span><br><span class="line"></span><br><span class="line">藉由將所有的行為放入服務物件（商務層）中，您基本上會得到spaghetti 程式碼或交易腳本，</span><br><span class="line">因此您會失去領域模型所提供的優點。</span><br><span class="line"></span><br><span class="line">即便如此，如果您的微服務或限定內容很簡單 (CRUD 服務)，只有資料屬性之實體物件形式的 Anemic 領域模型便已足夠，</span><br><span class="line">而且可能不值得實作更複雜的 DDD 模式。 在此情況下，它只是持續性模型，因為您刻意建立只有 CRUD 用途資料的實體。</span><br><span class="line"></span><br><span class="line">這就是為什麼微服務架構對於根據每個限定內容之多架構方法很理想的原因。 </span><br><span class="line">例如，在 eShopOnContainers 中，</span><br><span class="line">訂購微服務會實作 DDD 模式，但目錄微服務是簡易 CRUD 服務，因此不會實作此模式。</span><br><span class="line">它其實取決於您實作的內容。 如果您要建立的微服務夠簡單 (例如 CRUD 服務)，遵循 Anemic 領域模型就不是反模式。</span><br><span class="line"></span><br><span class="line"> 不過，如果您需要處理微服務網域的複雜性，</span><br><span class="line"> 而此領域有許多不斷改變的商務規則，則 anemic 領域模型可能是該微服務或限定內容的反模式。</span><br><span class="line"> 在此情況下，將它設計為具有實體的豐富模型可能會相當有利於這類微服務的長期成功，</span><br><span class="line"> 因為這些實體包含資料加上行為，並實作額外的 DDD 模式 (彙總、值物件等)。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdn.net/20171108161155976?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHJvdWJsZXNob290ZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="Anemic Model "></p>
+<h2 id="豐富領域模型-Rich-Domain-Model"><a href="#豐富領域模型-Rich-Domain-Model" class="headerlink" title="豐富領域模型(Rich Domain Model)"></a>豐富領域模型(Rich Domain Model)</h2><p><img src="https://img-blog.csdn.net/20171108161246317?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHJvdWJsZXNob290ZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="Rich Domain Model "></p>
+<p>架構參考:</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/95ed0cc001e94a8ba9f32666113169c9.png" alt="傳統架構 "></p>
+<p>架構轉成DDD</p>
+<p><img src="https://ucc.alicdn.com/pic/developer-ecology/d92764a7963f43068273133f9a1ac6f9.png" alt="DDD 之後"></p>
+<h2 id="閱讀參考"><a href="#閱讀參考" class="headerlink" title="閱讀參考"></a>閱讀參考</h2><p>程式架構:<br><a href="https://developer.aliyun.com/article/716908" target="_blank" rel="noopener">阿里技术专家详解 DDD 系列- Domain Primitive</a><br><a href="https://developer.aliyun.com/article/719251" target="_blank" rel="noopener">阿里技术专家详解DDD系列 第二弹 - 应用架构</a><br><a href="https://juejin.cn/post/6845166890554228744" target="_blank" rel="noopener">阿里技术专家详解DDD系列 第三讲 - Repository模式 </a><br><a href="https://mp.weixin.qq.com/s?__biz=MzAxNDEwNjk5OQ==&mid=2650414919&idx=1&sn=0ad1df1a1b0e2488f7faa21008fdbdd0&chksm=8396d75fb4e15e49341b07022780dcb8dca66a0efb7f129d4de86a5ef5d8a890f6e0d2fd6432&scene=132#wechat_redirect" target="_blank" rel="noopener">DDD系列第四讲：领域层设计规范 </a></p>
+<p>其他:<br><a href="https://blog.csdn.net/troubleshooter/article/details/78479984" target="_blank" rel="noopener">什么是领域模型(domain model)？贫血模型(anaemic domain model)和充血模型(rich domain model)有什么区别？</a><br><a href="https://blog.csdn.net/johnstrive/article/details/16805121?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.control" target="_blank" rel="noopener">领域模型驱动设计（Domain Driven Design）入门概述</a><br><a href="https://blog.csdn.net/iteye_3055/article/details/82106174?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-7.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-7.control" target="_blank" rel="noopener">领域驱动设计(Domain Driven Design)参考架构详解</a><br><a href="https://docs.microsoft.com/zh-tw/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/microservice-domain-model" target="_blank" rel="noopener">微服務 - 架構電子書 (微軟) - 設計微服務領域模型</a><br><a href="https://ithelp.ithome.com.tw/articles/10216645" target="_blank" rel="noopener">關於 Domain-Driven Design 以及他的魅力　(這個上面寫的程式範例不太好，看其他文章範例)</a><br><a href="https://medium.com/tradeshift-engineering/my-vision-as-a-software-engineer-about-ddd-domain-driven-design-part-2-973bcf5a9848" target="_blank" rel="noopener">My vision, as a Software Engineer, about DDD (Domain Driven Design) — Part 2 (Java 為範例)</a><br><a href="https://hackmd.io/@ballfish/DDD" target="_blank" rel="noopener">Domain Driven Design</a><br><a href="https://www.cnblogs.com/daoqidelv/p/7648392.html" target="_blank" rel="noopener">【DDD】领域驱动设计实践 —— Domain层实现</a><br><a href="https://t.codebug.vip/questions-2083339.htm" target="_blank" rel="noopener">DDD 程式設計範例討論</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hand79.github.io/Blog/posts/Development/20210217-domain-driven-design.html" data-id="ckl9hirnl0001ccw1dw9o0fme" class="article-share-link">Share</a>
+      
+        <a href="https://hand79.github.io/Blog/posts/Development/20210217-domain-driven-design.html#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/posts/Development/20210217-database-connection-pool.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">資料庫Connection pool設定</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Development/">Development</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Web/">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Web/" rel="tag">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Development/" style="font-size: 20px;">Development</a> <a href="/Blog/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/Blog/tags/Java/" style="font-size: 10px;">Java</a> <a href="/Blog/tags/JavaScript/" style="font-size: 12.5px;">JavaScript</a> <a href="/Blog/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/Blog/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/Blog/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/Blog/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/Blog/tags/Web/" style="font-size: 12.5px;">Web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">時間</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/posts/Development/20210217-domain-driven-design.html">Domain-Driven Design (DDD)</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Development/20210217-database-connection-pool.html">資料庫Connection pool設定</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Development/20210204-microservice-soa.html">SOA架構 與 Microservice</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Development/20210202-mvc-tier.html">MVC模式 與 三層架構</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Java/20210201-spring-annotation-component.html">Spring註解 @Component @Service, @Controller, @Repository</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 MaxHanChen<br/>
+      E-mail: <a href="mailto: maxdjkl@gmail.com"><u>maxdjkl@gmail.com</u></a><br/>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'maxhanchen';
+  
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Development/20210217-domain-driven-design.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
