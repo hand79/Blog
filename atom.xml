@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-02-17T13:30:46.688Z</updated>
+  <updated>2021-03-16T23:13:48.173Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Postgres Observability</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210316-postgres-observability.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210316-postgres-observability.html</id>
+    <published>2021-03-16T13:50:30.000Z</published>
+    <updated>2021-03-16T23:13:48.173Z</updated>
+    
+    <content type="html"><![CDATA[<p>覺得這網站Postgres整理的不錯，進行留存。</p><p>網站: <a href="https://pgstats.dev/" target="_blank" rel="noopener">《 Postgres Observability》</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;覺得這網站Postgres整理的不錯，進行留存。&lt;/p&gt;
+&lt;p&gt;網站: &lt;a href=&quot;https://pgstats.dev/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《 Postgres Observability》&lt;/a&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
   
   <entry>
     <title>Domain-Driven Design (DDD)</title>
@@ -60,8 +86,8 @@
   
   <entry>
     <title>SOA架構 與 Microservice</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html</id>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html</id>
     <published>2021-02-04T15:07:30.000Z</published>
     <updated>2021-02-04T15:09:56.475Z</updated>
     
@@ -407,27 +433,6 @@
     
     
     <summary type="html">&lt;p&gt;遇上的資料庫相關效能處理問題，處理方式記錄。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CI/CD 相關內容概念</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210107-CI-CD.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210107-CI-CD.html</id>
-    <published>2021-01-07T06:30:30.000Z</published>
-    <updated>2021-01-07T07:24:49.098Z</updated>
-    
-    <content type="html"><![CDATA[<p>概念解釋。</p><a id="more"></a><h3 id="Continuous-integration-CI，持續性整合"><a href="#Continuous-integration-CI，持續性整合" class="headerlink" title="Continuous integration(CI，持續性整合)"></a>Continuous integration(CI，持續性整合)</h3><ul><li>將開發人員對應用程序的更改被合併，系統將會通過自動生成應用並運行不同級別的自動化測試（通常是單元測試和整合測試）來驗證，確保這些更改沒有對程式功能造成破壞。測試內容涵蓋了從類和函數到構成整個應用的不同模塊。如果自動化測試發現新代碼和現有代碼之間存在衝突，可以更加輕鬆地快速修復這些錯誤。     </li><li>目的: 完成各程式碼的整合。應用程序的新更改會定期構建，測試並合併到共享存儲庫中，解決在一次開發中有太多應用分支，從而導致相互衝突的問題。</li></ul><h3 id="Continuous-Delivery-CD，持續性交付"><a href="#Continuous-Delivery-CD，持續性交付" class="headerlink" title="Continuous Delivery(CD，持續性交付)"></a>Continuous Delivery(CD，持續性交付)</h3><ul><li>完成CI中生成及單元測試和整合測試的自動化流程後，持續交付可自動將已驗證的程式碼發佈到存儲庫。為了實現高效的持續交付流程，必須確保CI已內置於開發管道。</li><li>目的: 是擁有一個可隨時部署到生產環境的程式庫。</li></ul><h3 id="Continuous-Deployment-CD，持續性部署"><a href="#Continuous-Deployment-CD，持續性部署" class="headerlink" title="Continuous Deployment(CD，持續性部署)"></a>Continuous Deployment(CD，持續性部署)</h3><ul><li>最後的階段是持續部署，自動部署到指定環境。</li><li>目的: 自動將預定的程式版本發佈到程式碼存儲庫的延伸，自動將程式發佈到生產環境。</li></ul><h2 id="CI-CD總結"><a href="#CI-CD總結" class="headerlink" title="CI/CD總結"></a>CI/CD總結</h2><ul><li>CI/CD 就是程式開發完畢後，把開發完成的程式碼進行測試與Code Review，通過後經過合併於主線(Main branch)後直接發佈上線(Prod, UAT等環境)，這樣的過程就是所謂的 CI/CD。</li><li>CI/CD常用工具:    <ul><li>GitLab CI</li><li>Travis CI</li><li>Bamboo (Atlassian家出的 CI)</li><li>Circle CI</li><li>Jenkins</li><li>Ansible </li></ul></li></ul><p>*<em>流程參考 Redhat *</em><br><img src="https://www.redhat.com/cms/managed-files/ci-cd-flow-desktop_1.png" alt="Redhat_CI_CD"></p><h3 id="Unit-Testing-單元測試"><a href="#Unit-Testing-單元測試" class="headerlink" title="Unit Testing (單元測試)"></a>Unit Testing (單元測試)</h3><ul><li>針對程式中的模組來進行正確性檢驗的測試工作，一個單元的定義可以是單個程式、函式、過程等內容，作為一個單元。(對於物件導向程式設計，最小單元就是方法，包括基礎類別（超類）、抽象類、或者衍生類別（子類）中的方法。)</li></ul><h3 id="System-Integration-Testing-SIT，整合測試"><a href="#System-Integration-Testing-SIT，整合測試" class="headerlink" title="System Integration Testing (SIT，整合測試)"></a>System Integration Testing (SIT，整合測試)</h3><ul><li>在單獨的軟體模組被合併作為一個組測試。在單元測試之後和在系統測試之前。整合測試在已經被單元測試檢驗後進行作為它的輸入，組織在更大的集合，和遞送，作為它的輸出，整合系統為系統測試做準備。</li><li>目的: 整合測試的目的是校驗功能、效能和可靠性要求，配置在主設計專案中。</li></ul><h3 id="System-Testing-系統測試"><a href="#System-Testing-系統測試" class="headerlink" title="System Testing (系統測試)"></a>System Testing (系統測試)</h3><ul><li>系統測試的涵蓋面很廣，主要包括功能測試、介面測試、可靠性測試、易用性測試、效能測試。 功能測試主要針對包括功能可用性、功能實現程度（功能流程&amp;業務流程、資料處理&amp;業務資料處理）方面測試。</li><li>壓力測試與效能測試差異<ul><li>壓力測試要求進行超過規定效能指標的測試。例如一個網站請求是100qps，壓力測試就要是採用120qps個同時請求的條件測試。<ul><li>判斷準則： 系統能夠恢復、壓力過程中不要有明顯效能下降</li></ul></li><li>效能測試是就是該系統的效能標準(eg. 80tps)</li></ul></li></ul><h3 id="Stress-Testing-壓力測試"><a href="#Stress-Testing-壓力測試" class="headerlink" title="Stress Testing (壓力測試)"></a>Stress Testing (壓力測試)</h3><ul><li>測驗系統在當下的軟硬體環境下能夠承受的請求有多少，用來計算出系統的極限。</li></ul><h3 id="User-Acceptance-Testing-UAT，使用者驗收測試"><a href="#User-Acceptance-Testing-UAT，使用者驗收測試" class="headerlink" title="User Acceptance Testing(UAT，使用者驗收測試)"></a>User Acceptance Testing(UAT，使用者驗收測試)</h3><ul><li>通常是由一般的使用者（通常這些使用者不瞭解軟體的具體邏輯，但對業務邏輯非常熟悉）進行的測試，因此是面向終端使用者的測試，結束後通常就可以佈署到正式環境了(Production)。</li></ul><p>###　其他</p><ul><li>TPS（每秒事務數）代表每秒執行的事務數量，由資料庫管理系統和用戶用於描述每秒鐘的資料庫操作數。例如，用戶每分鐘執行6個事務，TPS為6 / 60s = 0.10 TPS。</li><li>QPS：Queries Per Second意思是「每秒查詢率」，是一台伺服器每秒能夠相應的”查詢次數”，是對一個特定的查詢伺服器在規定時間內所處理流量多少的衡量標準。<br>More info: <a href="https://kknews.cc/zh-tw/code/nax2lv3.html" target="_blank" rel="noopener">相關參考1</a><br>More info: <a href="https://kknews.cc/news/zejoy8l.html" target="_blank" rel="noopener">相關參考2</a></li></ul><p>More info: <a href="https://zh.wikipedia.org/wiki/%E6%8C%81%E7%BA%8C%E6%95%B4%E5%90%88" target="_blank" rel="noopener">Continuous integration(wiki)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E6%8C%81%E7%BA%8C%E4%BA%A4%E4%BB%98" target="_blank" rel="noopener">Continuous Delivery(wiki)</a><br>More info: <a href="https://www.redhat.com/zh/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">CI/CD(RedHat)</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95" target="_blank" rel="noopener">Software Testing(wiki)</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;概念解釋。&lt;/p&gt;</summary>
     
     
     
