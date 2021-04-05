@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-03-17T12:33:36.563Z</updated>
+  <updated>2021-04-05T14:02:35.682Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -17,13 +17,77 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Oracle - Automatic Workload Repository (AWR) Report</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210405-oracle-awr-report.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210405-oracle-awr-report.html</id>
+    <published>2021-04-05T12:20:30.000Z</published>
+    <updated>2021-04-05T14:02:35.682Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近被抓來看效能問題，做點查詢相關資料記錄。</p><a id="more"></a><p><a href="https://iter01.com/266908.html" target="_blank" rel="noopener">Oracle AWR報告指標全解析</a><br><a href="https://oracle-base.com/articles/10g/automatic-workload-repository-10g" target="_blank" rel="noopener">Automatic Workload Repository (AWR) in Oracle Database 10g - oracle-base </a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近被抓來看效能問題，做點查詢相關資料記錄。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Oracle - Select指定傳回筆數</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210404-oracle-sql-select-rownum.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210404-oracle-sql-select-rownum.html</id>
+    <published>2021-04-04T12:20:30.000Z</published>
+    <updated>2021-04-05T13:41:21.914Z</updated>
+    
+    <content type="html"><![CDATA[<p>由於Oracle不支持Select Top語句，所以在Oracle中經常是用Order By跟rownum的組合來實現Select Top N的查詢，<br>也跟PostgreSQL下的方法不一樣，不是用limit限制資料筆數，因此做記錄。</p><p>OS: 整理完後我開始懷念PostgreSQL語法的簡潔…</p><a id="more"></a><p>Oracle中 Select指令沒有類似LIMIT的參數可以使用來限制傳回資料的筆數，但是可以利用 ORACLE中的Rownum的值作一點手腳來限制傳回值的範圍。</p><h4 id="ROWNUM-說明："><a href="#ROWNUM-說明：" class="headerlink" title="ROWNUM 說明："></a>ROWNUM 說明：</h4><ul><li>rownum不能以任何表的名稱作為前綴字。</li><li>Oracle 使用 rownum 作為查詢結果行的編號，第一行是1，第二行是2， 以此類推，可以用於限制查詢返回的總行數。</li><li>rownum的值在”查詢結果輸出時自動產生”，因此第一條始終是1。</li><li>Oracle中的rownum的是在查找資料的時候產生的序號，所以想對指定排序的數據去指定的rowmun行數據就必須注意了。</li><li>要注意的是在使用rownum時，只有當Order By 的字段是主鍵或索引時，查詢結果才會先排序再計算rownum,但是，對非主鍵欄位進行排序時卻不是。<br>出現這種的原因是：Oracle 先按物理存儲位置（rowid）順序取出滿足rownum 條件的記錄，即物理位置上的前5條數據，然後在對這些數據按照Order By 的字段進行排序，而不是我們所期望的先排序、再取特定記錄數。(因此排序的欄位建議是有索引的欄位)</li><li>若無索引或主鍵，只能用子查詢來實現先排序。(注意查詢效能的問題)</li></ul><p>1、ROWNUM 是偽列，必須要有返回結果後，每條返回記錄就會對應產生一個ROWNUM數值；<br>2、返回結果記錄的ROWNUM 是從1 開始排序的，因此第一條始終是1;這樣，當查詢到第一條記錄時，該記錄的ROWNUM 為1，但條件要求ROWNUM&gt;1，因此不符合，繼續查詢下一條；因為前面沒有符合要求的記錄，因此下一條記錄過來後，其ROWNUM 還是為1，如此循環，就不會產生結果。</p><h4 id="分頁顯示實作"><a href="#分頁顯示實作" class="headerlink" title="分頁顯示實作:"></a>分頁顯示實作:</h4><p>通用的作法:<br>select * from (子查詢) WHERE rownum Between 初始列  AND 尾列;</p><p>Tips:</p><ul><li>很多開發者在確認某個表中是否有相應數據時，喜歡加上ROWNUM=1，其想法就是只要存在一條數據就說明有相應數據，查詢就可以直接返回了，這樣就能提高性能了。<br>但是在Oracle 10G之前，使用rownum=1 是不能達到預期的性能效果的，而是需要通過&lt;2 或&lt;=1 作為過濾條件才能達到預期效果。</li></ul><p><a href="https://blog.csdn.net/zxh2075/article/details/77110736" target="_blank" rel="noopener">Oracle rownum 用法詳解</a><br><a href="https://blog.csdn.net/bbliutao/article/details/8531091" target="_blank" rel="noopener">Oracle rownum 注意事項</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;由於Oracle不支持Select Top語句，所以在Oracle中經常是用Order By跟rownum的組合來實現Select Top N的查詢，&lt;br&gt;也跟PostgreSQL下的方法不一樣，不是用limit限制資料筆數，因此做記錄。&lt;/p&gt;
+&lt;p&gt;OS: 整理完後我開始懷念PostgreSQL語法的簡潔…&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Oracle - 開發常用查詢語法</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210403-oracle-daily-sql.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210403-oracle-daily-sql.html</id>
+    <published>2021-04-03T12:20:30.000Z</published>
+    <updated>2021-04-05T14:22:55.662Z</updated>
+    
+    <content type="html"><![CDATA[<p>做個開發常使用的查詢記錄。</p><a id="more"></a><p>– 查詢版本<br>SELECT * FROM v$version;<br>SELECT * FROM product_component_version;</p><p>– 目前資料庫的語系<br>SELECT * FROM nls_database_parameters WHERE parameter = ‘NLS_CHARACTERSET’;</p><p>– 查詢目前資料庫名稱<br>SELECT NAME FROM v$database;</p><p>– 查詢session連線數<br>select count(*) from v$session；</p><p>–當前的連接數<br>select count(*) from v$process</p><p>– 查看不同使用者的連接數<br>select username,count(username) from v$session where username is not null group by username;</p><p>– 查詢oracle的併發連接數<br>select count(*) from v$session where status=’ACTIVE’;</p><p>– 資料庫允許的最大連接數<br>select value from v$parameter where name = ‘processes’ </p><p>– 修改最大連接數:<br>alter system set processes = 300 scope = spfile;</p><p>– 重啟資料庫:<br>shutdown immediate;<br>startup;</p><p>–查看當前有哪些使用者正在使用資料<br>SELECT osuser, a.username,cpu_time/executions/1000000||’s’, sql_fulltext,machine<br>from v$session a, v$sqlarea b<br>where a.sql_address =b.address order by cpu_time/executions desc;</p><p>– 按機器名分組查<br>select username,machine,count(username) from v$session where username is not null group by username,machine;</p><p>– 查看使用者或角色系統許可權(直接賦值給使用者或角色的系統許可權)：<br>select * from dba_sys_privs;<br>select * from user_sys_privs;</p><p>– 查看角色(只能查看登陸使用者擁有的角色)所包含的許可權<br>select * from role_sys_privs;</p><p>– 查看所有角色：<br>select * from dba_roles;</p><p>– 查看所有使用者<br>select * from all_users;</p><p>– 查看使用者或角色所擁有的角色：<br>select * from dba_role_privs;<br>select * from user_role_privs;</p><p>– 查看使用者物件使用權限：<br>select * from dba_tab_privs;<br>select * from all_tab_privs;<br>select * from user_tab_privs;</p><p>– 查看哪些使用者有sysdba或sysoper系統許可權(查詢時需要相應許可權)<br>select * from V$PWFILE_USERS; </p><p>– 查詢所有 Table<br>SELECT * FROM USER_OBJECTS;<br>SELECT * FROM USER_OBJECTS ORDER BY OBJECT_NAME;</p><p>– 查詢所有 Table &amp; 欄位<br>SELECT * FROM user_tab_columns ORDER BY TABLE_NAME;<br>SELECT * FROM user_tab_columns WHERE table_name = UPPER(‘表格名稱’) ORDER BY TABLE_NAME;</p><p>– 取得 TABLE 的欄位<br>desc UPPER(‘表格名稱’);</p><p>– 取得 Table 註解<br>SELECT table_name, comments<br>FROM sys.user_tab_comments<br>WHERE table_type =’TABLE’<br>AND comments IS NOT NULL;</p><p>SELECT table_name, comments FROM sys.user_tab_comments WHERE table_name = UPPER(‘表格名稱’);</p><p>– 取得 Column 註解<br>SELECT table_name, column_name, comments FROM sys.user_col_comments<br>WHERE comments IS NOT NULL;</p><p>SELECT table_name, column_name, comments FROM sys.user_col_comments WHERE table_name = UPPER(‘表格名稱’);</p><p>–登入的帳號在目前資料庫中可以存取的DBA的資料表<br>SELECT * FROM DBA_TABLES</p><p>–登入的帳號在目前資料庫中可以存取的所有的資料表<br>SELECT * FROM ALL_TABLES</p><p>–登入的帳號在目前資料庫中可以存取的自己的資料表<br>SELECT * FROM USER_TABLES</p><p><a href="https://evanswa29.pixnet.net/blog/post/67924368-oracle%E5%B8%B8%E7%94%A8%E6%9F%A5%E8%A9%A2%E8%B3%87%E6%96%99%E5%BA%AB%E7%9A%84%E9%80%A3%E6%8E%A5%E6%95%B8%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%80%85" target="_blank" rel="noopener">Oracle常用查詢資料庫的連接數以及使用者</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;做個開發常使用的查詢記錄。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Oracle - Sequence (流水號與工作流(JBPM取流水號)的問題)</title>
     <link href="https://hand79.github.io/Blog/posts/Development/20210317-java-oracle-sequence.html"/>
     <id>https://hand79.github.io/Blog/posts/Development/20210317-java-oracle-sequence.html</id>
     <published>2021-03-17T12:20:30.000Z</published>
-    <updated>2021-03-17T12:33:36.563Z</updated>
+    <updated>2021-03-17T12:34:08.965Z</updated>
     
-    <content type="html"><![CDATA[<p>最近接的案子遇到了不少坑，做個典型的記錄，看到了某功能取工作流的底層排序，排序用”流水號”做排序取號的依據要非常注意。(被坑歪了)</p><a id="more"></a><p>有時候最新的動作會取到較小的號，導致排序流水號排序時，遇流程要回退的問題。<br>解決方法:</p><ol><li>設計時間欄位做排序處理</li><li>不用自動取流水號</li></ol><p><a href="https://cloud.tencent.com/developer/article/1555342" target="_blank" rel="noopener">Oracle sequence跳号知多少</a><br><a href="https://bbs.csdn.net/topics/390821969" target="_blank" rel="noopener">Oracle sequence 不连续、相差太大问题</a></p>]]></content>
+    <content type="html"><![CDATA[<p>最近接的案子遇到了不少坑，做個典型的記錄，看到了某功能取工作流的底層排序，排序用”流水號”做排序取號的依據要非常注意。(被坑歪了)</p><a id="more"></a><p>有時候最新的動作會取到較小的號，導致排序流水號排序時，遇流程要回退的問題。<br>解決方法:</p><ol><li>設計時間欄位做排序處理</li><li>不用自動取流水號</li></ol><p><a href="https://cloud.tencent.com/developer/article/1555342" target="_blank" rel="noopener">Oracle sequence 跳号知多少</a><br><a href="https://bbs.csdn.net/topics/390821969" target="_blank" rel="noopener">Oracle sequence 不连续、相差太大问题</a></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;最近接的案子遇到了不少坑，做個典型的記錄，看到了某功能取工作流的底層排序，排序用”流水號”做排序取號的依據要非常注意。(被坑歪了)&lt;/p&gt;</summary>
@@ -107,8 +171,8 @@
   
   <entry>
     <title>SOA架構 與 Microservice</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html</id>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html</id>
     <published>2021-02-04T15:07:30.000Z</published>
     <updated>2021-02-04T15:09:56.475Z</updated>
     
@@ -377,69 +441,6 @@
     
     
     <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如果root忘了密碼(Centos 6)</title>
-    <link href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-root-password.html"/>
-    <id>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-root-password.html</id>
-    <published>2021-01-27T07:30:00.000Z</published>
-    <updated>2021-01-27T08:16:27.554Z</updated>
-    
-    <content type="html"><![CDATA[<p>#如果root忘了密碼，過單用戶模式重設root帳號的密碼，進入到單用戶模式，root不用密碼就可以登入</p><a id="more"></a><p>步驟:<br>開機時在引導時輸入enter-&gt;看到介面輸入e-&gt;選擇kernel-&gt;<br>輸入e-&gt; 在這這行最後面寫 1-&gt;再輸入enter -&gt; 再輸入小b(單用戶模式)-&gt;可以修改root密碼(passwd)</p><p>#安全性的疑慮:<br>用這招必須在當台電腦或機房前才有用(遠程無用)</p><p>More info: <a href="https://kknews.cc/zh-tw/code/k9oxl6q.html" target="_blank" rel="noopener">其他版本相關</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;#如果root忘了密碼，過單用戶模式重設root帳號的密碼，進入到單用戶模式，root不用密碼就可以登入&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>網卡IP查詢</title>
-    <link href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html"/>
-    <id>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-ip.html</id>
-    <published>2021-01-27T07:30:00.000Z</published>
-    <updated>2021-01-27T08:42:33.824Z</updated>
-    
-    <content type="html"><![CDATA[<p>#網卡IP查詢</p><a id="more"></a><h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h2><ul><li>ipconfig</li></ul><h2 id="Ubuntu-CentOS"><a href="#Ubuntu-CentOS" class="headerlink" title="Ubuntu, CentOS"></a>Ubuntu, CentOS</h2><ul><li>ifconfig</li><li>假如指令無效net-tools需要裝</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install net-tools</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;#網卡IP查詢&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shallow Copy VS Deep Copy (JavaScript)</title>
-    <link href="https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html"/>
-    <id>https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html</id>
-    <published>2021-01-27T07:00:00.000Z</published>
-    <updated>2021-01-27T07:29:28.089Z</updated>
-    
-    <content type="html"><![CDATA[<p>Shallow Copy VS Deep Copy　</p><a id="more"></a><p><img src="http://i.imgur.com/abBTAP3.png" alt="Shallow Copy VS Deep Copy"></p><ul><li>Shallow Copy(淺拷貝): 只複製指向某個物件的指標，而不複製物件本身，新舊物件還是共用同一塊記憶體。</li><li>Deep Copy(深拷貝): 會另外創造一個一模一樣的物件，新物件跟原物件不共用記憶體，修改新物件不會改到原物件內容。</li></ul><h2 id="如何-Deep-Copy"><a href="#如何-Deep-Copy" class="headerlink" title="如何 Deep Copy"></a>如何 Deep Copy</h2><ol><li>手動複製(建立一個物件，手動把值弄進去)</li><li>Object.assign(ES6語法，該語法先建立一個空物件，再把指定值塞進去，限單層，多層需另外處理)</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123; a: 1, b: 2, c: 3 &#125;;</span><br><span class="line">var obj2 &#x3D; Object.assign(&#123;&#125;, obj1);</span><br><span class="line">obj2.b &#x3D; 100;</span><br><span class="line">console.log(obj1); &#x2F;&#x2F; &#123; a: 1, b: 2, c: 3 &#125; &lt;-- 值不變</span><br><span class="line">console.log(obj2); &#x2F;&#x2F; &#123; a: 1, b: 100, c: 3 &#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>轉成 JSON 再轉回來(用JSON.stringify把物件轉成字串，再用JSON.parse把字串轉成新的物件，多層可以，有function情境不可，function沒辦法轉成JSON)</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123; fun: function()&#123; console.log(123) &#125; &#125;;</span><br><span class="line">var obj2 &#x3D; JSON.parse(JSON.stringify(obj1));</span><br><span class="line"></span><br><span class="line">console.log(typeof obj1.fun); &#x2F;&#x2F; &#39;function&#39;</span><br><span class="line">console.log(typeof obj2.fun); &#x2F;&#x2F; &#39;undefined&#39; &lt;-- 會undefined，</span><br></pre></td></tr></table></figure><ol start="4"><li>透過library處理，此處用JQuery處理</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: &#123; f: &#123; g: 2 &#125; &#125;,</span><br><span class="line">    c: [4, 5, 6]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var obj2 &#x3D; $.extend(true, &#123;&#125;, obj1);</span><br><span class="line">console.log(obj1.b.f &#x3D;&#x3D;&#x3D; obj2.b.f); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Shallow Copy VS Deep Copy　&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
     
   </entry>
   

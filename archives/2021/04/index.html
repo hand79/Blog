@@ -6,22 +6,25 @@
   
 
   
-  <title>Shallow Copy VS Deep Copy (JavaScript) | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>時間: 2021/4 | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Shallow Copy VS Deep Copy">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Shallow Copy VS Deep Copy (JavaScript)">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html">
+  <meta name="description" content="研究、學習、記錄">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Max&#39;s Blog-程式學習研究記錄">
+<meta property="og:url" content="https://hand79.github.io/Blog/archives/2021/04/index.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="Shallow Copy VS Deep Copy">
+<meta property="og:description" content="研究、學習、記錄">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://i.imgur.com/abBTAP3.png">
-<meta property="article:published_time" content="2021-01-27T07:00:00.000Z">
-<meta property="article:modified_time" content="2021-01-27T07:29:28.089Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="開發">
+<meta property="article:tag" content="研究">
+<meta property="article:tag" content="學習">
+<meta property="article:tag" content="記錄">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content=" Javascript">
+<meta property="article:tag" content=" CSS">
+<meta property="article:tag" content=" Html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://i.imgur.com/abBTAP3.png">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
   
@@ -74,97 +77,79 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-JavaScript/JavaScript_obj_copy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/posts/JavaScript/20210127-java-script-obj-copy.html" class="article-date">
-  <time datetime="2021-01-27T07:00:00.000Z" itemprop="datePublished">2021-01-27 15:00:00</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/JavaScript/">JavaScript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Shallow Copy VS Deep Copy (JavaScript)
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/Blog/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/Blog/posts/Development/20210405-oracle-awr-report.html" class="archive-article-date">
+  <time datetime="2021-04-05T12:20:30.000Z" itemprop="datePublished">4月 5</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Blog/posts/Development/20210405-oracle-awr-report.html">Oracle - Automatic Workload Repository (AWR) Report</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Shallow Copy VS Deep Copy　</p>
-<a id="more"></a>
-
-<p><img src="http://i.imgur.com/abBTAP3.png" alt="Shallow Copy VS Deep Copy"></p>
-<ul>
-<li>Shallow Copy(淺拷貝): 只複製指向某個物件的指標，而不複製物件本身，新舊物件還是共用同一塊記憶體。</li>
-<li>Deep Copy(深拷貝): 會另外創造一個一模一樣的物件，新物件跟原物件不共用記憶體，修改新物件不會改到原物件內容。</li>
-</ul>
-<h2 id="如何-Deep-Copy"><a href="#如何-Deep-Copy" class="headerlink" title="如何 Deep Copy"></a>如何 Deep Copy</h2><ol>
-<li>手動複製(建立一個物件，手動把值弄進去)</li>
-<li>Object.assign(ES6語法，該語法先建立一個空物件，再把指定值塞進去，限單層，多層需另外處理)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123; a: 1, b: 2, c: 3 &#125;;</span><br><span class="line">var obj2 &#x3D; Object.assign(&#123;&#125;, obj1);</span><br><span class="line">obj2.b &#x3D; 100;</span><br><span class="line">console.log(obj1); &#x2F;&#x2F; &#123; a: 1, b: 2, c: 3 &#125; &lt;-- 值不變</span><br><span class="line">console.log(obj2); &#x2F;&#x2F; &#123; a: 1, b: 100, c: 3 &#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>轉成 JSON 再轉回來(用JSON.stringify把物件轉成字串，再用JSON.parse把字串轉成新的物件，多層可以，有function情境不可，function沒辦法轉成JSON)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123; fun: function()&#123; console.log(123) &#125; &#125;;</span><br><span class="line">var obj2 &#x3D; JSON.parse(JSON.stringify(obj1));</span><br><span class="line"></span><br><span class="line">console.log(typeof obj1.fun); &#x2F;&#x2F; &#39;function&#39;</span><br><span class="line">console.log(typeof obj2.fun); &#x2F;&#x2F; &#39;undefined&#39; &lt;-- 會undefined，</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>透過library處理，此處用JQuery處理</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj1 &#x3D; &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: &#123; f: &#123; g: 2 &#125; &#125;,</span><br><span class="line">    c: [4, 5, 6]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var obj2 &#x3D; $.extend(true, &#123;&#125;, obj1);</span><br><span class="line">console.log(obj1.b.f &#x3D;&#x3D;&#x3D; obj2.b.f); &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html" data-id="ckl9hiroj002cccw1d0loevl1" class="article-share-link">Share</a>
-      
-        <a href="https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/Blog/posts/Linux/20210127-Linux-shell-ip.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          網卡IP查詢
-        
-      </div>
-    </a>
-  
-  
-    <a href="/Blog/posts/Development/20210118-database-expansion-1.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">資料庫的問題</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/Blog/posts/Development/20210404-oracle-sql-select-rownum.html" class="archive-article-date">
+  <time datetime="2021-04-04T12:20:30.000Z" itemprop="datePublished">4月 4</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Blog/posts/Development/20210404-oracle-sql-select-rownum.html">Oracle - Select指定傳回筆數</a>
+    </h1>
+  
 
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </header>
   </div>
-</section>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/Blog/posts/Development/20210403-oracle-daily-sql.html" class="archive-article-date">
+  <time datetime="2021-04-03T12:20:30.000Z" itemprop="datePublished">4月 3</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Blog/posts/Development/20210403-oracle-daily-sql.html">Oracle - 開發常用查詢語法</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
+
 </section>
         
           <aside id="sidebar">
@@ -264,13 +249,11 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/JavaScript/20210127-java-script-obj-copy.html';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
