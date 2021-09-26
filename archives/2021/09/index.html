@@ -6,19 +6,24 @@
   
 
   
-  <title>資料庫Connection pool設定 | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>時間: 2021/9 | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="相關文章重點整理。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="資料庫Connection pool設定">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/Development/20210217-database-connection-pool.html">
+  <meta name="description" content="研究、學習、記錄">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Max&#39;s Blog-程式學習研究記錄">
+<meta property="og:url" content="https://hand79.github.io/Blog/archives/2021/09/index.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="相關文章重點整理。">
+<meta property="og:description" content="研究、學習、記錄">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-02-17T09:30:30.000Z">
-<meta property="article:modified_time" content="2021-02-17T13:39:03.307Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Development">
+<meta property="article:tag" content="開發">
+<meta property="article:tag" content="研究">
+<meta property="article:tag" content="學習">
+<meta property="article:tag" content="記錄">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content=" Javascript">
+<meta property="article:tag" content=" CSS">
+<meta property="article:tag" content=" Html">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -72,87 +77,41 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Development/資料庫 Connection pool 設定" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Blog/posts/Development/20210217-database-connection-pool.html" class="article-date">
-  <time datetime="2021-02-17T09:30:30.000Z" itemprop="datePublished">2021-02-17 17:30:30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Development/">Development</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      資料庫Connection pool設定
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/Blog/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/Blog/posts/Java/20210926-java-feature-version-history.html" class="archive-article-date">
+  <time datetime="2021-09-26T12:47:33.000Z" itemprop="datePublished">9月 26</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Blog/posts/Java/20210926-java-feature-version-history.html">Java 8 to 17 各版本功能變化</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>相關文章重點整理。</p>
-<a id="more"></a> 
-
-<h2 id="誤區"><a href="#誤區" class="headerlink" title="誤區"></a>誤區</h2><p>資料庫連線池的大小越大越好? Ans: 絕對不是</p>
-<h2 id="正確觀念"><a href="#正確觀念" class="headerlink" title="正確觀念"></a>正確觀念</h2><p>(maximumPoolSize: 連線池中允許的最大連線數) 連線數 = ((核心數 * 2) + 有效磁碟數)</p>
-<h2 id="主要影響資料庫的效能瓶頸因素"><a href="#主要影響資料庫的效能瓶頸因素" class="headerlink" title="主要影響資料庫的效能瓶頸因素"></a>主要影響資料庫的效能瓶頸因素</h2><ul>
-<li>CPU</li>
-<li>磁碟 IO (SSD由於不像傳統硬碟需要定址、旋轉碟片，因此更少的阻塞 ，會更近似於CPU核心數)</li>
-<li>網路 IO </li>
-<li>SQL語法 </li>
-</ul>
-<p><a href="https://www.itread01.com/content/1547137124.html" target="_blank" rel="noopener">資料庫連線池DataSource (解釋連線池為何要使用)</a><br><a href="https://www.mdeditor.tw/pl/2FBd/zh-tw" target="_blank" rel="noopener">如何正確設定資料庫連線池的大小？</a><br><a href="https://www.youtube.com/watch?v=xNDnVOCdvQ0" target="_blank" rel="noopener">OLTP Performance - Concurrent Mid-Tier Connections (Oracle Learning Youtube)</a><br><a href="https://github.com/brettwooldridge/HikariCP" target="_blank" rel="noopener">HikariCP 設定參數 (Github)</a><br><a href="https://www.mdeditor.tw/pl/piUT/zh-tw" target="_blank" rel="noopener">HikariCP 設定參數 (翻譯)</a><br><a href="https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing" target="_blank" rel="noopener">About Pool Sizing - HikariCP (Github)</a><br><a href="https://www.itread01.com/content/1548895884.html" target="_blank" rel="noopener">Springboot datasource 常用配置說明</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/Development/20210217-database-connection-pool.html" data-id="cktu4m28z002ev0w185trgpay" class="article-share-link">Share</a>
-      
-        <a href="https://hand79.github.io/Blog/posts/Development/20210217-database-connection-pool.html#disqus_thread" class="article-comment-link">留言</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/Blog/posts/Development/20210217-domain-driven-design.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Domain-Driven Design (DDD)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/Blog/posts/Development/20210204-microservice-soa.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">SOA架構 與 Microservice</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
 </section>
         
           <aside id="sidebar">
@@ -252,13 +211,11 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/Development/20210217-database-connection-pool.html';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

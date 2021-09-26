@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-08-15T15:04:48.333Z</updated>
+  <updated>2021-09-26T14:10:38.942Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 8 to 17 各版本功能變化</title>
+    <link href="https://hand79.github.io/Blog/posts/Java/20210926-java-feature-version-history.html"/>
+    <id>https://hand79.github.io/Blog/posts/Java/20210926-java-feature-version-history.html</id>
+    <published>2021-09-26T12:47:33.000Z</published>
+    <updated>2021-09-26T14:10:38.942Z</updated>
+    
+    <content type="html"><![CDATA[<p>有鑑於國外Java更新已經到那麼遠了，整理一些資訊留存，以便後續追蹤新版本功能特色的資料。</p><p>more info:<a href="https://advancedweb.hu/a-categorized-list-of-all-java-and-jvm-features-since-jdk-8-to-17/" target="_blank" rel="noopener">A categorized list of all Java and JVM features since JDK 8 to 17</a><br>more info:<a href="https://openjdk.java.net/projects/jdk/" target="_blank" rel="noopener">JDK Project(openjdk官網)</a><br>more info:<a href="https://github.com/Snailclimb/JavaGuide/blob/master/docs/java/new-features/java%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93.md" target="_blank" rel="noopener">java新特性总结.md</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;有鑑於國外Java更新已經到那麼遠了，整理一些資訊留存，以便後續追蹤新版本功能特色的資料。&lt;/p&gt;
+&lt;p&gt;more info:&lt;a href=&quot;https://advancedweb.hu/a-categorized-list-of-all-java-and-jvm-fea</summary>
+      
+    
+    
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>專案遇上Win10 MAC Address權限設定問題與網路密碼更新的問題</title>
@@ -420,27 +445,6 @@
     
     
     <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>時間同步(網路校時)</title>
-    <link href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-sync-time.html"/>
-    <id>https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-sync-time.html</id>
-    <published>2021-01-27T08:30:33.000Z</published>
-    <updated>2021-01-27T11:57:42.283Z</updated>
-    
-    <content type="html"><![CDATA[<p>CentOS 時間同步</p><a id="more"></a><h2 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate pool.ntp.org # ntpdate [ip]</span><br></pre></td></tr></table></figure><h2 id="CentOS-8-7開始提供使用Chrony"><a href="#CentOS-8-7開始提供使用Chrony" class="headerlink" title="CentOS 8 (7開始提供使用Chrony)"></a>CentOS 8 (7開始提供使用Chrony)</h2><ul><li>使用Chrony</li></ul><p>安裝</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install chrony</span><br></pre></td></tr></table></figure><p>啟動</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start chronyd.service 或  systemctl start chronyd</span><br></pre></td></tr></table></figure><p>設置開機後就自動執行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable chronyd.service 或  systemctl enable chronyd</span><br></pre></td></tr></table></figure><p>設定檔位於路徑 </p><ul><li>/etc/chrony.conf</li></ul><p>預設值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server 0.centos.pool.ntp.org iburst</span><br><span class="line">server 1.centos.pool.ntp.org iburst</span><br><span class="line">server 2.centos.pool.ntp.org iburst</span><br><span class="line">server 3.centos.pool.ntp.org iburst</span><br></pre></td></tr></table></figure><p>想改用台灣本地的時間主機，如下台灣本地的時間主機</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server tock.stdtime.gov.tw prefer</span><br><span class="line">server tick.stdtime.gov.tw</span><br><span class="line">server time.stdtime.gov.tw</span><br></pre></td></tr></table></figure><p>查看 chronyd運行狀態</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status chronyd.service</span><br></pre></td></tr></table></figure><p>查看 chronyc 校時來源server</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure><p>查看 chronyc 校時來源server狀態</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sourcestats</span><br></pre></td></tr></table></figure><p>查看最後一次取得的校時資料</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc tracking</span><br></pre></td></tr></table></figure><p>如果系統時間與網路時間差異較大，不想等chrony慢慢校時，手動執行強制校時指令 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc -a makestep</span><br></pre></td></tr></table></figure><p>More info:<a href="http://linux.vbird.org/linux_server/0440ntp/0440ntp-centos5.php#ntpdate" target="_blank" rel="noopener">ntpdate from 鳥哥</a><br>More info: <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-differences_between_ntpd_and_chronyd" target="_blank" rel="noopener">RedHat chrony vs ntpdate 差異</a><br>More info:<a href="https://kknews.cc/zh-tw/code/8ga39xl.html" target="_blank" rel="noopener">RHEL8或CentOS8上配置NTP伺服器和客戶端</a><br>More info:<a href="https://blog.gtwang.org/linux/linux-ntp-installation-and-configuration-tutorial/" target="_blank" rel="noopener">Linux 設定 NTP 同步系統時間，自動網路校時教學</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;CentOS 時間同步&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Linux" scheme="https://hand79.github.io/Blog/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://hand79.github.io/Blog/tags/Linux/"/>
     
   </entry>
   
