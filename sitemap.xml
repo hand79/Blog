@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hand79.github.io/Blog/posts/JavaScript/20211002-javascript-reCAPTCHA(Google).html</loc>
+    
+    <lastmod>2021-10-02</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hand79.github.io/Blog/posts/Java/20210926-java-feature-version-history.html</loc>
     
     <lastmod>2021-09-26</lastmod>
@@ -284,7 +291,7 @@
 
   <url>
     <loc>https://hand79.github.io/Blog</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -292,63 +299,63 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/JavaScript/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Hexo/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Development/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Web/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Java/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Spring/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Linux/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -357,49 +364,49 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/JavaScript/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Development/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Web/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Java/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Maven/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
-    <lastmod>2021-09-26</lastmod>
+    <lastmod>2021-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
