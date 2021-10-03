@@ -16,7 +16,7 @@
 <meta property="og:description" content="這個是reCAPTCHA v3 跟v2的做法不太一樣，這作法是為了使用者別再點”我不是機器人”的等類似的選項，是對使用者體驗是個好事，不過這分數的機制作法，在某些情況可能會誤判，各家瀏覽器分數不太一樣。(目前僅供demo UI 樣式)">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-10-03T12:20:20.000Z">
-<meta property="article:modified_time" content="2021-10-03T15:38:58.924Z">
+<meta property="article:modified_time" content="2021-10-03T15:42:03.333Z">
 <meta property="article:author" content="MaxHanChen">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -106,7 +106,7 @@
 <li>action: 送驗證時要填的，限填英文、數字、斜線。當作「貼標籤」來用，為這次的驗證貼上一個標籤，在後台的報表中會看到。</li>
 <li>store: 後端向 Google 發 POST 後，response 裡會帶上的值，數值是 0 到 1的範圍。(  0 代表是機器人，1 代表是真人。)</li>
 </ul>
-<p>拿到Token後進行後台驗證(會用到私鑰)，<a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a></p>
+<p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a></p>
 <script src="https://www.google.com/recaptcha/api.js?render=6Lc7RKQcAAAAACuaIO-vd-Gi2mEMU9MdQBTvFg2Z"
     async defer>
 </script>
