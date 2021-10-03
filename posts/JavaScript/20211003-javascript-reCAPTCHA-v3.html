@@ -6,19 +6,19 @@
   
 
   
-  <title>時間同步(網路校時) | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>reCAPTCHA v3(Google) | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CentOS 時間同步">
+  <meta name="description" content="這個是reCAPTCHA v3 跟v2的做法不太一樣，這作法是為了使用者別再點”我不是機器人”的等類似的選項，是對使用者體驗是個好事，不過這分數的機制作法，在某些情況可能會誤判，各家瀏覽器分數不太一樣。(目前僅供demo UI 樣式)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="時間同步(網路校時)">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-sync-time.html">
+<meta property="og:title" content="reCAPTCHA v3(Google)">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/JavaScript/20211003-javascript-reCAPTCHA-v3.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="CentOS 時間同步">
+<meta property="og:description" content="這個是reCAPTCHA v3 跟v2的做法不太一樣，這作法是為了使用者別再點”我不是機器人”的等類似的選項，是對使用者體驗是個好事，不過這分數的機制作法，在某些情況可能會誤判，各家瀏覽器分數不太一樣。(目前僅供demo UI 樣式)">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-01-27T08:30:33.000Z">
-<meta property="article:modified_time" content="2021-01-27T11:57:42.283Z">
+<meta property="article:published_time" content="2021-10-03T12:20:20.000Z">
+<meta property="article:modified_time" content="2021-10-03T15:38:58.924Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -72,14 +72,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Linux/時間同步" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JavaScript/reCAPTCHA_V3(Google)" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/posts/Linux/20210127-Linux-shell-sync-time.html" class="article-date">
-  <time datetime="2021-01-27T08:30:33.000Z" itemprop="datePublished">2021-01-27 16:30:33</time>
+    <a href="/Blog/posts/JavaScript/20211003-javascript-reCAPTCHA-v3.html" class="article-date">
+  <time datetime="2021-10-03T12:20:20.000Z" itemprop="datePublished">2021-10-03 20:20:20</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/Blog/categories/JavaScript/">JavaScript</a>
   </div>
 
   </div>
@@ -90,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      時間同步(網路校時)
+      reCAPTCHA v3(Google)
     </h1>
   
 
@@ -98,59 +98,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>CentOS 時間同步</p>
+        <p>這個是reCAPTCHA v3 跟v2的做法不太一樣，這作法是為了使用者別再點”我不是機器人”的等類似的選項，是對使用者體驗是個好事，<br>不過這分數的機制作法，在某些情況可能會誤判，各家瀏覽器分數不太一樣。(目前僅供demo UI 樣式)</p>
 <a id="more"></a>
 
-<h2 id="CentOS-6"><a href="#CentOS-6" class="headerlink" title="CentOS 6"></a>CentOS 6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate pool.ntp.org # ntpdate [ip]</span><br></pre></td></tr></table></figure>
-
-<h2 id="CentOS-8-7開始提供使用Chrony"><a href="#CentOS-8-7開始提供使用Chrony" class="headerlink" title="CentOS 8 (7開始提供使用Chrony)"></a>CentOS 8 (7開始提供使用Chrony)</h2><ul>
-<li>使用Chrony</li>
-</ul>
-<p>安裝</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install chrony</span><br></pre></td></tr></table></figure>
-
-<p>啟動</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start chronyd.service 或  systemctl start chronyd</span><br></pre></td></tr></table></figure>
-
-<p>設置開機後就自動執行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable chronyd.service 或  systemctl enable chronyd</span><br></pre></td></tr></table></figure>
-
-<p>設定檔位於路徑 </p>
+<p>reCAPTCHA v3多了特有的 2 個值：action、score，其中這個分數越高代表非機器人。</p>
 <ul>
-<li>/etc/chrony.conf</li>
+<li>action: 送驗證時要填的，限填英文、數字、斜線。當作「貼標籤」來用，為這次的驗證貼上一個標籤，在後台的報表中會看到。</li>
+<li>store: 後端向 Google 發 POST 後，response 裡會帶上的值，數值是 0 到 1的範圍。(  0 代表是機器人，1 代表是真人。)</li>
 </ul>
-<p>預設值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server 0.centos.pool.ntp.org iburst</span><br><span class="line">server 1.centos.pool.ntp.org iburst</span><br><span class="line">server 2.centos.pool.ntp.org iburst</span><br><span class="line">server 3.centos.pool.ntp.org iburst</span><br></pre></td></tr></table></figure>
+<p>拿到Token後進行後台驗證(會用到私鑰)，<a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a></p>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lc7RKQcAAAAACuaIO-vd-Gi2mEMU9MdQBTvFg2Z"
+    async defer>
+</script>
 
-<p>想改用台灣本地的時間主機，如下台灣本地的時間主機</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server tock.stdtime.gov.tw prefer</span><br><span class="line">server tick.stdtime.gov.tw</span><br><span class="line">server time.stdtime.gov.tw</span><br></pre></td></tr></table></figure>
-
-<p>查看 chronyd運行狀態</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status chronyd.service</span><br></pre></td></tr></table></figure>
-
-<p>查看 chronyc 校時來源server</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure>
-
-<p>查看 chronyc 校時來源server狀態</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sourcestats</span><br></pre></td></tr></table></figure>
-
-<p>查看最後一次取得的校時資料</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc tracking</span><br></pre></td></tr></table></figure>
-
-<p>如果系統時間與網路時間差異較大，不想等chrony慢慢校時，手動執行強制校時指令 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc -a makestep</span><br></pre></td></tr></table></figure>
-
-<p>More info:<a href="http://linux.vbird.org/linux_server/0440ntp/0440ntp-centos5.php#ntpdate" target="_blank" rel="noopener">ntpdate from 鳥哥</a><br>More info: <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-differences_between_ntpd_and_chronyd" target="_blank" rel="noopener">RedHat chrony vs ntpdate 差異</a><br>More info:<a href="https://kknews.cc/zh-tw/code/8ga39xl.html" target="_blank" rel="noopener">RHEL8或CentOS8上配置NTP伺服器和客戶端</a><br>More info:<a href="https://blog.gtwang.org/linux/linux-ntp-installation-and-configuration-tutorial/" target="_blank" rel="noopener">Linux 設定 NTP 同步系統時間，自動網路校時教學</a></p>
+<p>HTML code :</p>
+<script>
+   function onSubmit(token) {
+     alert("送去後端驗證用的token: " + token);
+   }
+</script>
+<p><button class="g-recaptcha" 
+        data-sitekey="6Lc7RKQcAAAAACuaIO-vd-Gi2mEMU9MdQBTvFg2Z" 
+        data-callback='onSubmit' 
+        data-action='submit'>提交</button></p>
+<p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a><br>參考: <a href="https://recaptcha-demo.appspot.com/" target="_blank" rel="noopener">recaptcha-demo.appspot.com</a><br>參考: <a href="https://letswritetw.github.io/letswrite-recaptcha-v3/gas.html" target="_blank" rel="noopener">reCAPTCHA v3 使用範例</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-sync-time.html" data-id="cktu4m298003jv0w17tnxht1k" class="article-share-link">Share</a>
+      <a data-url="https://hand79.github.io/Blog/posts/JavaScript/20211003-javascript-reCAPTCHA-v3.html" data-id="ckubb0pi900013ow1argzdtue" class="article-share-link">Share</a>
       
-        <a href="https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-sync-time.html#disqus_thread" class="article-comment-link">留言</a>
+        <a href="https://hand79.github.io/Blog/posts/JavaScript/20211003-javascript-reCAPTCHA-v3.html#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Linux/" rel="tag">Linux</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
 
     </footer>
   </div>
@@ -158,19 +139,10 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/posts/Development/20210127-java-web-tool.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Web開發常用工具
-        
-      </div>
-    </a>
   
-  
-    <a href="/Blog/posts/Linux/20210127-Linux-shell-runlevel.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/posts/JavaScript/20211002-javascript-reCAPTCHA-v2.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">運行級別 CentOS(6, 7)修改</div>
+      <div class="article-nav-title">reCAPTCHA v2(Google)</div>
     </a>
   
 </nav>
@@ -283,7 +255,7 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/Linux/20210127-Linux-shell-sync-time.html';
+  var disqus_url = 'https://hand79.github.io/Blog/posts/JavaScript/20211003-javascript-reCAPTCHA-v3.html';
   
   (function(){
     var dsq = document.createElement('script');
