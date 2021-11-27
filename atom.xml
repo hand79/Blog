@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-10-03T15:43:19.726Z</updated>
+  <updated>2021-11-27T15:40:50.147Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>連線DB2有時會遇上java.io.CharConversionException</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20211127-DB2-CharConversionException.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20211127-DB2-CharConversionException.html</id>
+    <published>2021-11-27T12:47:30.000Z</published>
+    <updated>2021-11-27T15:40:50.147Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前做的案子遇啟動時或連接時，有時候會遇上的問題，與資料編碼轉相關，留個解法。</p><a id="more"></a><p>問題:<br>db2.jcc.charsetDecoderEncoder=3 so that instead of throwing an exception the JCC driver returns the Unicode REPLACEMENT CHARACTER (U+FFFD) in place of a sequence of bytes that is not a valid UTF-8 string</p><p>解法:<br>在java_opts後面加上參數(-Ddb2.jcc.charsetDecoderEncoder=3)<br>註: 在tomcat或JBoss啟動放上參數即可</p><h3 id="參考"><a href="#參考" class="headerlink" title="參考:"></a>參考:</h3><p>more info:<a href="https://stackoverflow.com/questions/42685541/sqoop-error-for-java-io-charconversionexception-which-is-non-utf-8-charactor" target="_blank" rel="noopener">Sqoop error for java.io.charconversionException which is non UTF-8 charactor</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;之前做的案子遇啟動時或連接時，有時候會遇上的問題，與資料編碼轉相關，留個解法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
   
   <entry>
     <title>reCAPTCHA v3(Google)</title>
@@ -259,8 +280,8 @@
   
   <entry>
     <title>SOA架構 與 Microservice</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html</id>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html</id>
     <published>2021-02-04T15:07:30.000Z</published>
     <updated>2021-02-04T15:09:56.475Z</updated>
     
@@ -424,27 +445,6 @@
     
     
     <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Callback hell 處理(jQuery,Promise, async/await)</title>
-    <link href="https://hand79.github.io/Blog/posts/JavaScript/20210128-java-callback-hell.html"/>
-    <id>https://hand79.github.io/Blog/posts/JavaScript/20210128-java-callback-hell.html</id>
-    <published>2021-01-28T09:30:33.000Z</published>
-    <updated>2021-01-28T09:43:17.287Z</updated>
-    
-    <content type="html"><![CDATA[<p>在某家壽險業解過這類似的鬼東西，整理一下解釋。</p><a id="more"></a><p>如圖:<br>** 示意圖 **<br><img src="https://d1dwq032kyr03c.cloudfront.net/upload/images/20181014/201103713ObcIuaSP4.jpg" alt="Callback hell"></p><p>-必須兼容IE處理方式:</p><ul><li>jQuery 的方式處理</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;參數&#125;)</span><br><span class="line">.then(callback_A)</span><br><span class="line">.then(callback_B)</span><br><span class="line">.then(callback_C)</span><br></pre></td></tr></table></figure><p>適合解法</p><ul><li>Promise (ES6 的語法)<br>![Promise] (<a href="https://cdn.rawgit.com/Vectaio/a76330b025baf9bcdf07cb46e5a9ef9e/raw/26c4213a93dee1c39611dcd0ec12625811b20a26/js-promise.svg" target="_blank" rel="noopener">https://cdn.rawgit.com/Vectaio/a76330b025baf9bcdf07cb46e5a9ef9e/raw/26c4213a93dee1c39611dcd0ec12625811b20a26/js-promise.svg</a>)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const promise1 &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">    resolve(&#39;foo&#39;);</span><br><span class="line">  &#125;, 300);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise1.then((value) &#x3D;&gt; &#123;</span><br><span class="line">  console.log(value);</span><br><span class="line">  &#x2F;&#x2F; expected output: &quot;foo&quot;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(promise1);</span><br><span class="line">&#x2F;&#x2F; expected output: [object Promise]</span><br></pre></td></tr></table></figure><ul><li>async/await (ES7的語法)，可與Promise混合使用</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">async function a()&#123;</span><br><span class="line">  await b();</span><br><span class="line">  .....       &#x2F;&#x2F; 等 b() 完成後才會執行</span><br><span class="line">  await c();</span><br><span class="line">  .....       &#x2F;&#x2F; 等 c() 完成後才會執行</span><br><span class="line">  await new Promise(resolve&#x3D;&gt;&#123;</span><br><span class="line">    .....</span><br><span class="line">  &#125;);</span><br><span class="line">  .....       &#x2F;&#x2F; 上方的 promise 完成後才會執行</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line">a().then(()&#x3D;&gt;&#123;</span><br><span class="line">  .....       &#x2F;&#x2F; 等 a() 完成後接著執行</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>參考: <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">Promise MDN文件</a><br>參考: <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener">async MDN文件</a><br>參考: <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/await" target="_blank" rel="noopener">await MDN文件</a><br>參考: <a href="https://www.oxxostudio.tw/articles/201908/js-async-await.html" target="_blank" rel="noopener">簡單理解 JavaScript Async 和 Await</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;在某家壽險業解過這類似的鬼東西，整理一下解釋。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
     
   </entry>
   
