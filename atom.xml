@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2021-11-27T15:40:50.147Z</updated>
+  <updated>2022-03-06T14:38:28.118Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,71 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring 與 Docker 筆記</title>
+    <link href="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note-spring.html"/>
+    <id>https://hand79.github.io/Blog/posts/Docker/20220306-docker-note-spring.html</id>
+    <published>2022-03-06T12:30:20.000Z</published>
+    <updated>2022-03-06T14:38:28.118Z</updated>
+    
+    <content type="html"><![CDATA[<p>基本操作概念與參考整理。</p><a id="more"></a><h3 id="SpringBoot構建Docker鏡像的-3-種方式"><a href="#SpringBoot構建Docker鏡像的-3-種方式" class="headerlink" title="SpringBoot構建Docker鏡像的 3 種方式"></a>SpringBoot構建Docker鏡像的 3 種方式</h3><ul><li>使用 spring-boot-maven-plugin 內置的 build-image.<ul><li>mvn spring-boot:build-image</li></ul></li><li>使用 Google 的 jib-maven-plugin。<ul><li>mvn compile jib:build (Build your container image) - 會推送</li><li>mvn compile jib:dockerBuild (Build to Docker daemon) - local</li><li>mvn compile jib:buildTar  - local</li></ul></li><li>使用 dockerfle-maven-plugin。</li></ul><h3 id="一般docker打包流程"><a href="#一般docker打包流程" class="headerlink" title="一般docker打包流程"></a>一般docker打包流程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+---------+     +---------+           +-----------------------------------------------+</span><br><span class="line">| Project |----&gt;|   JAR   |-------+   |   Docker Daemon                               |</span><br><span class="line">+---------+     +---------+       |   | +---------------+  build  +-----------------+ |     +------------------+</span><br><span class="line">                                  +----&gt;| Build context |--------&gt;| Container Image |------&gt;| Container Image  |</span><br><span class="line">                +------------+    |   | +---------------+         | (docker cache)  | |     | (registry)       |</span><br><span class="line">                | Dockerfile |----+   |                           +-----------------+ |     +------------------+</span><br><span class="line">                +------------+        +-----------------------------------------------+</span><br></pre></td></tr></table></figure><h3 id="JIB-打包-唯一無須本機須安裝docker環境，就可打包成tarball"><a href="#JIB-打包-唯一無須本機須安裝docker環境，就可打包成tarball" class="headerlink" title="JIB 打包(唯一無須本機須安裝docker環境，就可打包成tarball)"></a>JIB 打包(唯一無須本機須安裝docker環境，就可打包成tarball)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+---------+       Jib      +------------------+</span><br><span class="line">| Project |---------------&gt;| Container Image  |</span><br><span class="line">+---------+                | (registry)       |</span><br><span class="line">                           +------------------+</span><br></pre></td></tr></table></figure><h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">      &lt;groupId&gt;com.google.cloud.tools&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;jib-maven-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;$&#123;jib.version&#125;&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">        &lt;skip&gt;$&#123;jib.skip&#125;&lt;&#x2F;skip&gt;</span><br><span class="line">        &lt;!-- 配置基礎鏡像--&gt;</span><br><span class="line">        &lt;from&gt;</span><br><span class="line">          &lt;image&gt;openjdk:8-jre-alpine&lt;&#x2F;image&gt;</span><br><span class="line">        &lt;&#x2F;from&gt;</span><br><span class="line">        &lt;!-- 配置推送地址，倉庫名，image名稱--&gt;</span><br><span class="line">        &lt;to&gt;</span><br><span class="line">          &lt;image&gt;$&#123;推送地址&#125;&#x2F;$&#123;倉庫名&#125;&#x2F;$&#123;image名稱&#125;&lt;&#x2F;image&gt;</span><br><span class="line">          &lt;tags&gt;</span><br><span class="line">            &lt;!-- &lt;tag&gt;$&#123;jib.repository.name&#125;&lt;&#x2F;tag&gt;--&gt;</span><br><span class="line">            &lt;!-- &lt;tag&gt;$&#123;version&#125;&lt;&#x2F;tag&gt;--&gt;</span><br><span class="line">          &lt;&#x2F;tags&gt;</span><br><span class="line">          &lt;auth&gt;</span><br><span class="line">            &lt;username&gt;$&#123;帳號&#125;&lt;&#x2F;username&gt;</span><br><span class="line">            &lt;password&gt;$&#123;密碼&#125;&lt;&#x2F;password&gt;</span><br><span class="line">          &lt;&#x2F;auth&gt;</span><br><span class="line">        &lt;&#x2F;to&gt;</span><br><span class="line">        &lt;!-- jib默認不推送到非https的私服--&gt;</span><br><span class="line">        &lt;!--          &lt;allowInsecureRegistries&gt;true&lt;&#x2F;allowInsecureRegistries&gt;--&gt;</span><br><span class="line">        &lt;container&gt;</span><br><span class="line">          &lt;mainClass&gt;$&#123;jib.main.class&#125;&lt;&#x2F;mainClass&gt;</span><br><span class="line">          &lt;labels&gt;</span><br><span class="line">            &lt;name&gt;$&#123;artifactId&#125;&lt;&#x2F;name&gt;</span><br><span class="line">          &lt;&#x2F;labels&gt;</span><br><span class="line">  &lt;ports&gt;</span><br><span class="line">&lt;port&gt;8080&lt;&#x2F;port&gt;</span><br><span class="line">&lt;port&gt;8081&lt;&#x2F;port&gt;</span><br><span class="line">  &lt;&#x2F;ports&gt;</span><br><span class="line">        &lt;&#x2F;container&gt;</span><br><span class="line">      &lt;&#x2F;configuration&gt;</span><br><span class="line">      &lt;!--綁定到maven lifecicle--&gt;</span><br><span class="line">      &lt;!--        &lt;executions&gt;--&gt;</span><br><span class="line">      &lt;!--          &lt;execution&gt;--&gt;</span><br><span class="line">      &lt;!--            &lt;phase&gt;package&lt;&#x2F;phase&gt;--&gt;</span><br><span class="line">      &lt;!--            &lt;goals&gt;--&gt;</span><br><span class="line">      &lt;!--              &lt;goal&gt;build&lt;&#x2F;goal&gt;--&gt;</span><br><span class="line">      &lt;!--            &lt;&#x2F;goals&gt;--&gt;</span><br><span class="line">      &lt;!--          &lt;&#x2F;execution&gt;--&gt;</span><br><span class="line">      &lt;!--        &lt;&#x2F;executions&gt;--&gt;</span><br><span class="line">    &lt;&#x2F;plugin&gt;</span><br><span class="line">  &lt;&#x2F;plugins&gt;</span><br></pre></td></tr></table></figure><h3 id="Maven-plugin-比較"><a href="#Maven-plugin-比較" class="headerlink" title="Maven plugin 比較"></a>Maven plugin 比較</h3><p><img src="https://pic1.xuehuaimg.com/proxy/csdn/https://imgconvert.csdnimg.cn/aHR0cDovL3AxLnBzdGF0cC5jb20vbGFyZ2UvcGdjLWltYWdlL2MwMDAxZTY5MmUxNTQ5NGFhOGQ2MmFmOWE2NmVlMDli?x-oss-process=image/format,png" alt="Maven plugin 比較"></p><p>註:</p><ul><li>SpringBoot 原生的方式，什麼都不需要自己做，直接就能用。</li><li>最有特點的是 Jib，不需要你本地安裝 Docker，可以直接推送到指定的倉庫。 </li><li>前2個與比較吃網路環境狀態</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;基本操作概念與參考整理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Docker" scheme="https://hand79.github.io/Blog/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://hand79.github.io/Blog/tags/Docker/"/>
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker 筆記</title>
+    <link href="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note.html"/>
+    <id>https://hand79.github.io/Blog/posts/Docker/20220306-docker-note.html</id>
+    <published>2022-03-06T11:30:20.000Z</published>
+    <updated>2022-03-06T13:41:11.832Z</updated>
+    
+    <content type="html"><![CDATA[<p>基本操作概念與指令整理。</p><a id="more"></a><h3 id="Docker-安裝方式-在Windows-下"><a href="#Docker-安裝方式-在Windows-下" class="headerlink" title="Docker 安裝方式(在Windows 下)"></a>Docker 安裝方式(在Windows 下)</h3><ul><li>Docker Toolbox (這個目前用下來最靈活，但目前官方已不再著手開發)</li><li>Docker Desktop (需要Hyper-V，Windows 10專業版以上才有的Hyper-V虛擬技術可用)</li></ul><p>WSL 2 backend(Windows 需要裝 Linux kernel，可從微軟商店下載):</p><ul><li>Windows 11 64-bit: Home or Pro version 21H2 or higher, or Enterprise or Education version 21H2 or higher.</li><li>Windows 10 64-bit: Home or Pro 2004 (build 19041) or higher, or Enterprise or Education 1909 (build 18363) or higher.</li></ul><p>Hyper-V: </p><ul><li>Windows 11 64-bit: Pro version 21H2 or higher, or Enterprise or Education version 21H2 or higher.</li><li>Windows 10 64-bit: Pro 2004 (build 19041) or higher, or Enterprise or Education 1909 (build 18363) or higher.</li></ul><p>註:<br>目前VMware 、  Virtualbox 、BlueStack是可以在Hyper-V啟動，但啟動的速度有待改善，若有需要同時使用這些軟體的建議用Toolbox的安裝方式。</p><p><a href="https://docs.docker.com/desktop/windows/install/" target="_blank" rel="noopener">Docker Desktop 安裝文件</a><br><a href="https://github.com/docker-archive/toolbox/releases" target="_blank" rel="noopener">Docker Toolbox 安裝壓縮檔</a></p><h3 id="存放Docker映像檔的地方"><a href="#存放Docker映像檔的地方" class="headerlink" title="存放Docker映像檔的地方"></a>存放Docker映像檔的地方</h3><ul><li>官方的Docker Hub: 預設的下載來源</li><li>非官方的公開Docker Registry：如果你要從這些地方下載，就必須在下載時指定完整的位址名稱，也可能需要該網站的認證金鑰，或是在Docker執行的設定檔中先設定好</li><li>私有的Docker Registry：公司內部可以建立私有的Registry以保證不會用到來源不明的映像檔 </li></ul><h3 id="Docker-Hub的個人映像檔名稱"><a href="#Docker-Hub的個人映像檔名稱" class="headerlink" title="Docker Hub的個人映像檔名稱"></a>Docker Hub的個人映像檔名稱</h3><ul><li>標準的Docker Hub的個人映像檔名稱格式: <user name>/<repo name>:<tag name><ul><li>user name：使用者名稱。在Docker Hub上每個使用者都有一個獨立的名稱</li><li>repo name：倉庫名稱。在Docker Hub上的每一個使用者，都可以建立自己的倉庫，倉庫中可以放多個映像檔。</li><li>tag name：要分辨同一個倉庫中的不同映像檔，就要用tag name來區分。</li></ul><ul><li>如果該倉庫中只有一個映像檔，則tag name可以省略。</li><li>如果該倉庫中有多個映像檔，在沒有指定tag name時，以最新的一個為主。</li><li>同一個映像檔可以有多個tag name，從相同的映像檔ID看，可看做是別名，也可利用做版控。</li></ul></tag></repo></user></li></ul><h3 id="Docker-操作指令"><a href="#Docker-操作指令" class="headerlink" title="Docker 操作指令"></a>Docker 操作指令</h3><ul><li><p>docker info : 列出和系統相關的資訊，如image數、Container數、檔案系統目錄、Linux核心版本，使用Linux版本、CPU及記憶體等。</p></li><li><p>docker version : 列出目前Docker的版本</p></li><li><p>docker images: 列出本機image</p><ul><li>-a：列出完整的image層次資訊。每個映像檔是由不同層次組成的，我們會在稍後說明。</li><li>-q：只列出image id。這在做映像檔批次處理時很方便。</li></ul></li><li><p>docker pull :  就預設從官方的Registry下載(registry.hub.docker.com)(eg. docker pull ubuntu:latest)</p><ul><li>-a: 將某一個倉庫的所有image都下載</li></ul></li><li><p>docker save : 打成tarball(eg. docker save -o demo.tar user/demo)</p><ul><li>-o Write to a file, instead of STDOUT</li></ul></li><li><p>docker load : 載入tarball還原回image(eg. docker load –input demo.tar)</p><ul><li>-i Read from tar archive file, instead of STDIN</li></ul></li><li><p>docker rmi : 刪除映像檔</p><ul><li>-f 強迫刪除</li><li>-no-prune=true這個參數，只殺掉有tag name的image。</li></ul></li><li><p>docker rmi -f $(docker images -aq) : 一次刪掉所有image (Linux的批次指令) </p></li><li><p>docker tag : 給予image 一個tag名稱</p></li><li><p>docker build : 使用 Dockerfile create image </p><ul><li><a href="https://docs.docker.com/engine/reference/commandline/build/" target="_blank" rel="noopener">Docker build Options</a></li></ul></li><li><p>docker history : 查看image歷史紀錄</p></li><li><p>docker push: 上傳image (若沒有登入會提示你輸入帳號、密碼及電子郵件，可以先使用docker login 處理) </p></li></ul><h3 id="Docker有關Container的指令"><a href="#Docker有關Container的指令" class="headerlink" title="Docker有關Container的指令"></a>Docker有關Container的指令</h3><p>Container和image之間的操作:</p><ul><li>commit：將Container的改變存入image</li><li>export：將Container存成快照</li><li>import：從Container快照恢復成image   </li></ul><p>Container執行操作:</p><ul><li>create：建立Container並執行指令</li><li>run：同create<ul><li>-d 背景執行</li><li>-p 對外port號(eg. docker run -p 8080:8080 -p 8081:8081 demo)</li><li>–name Container名稱</li><li>-t：attach時Container的螢幕會接到原來的螢幕上。</li><li>-i：attach時鍵盤輸入會被Container接手<br>註: docker run -it 會切入到要執行 Container內部終端操作介面</li></ul></li><li>kill：刪除執行中的Container，但Container還是存在，只是沒啟動。</li><li>rm：刪除Container(停止或運行中都行)，Container完整移除</li><li>pause：暫停執行中的Container，仍暫有記憶體停，服務不中斷</li><li>unpause：恢復暫停中的Container</li><li>stop：停止執行中的Container，但不暫有記憶體，服務中斷</li><li>start：啟動停止中的Container</li><li>restart：重新啟動Container</li><li>wait：讓Container暫停直到Container停止為止</li><li>rename： 更名Container</li></ul><p>查詢Container的狀態:  </p><ul><li>inspect：檢查Container的狀態</li><li>stats：查看Container的CPU、記憶體及網路使用</li><li>port：查看Container的通訊埠使用</li><li>ps：查看Container使用狀態</li><li>top：查看Container在主系統中的記憶體使用</li><li>dip：查看Container的IP</li><li>dpid：查看Container的pid</li></ul><p>Container執行時的操作:</p><ul><li>docker attach : 進入執行中Container內部終端  (進入可用exit 離開該Container)<br>註: 不建議用，該指令受限於啟動時的參數影響之後的操作結果。如果知道了entrypoint或者有程式正在執行，通過docker attach進入之後是不能執行操作的，因為退出就會終止Container的運行(–sig-proxy=false 需下這個參數防止)。</li><li>docker exec : 在外部向Container內執行指令。推薦使用該指令代替docker attach做日常維運用途</li><li>docker denter ：進入Container</li><li>docker logs ： 將Container內的輸出顯示</li></ul><p>Container和主系統之間的操作:</p><ul><li>cp：複製Container內的檔案到主系統</li><li>diff：列出兩個Container之間檔案系統差異</li><li>events：列出某個時間點之前或之後的事件</li></ul><p>More info: <a href="https://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="noopener">Docker 命令大全</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;基本操作概念與指令整理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Docker" scheme="https://hand79.github.io/Blog/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://hand79.github.io/Blog/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>reCAPTCHA v2(Google)</title>
+    <link href="https://hand79.github.io/Blog/posts/JavaScript/20220303-javascript-reCAPTCHA-v2.html"/>
+    <id>https://hand79.github.io/Blog/posts/JavaScript/20220303-javascript-reCAPTCHA-v2.html</id>
+    <published>2022-03-03T11:53:39.796Z</published>
+    <updated>2021-10-03T15:43:11.862Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近專案碰到的東西，研究一下該驗證機制的應用。</p><a id="more"></a><p>reCAPTCHA v2 目前普遍網站使用者常看到的模式，以下為google 提供的範例demo執行後的樣子。(目前僅供demo UI 樣式)</p><p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a> 。</p><script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script><script type="text/javascript">var site_key = "6LcGY6QcAAAAAD3IvqNqOPVW_l0U_3IeChVOL6nt";      var verifyCallback = function(response) {        alert(response);      };      var widgetId1;      var widgetId2;      var onloadCallback = function() {        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.        widgetId1 = grecaptcha.render('example1', {          'sitekey' : site_key,          'theme' : 'light'        });        widgetId2 = grecaptcha.render(document.getElementById('example2'), {          'sitekey' : site_key        });        grecaptcha.render('example3', {          'sitekey' : site_key,          'callback' : verifyCallback,          'theme' : 'dark'        });      };</script><!-- The g-recaptcha-response string displays in an alert message upon submit. --><form action="javascript:alert(grecaptcha.getResponse(widgetId1));">   <div id="example1"></div>   <br>     <input type="submit" value="getResponse"></form><br><!-- Resets reCAPTCHA widgetId2 upon submit. --><form action="javascript:grecaptcha.reset(widgetId2);"><div id="example2"></div><br><input type="submit" value="reset"></form><br><!-- POSTs back to the page's URL upon submit with a g-recaptcha-response POST parameter. --><form action="?" method="POST"> <div id="example3"></div>   <br>   <input type="submit" value="Submit"></form><p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近專案碰到的東西，研究一下該驗證機制的應用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>連線DB2有時會遇上java.io.CharConversionException</title>
@@ -44,31 +109,10 @@
     <published>2021-10-03T12:20:20.000Z</published>
     <updated>2021-10-03T15:43:19.726Z</updated>
     
-    <content type="html"><![CDATA[<p>這個是reCAPTCHA v3 跟v2的做法不太一樣，這作法是為了使用者別再點”我不是機器人”的等類似的選項，是對使用者體驗是個好事，<br>不過這分數的機制作法，在某些情況可能會誤判，各家瀏覽器分數不太一樣。(目前僅供demo UI 樣式)</p><a id="more"></a><p>reCAPTCHA v3多了特有的 2 個值：action、score，其中這個分數越高代表非機器人。</p><ul><li>action: 送驗證時要填的，限填英文、數字、斜線。當作「貼標籤」來用，為這次的驗證貼上一個標籤，在後台的報表中會看到。</li><li>store: 後端向 Google 發 POST 後，response 裡會帶上的值，數值是 0 到 1的範圍。(  0 代表是機器人，1 代表是真人。)</li></ul><p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a> 。</p><script src="https://www.google.com/recaptcha/api.js?render=6Lc7RKQcAAAAACuaIO-vd-Gi2mEMU9MdQBTvFg2Z"    async defer></script><p>HTML code :</p><script>   function onSubmit(token) {     alert("送去後端驗證用的token: " + token);   }</script><p><button class="g-recaptcha"         data-sitekey="6Lc7RKQcAAAAACuaIO-vd-Gi2mEMU9MdQBTvFg2Z"         data-callback='onSubmit'         data-action='submit'>提交</button></p><p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a><br>參考: <a href="https://recaptcha-demo.appspot.com/" target="_blank" rel="noopener">recaptcha-demo.appspot.com</a><br>參考: <a href="https://letswritetw.github.io/letswrite-recaptcha-v3/gas.html" target="_blank" rel="noopener">reCAPTCHA v3 使用範例</a></p>]]></content>
+    <content type="html"><![CDATA[<p>這個是reCAPTCHA v3 跟v2的做法不太一樣，這作法是為了使用者別再點”我不是機器人”的等類似的選項，是對使用者體驗是個好事，<br>不過這分數的機制作法，在某些情況可能會誤判，各家瀏覽器分數不太一樣。(目前僅供demo UI 樣式)</p><a id="more"></a><p>reCAPTCHA v3多了特有的 2 個值：action、score，其中這個分數越高代表非機器人。</p><ul><li>action: 送驗證時要填的，限填英文、數字、斜線。當作「貼標籤」來用，為這次的驗證貼上一個標籤，在後台的報表中會看到。</li><li>store: 後端向 Google 發 POST 後，response 裡會帶上的值，數值是 0 到 1的範圍。(  0 代表是機器人，1 代表是真人。)</li></ul><p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a> 。</p><script src="https://www.google.com/recaptcha/api.js?render=6Lc7RKQcAAAAACuaIO-vd-Gi2mEMU9MdQBTvFg2Z" async defer></script><p>HTML code :</p><script>   function onSubmit(token) {     alert("送去後端驗證用的token: " + token);   }</script><p><button class="g-recaptcha" data-sitekey="6Lc7RKQcAAAAACuaIO-vd-Gi2mEMU9MdQBTvFg2Z" data-callback="onSubmit" data-action="submit">提交</button></p><p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a><br>參考: <a href="https://recaptcha-demo.appspot.com/" target="_blank" rel="noopener">recaptcha-demo.appspot.com</a><br>參考: <a href="https://letswritetw.github.io/letswrite-recaptcha-v3/gas.html" target="_blank" rel="noopener">reCAPTCHA v3 使用範例</a></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;這個是reCAPTCHA v3 跟v2的做法不太一樣，這作法是為了使用者別再點”我不是機器人”的等類似的選項，是對使用者體驗是個好事，&lt;br&gt;不過這分數的機制作法，在某些情況可能會誤判，各家瀏覽器分數不太一樣。(目前僅供demo UI 樣式)&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>reCAPTCHA v2(Google)</title>
-    <link href="https://hand79.github.io/Blog/posts/JavaScript/20211002-javascript-reCAPTCHA-v2.html"/>
-    <id>https://hand79.github.io/Blog/posts/JavaScript/20211002-javascript-reCAPTCHA-v2.html</id>
-    <published>2021-10-02T14:55:38.271Z</published>
-    <updated>2021-10-03T15:43:11.862Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近專案碰到的東西，研究一下該驗證機制的應用。</p><a id="more"></a><p>reCAPTCHA v2 目前普遍網站使用者常看到的模式，以下為google 提供的範例demo執行後的樣子。(目前僅供demo UI 樣式)</p><p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a> 。</p><script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"    async defer></script><script type="text/javascript">var site_key = "6LcGY6QcAAAAAD3IvqNqOPVW_l0U_3IeChVOL6nt";      var verifyCallback = function(response) {        alert(response);      };      var widgetId1;      var widgetId2;      var onloadCallback = function() {        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.        widgetId1 = grecaptcha.render('example1', {          'sitekey' : site_key,          'theme' : 'light'        });        widgetId2 = grecaptcha.render(document.getElementById('example2'), {          'sitekey' : site_key        });        grecaptcha.render('example3', {          'sitekey' : site_key,          'callback' : verifyCallback,          'theme' : 'dark'        });      };</script><!-- The g-recaptcha-response string displays in an alert message upon submit. --><form action="javascript:alert(grecaptcha.getResponse(widgetId1));">   <div id="example1"></div>   <br>     <input type="submit" value="getResponse"></form><br><!-- Resets reCAPTCHA widgetId2 upon submit. --><form action="javascript:grecaptcha.reset(widgetId2);"><div id="example2"></div><br><input type="submit" value="reset"></form><br><!-- POSTs back to the page's URL upon submit with a g-recaptcha-response POST parameter. --><form action="?" method="POST"> <div id="example3"></div>   <br>   <input type="submit" value="Submit"></form><p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;最近專案碰到的東西，研究一下該驗證機制的應用。&lt;/p&gt;</summary>
     
     
     
@@ -396,48 +440,6 @@
     
     
     <summary type="html">&lt;p&gt;RESTful API 設計之學習記錄&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>網頁前端設計</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210128-java-frontend-system-design.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210128-java-frontend-system-design.html</id>
-    <published>2021-01-28T11:12:30.000Z</published>
-    <updated>2021-01-28T11:15:03.544Z</updated>
-    
-    <content type="html"><![CDATA[<p>寫個記錄。</p><a id="more"></a><h2 id="Responsive-Web-Design-RWD-，-響應式網頁設計"><a href="#Responsive-Web-Design-RWD-，-響應式網頁設計" class="headerlink" title="Responsive Web Design (RWD)， 響應式網頁設計"></a>Responsive Web Design (RWD)， 響應式網頁設計</h2><ul><li>是一種網頁設計模式，這種設計可使網站在不同的裝置（從桌面電腦顯示器到行動電話或其他行動裝置）上瀏覽時對應不同解析度皆有適合的呈現，減少使用者進行縮放、平移和捲動等操作行為。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Complete.png/190px-Complete.png" alt="RWD示意圖"></li></ul><h2 id="Single-Page-Application-SPA-，單頁式應用"><a href="#Single-Page-Application-SPA-，單頁式應用" class="headerlink" title="Single Page Application (SPA)，單頁式應用"></a>Single Page Application (SPA)，單頁式應用</h2><ul><li>利用 AJAX 非同步的特性跟後端同步資料，將不同的資料動態輸向同一個頁面，達到網頁操作不換頁。</li><li>缺點: 是少了後端的渲染回傳，如果使用者操作太快，前端就不能保證每次都能得到正確的 Server 資料（eg. 點進網頁內容，還沒加載完成就點各種功能）。</li><li>需要解決sync與async各項功能的問題</li><li>典型應用: gmail信箱</li></ul><h2 id="Server-side-render-SSR-，伺服器端渲染"><a href="#Server-side-render-SSR-，伺服器端渲染" class="headerlink" title="Server side render (SSR)，伺服器端渲染"></a>Server side render (SSR)，伺服器端渲染</h2><ul><li>為避免 SPA 讓 SEO 變差，先渲染網頁內容，再將後續操作交給 JavaScript，</li><li>使用者一樣能享受到 SPA 不用換頁的好處，不過首次加載的時間增加了。</li><li>在 SSR 的開發上也要需要會一點後端技術。(JSP、Thymeleaf等)</li></ul><h2 id="Accelerated-Mobile-Pages-AMP"><a href="#Accelerated-Mobile-Pages-AMP" class="headerlink" title="Accelerated Mobile Pages (AMP)"></a>Accelerated Mobile Pages (AMP)</h2><ul><li>Google帶領開發的開源專案</li><li>即為「加速行動網頁」，目的是提升行動裝置對網站的存取速度。</li><li>AMP即是透過「規範HTML框架」、「限制JavaScript」、「Google高速緩存」這三種要素，縮小網頁檔案、縮短傳輸時間、降低頁面載入時間。</li><li>只要透過「行動裝置」搜尋時，發現網址前面顯示一個閃電符號⚡️即屬於AMP網頁，通常優先出現在排序前幾名，甚至讓用戶點擊進去等不到一秒，就能看到網頁內容。不僅提高點擊率，也降低了因網頁載入太久的跳出率。</li></ul><h2 id="Progressive-Web-App-PWA"><a href="#Progressive-Web-App-PWA" class="headerlink" title="Progressive Web App (PWA)"></a>Progressive Web App (PWA)</h2><ul><li>2016年 Google提出的概念，PWA的存在是為結合網站和 App 二者的特性，透過網站呈現如 APP 般的瀏覽優點，提供更好的用戶體驗。</li><li>因為PWA的本質是網站，程式語言就是用Html5、Css3、JS。</li><li>沒有跨平台需要不同程式版本的問題，更新內容也是直接從伺服端更改就可以了。</li><li>可靠：即時載入，就算網路狀況欠佳，甚至沒有網路的情況下還是能夠瀏覽。</li><li>快速：畫面流暢且即時回應，提供最佳瀏覽效果。</li><li>吸引度：使用起來如同App一般，帶來人性化的使用體驗。</li><li>不需要透過Google Play或是App Store下載，而是在你瀏覽該網站時，會跳出詢問視窗，當使用者按下同意後，會直接在裝置桌面新增一個快速連結的圖示</li></ul><p>More info: <a href="https://zh.wikipedia.org/wiki/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1" target="_blank" rel="noopener">RWD wiki</a><br>More info: <a href="https://zh.wikipedia.org/wiki/Accelerated_Mobile_Pages" target="_blank" rel="noopener">AMP wiki</a><br>More info: <a href="https://zh.wikipedia.org/wiki/%E6%B8%90%E8%BF%9B%E5%BC%8F%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">PWA wiki</a><br>More info: <a href="https://blog.sharktech.tw/2018/02/07/google-amp" target="_blank" rel="noopener">google AMP</a><br>More info: <a href="https://web.dev/progressive-web-apps/" target="_blank" rel="noopener">PWA 官網</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;寫個記錄。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>電信業即時計費系統Domain knowledge</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210128-java-telecommunications-system-design.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210128-java-telecommunications-system-design.html</id>
-    <published>2021-01-28T10:30:30.000Z</published>
-    <updated>2021-01-28T10:06:23.463Z</updated>
-    
-    <content type="html"><![CDATA[<p>某電信業即時計費系統簡易系統設計Domain knowledge描述，大概整理下。</p><a id="more"></a><h2 id="門號申裝流程"><a href="#門號申裝流程" class="headerlink" title="門號申裝流程"></a>門號申裝流程</h2><ol><li>電信申租門號(月租型、預付卡)</li><li>選號(手機號碼)</li><li>服務方案、優惠(後頭供裝在特定門號優惠服務)</li><li>門號啟用(使門號生效進行打電話、上網等服務)</li></ol><p>服務內容包括:</p><ul><li>資費設定、變更資費</li><li>用量查詢</li><li>計費周期(BillCycle)，出帳的週期</li><li>加值服務(數據加包價購，預付卡儲值等)</li><li>用量簡訊(到達特定亮時給予提醒)</li><li>到期簡訊(服務到期、數據包到期、預付卡到期等)</li><li>用罄簡訊(eg. 上網數據包用罄發送通知)</li><li>服務群組設定</li><li>優惠內容設定</li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;某電信業即時計費系統簡易系統設計Domain knowledge描述，大概整理下。&lt;/p&gt;</summary>
     
     
     

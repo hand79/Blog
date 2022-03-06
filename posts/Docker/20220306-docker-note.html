@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="mWgoNzG3TVNS-feQ3K-JpdegLev-LdDB23tvHMphDqc" />
+  
+
+  
+  <title>Docker 筆記 | Max&#39;s Blog-程式學習研究記錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基本操作概念與指令整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 筆記">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note.html">
+<meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
+<meta property="og:description" content="基本操作概念與指令整理。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2022-03-06T11:30:20.000Z">
+<meta property="article:modified_time" content="2022-03-06T13:41:11.832Z">
+<meta property="article:author" content="MaxHanChen">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Max&#39;s Blog-程式學習研究記錄</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">求生是激發人的成長與潛能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hand79.github.io/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Development/docker-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/posts/Docker/20220306-docker-note.html" class="article-date">
+  <time datetime="2022-03-06T11:30:20.000Z" itemprop="datePublished">2022-03-06 19:30:20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Docker/">Docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker 筆記
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>基本操作概念與指令整理。</p>
+<a id="more"></a>
+
+<h3 id="Docker-安裝方式-在Windows-下"><a href="#Docker-安裝方式-在Windows-下" class="headerlink" title="Docker 安裝方式(在Windows 下)"></a>Docker 安裝方式(在Windows 下)</h3><ul>
+<li>Docker Toolbox (這個目前用下來最靈活，但目前官方已不再著手開發)</li>
+<li>Docker Desktop (需要Hyper-V，Windows 10專業版以上才有的Hyper-V虛擬技術可用)</li>
+</ul>
+<p>WSL 2 backend(Windows 需要裝 Linux kernel，可從微軟商店下載):</p>
+<ul>
+<li>Windows 11 64-bit: Home or Pro version 21H2 or higher, or Enterprise or Education version 21H2 or higher.</li>
+<li>Windows 10 64-bit: Home or Pro 2004 (build 19041) or higher, or Enterprise or Education 1909 (build 18363) or higher.</li>
+</ul>
+<p>Hyper-V: </p>
+<ul>
+<li>Windows 11 64-bit: Pro version 21H2 or higher, or Enterprise or Education version 21H2 or higher.</li>
+<li>Windows 10 64-bit: Pro 2004 (build 19041) or higher, or Enterprise or Education 1909 (build 18363) or higher.</li>
+</ul>
+<p>註:<br>目前VMware 、  Virtualbox 、BlueStack是可以在Hyper-V啟動，但啟動的速度有待改善，若有需要同時使用這些軟體的建議用Toolbox的安裝方式。</p>
+<p><a href="https://docs.docker.com/desktop/windows/install/" target="_blank" rel="noopener">Docker Desktop 安裝文件</a><br><a href="https://github.com/docker-archive/toolbox/releases" target="_blank" rel="noopener">Docker Toolbox 安裝壓縮檔</a></p>
+<h3 id="存放Docker映像檔的地方"><a href="#存放Docker映像檔的地方" class="headerlink" title="存放Docker映像檔的地方"></a>存放Docker映像檔的地方</h3><ul>
+<li>官方的Docker Hub: 預設的下載來源</li>
+<li>非官方的公開Docker Registry：如果你要從這些地方下載，就必須在下載時指定完整的位址名稱，也可能需要該網站的認證金鑰，或是在Docker執行的設定檔中先設定好</li>
+<li>私有的Docker Registry：公司內部可以建立私有的Registry以保證不會用到來源不明的映像檔 </li>
+</ul>
+<h3 id="Docker-Hub的個人映像檔名稱"><a href="#Docker-Hub的個人映像檔名稱" class="headerlink" title="Docker Hub的個人映像檔名稱"></a>Docker Hub的個人映像檔名稱</h3><ul>
+<li>標準的Docker Hub的個人映像檔名稱格式: <user name>/<repo name>:<tag name><ul>
+<li>user name：使用者名稱。在Docker Hub上每個使用者都有一個獨立的名稱</li>
+<li>repo name：倉庫名稱。在Docker Hub上的每一個使用者，都可以建立自己的倉庫，倉庫中可以放多個映像檔。</li>
+<li>tag name：要分辨同一個倉庫中的不同映像檔，就要用tag name來區分。</li>
+</ul>
+<ul>
+<li>如果該倉庫中只有一個映像檔，則tag name可以省略。</li>
+<li>如果該倉庫中有多個映像檔，在沒有指定tag name時，以最新的一個為主。</li>
+<li>同一個映像檔可以有多個tag name，從相同的映像檔ID看，可看做是別名，也可利用做版控。</li>
+</ul>
+</tag></repo></user></li>
+</ul>
+<h3 id="Docker-操作指令"><a href="#Docker-操作指令" class="headerlink" title="Docker 操作指令"></a>Docker 操作指令</h3><ul>
+<li><p>docker info : 列出和系統相關的資訊，如image數、Container數、檔案系統目錄、Linux核心版本，使用Linux版本、CPU及記憶體等。</p>
+</li>
+<li><p>docker version : 列出目前Docker的版本</p>
+</li>
+<li><p>docker images: 列出本機image</p>
+<ul>
+<li>-a：列出完整的image層次資訊。每個映像檔是由不同層次組成的，我們會在稍後說明。</li>
+<li>-q：只列出image id。這在做映像檔批次處理時很方便。</li>
+</ul>
+</li>
+<li><p>docker pull :  就預設從官方的Registry下載(registry.hub.docker.com)(eg. docker pull ubuntu:latest)</p>
+<ul>
+<li>-a: 將某一個倉庫的所有image都下載</li>
+</ul>
+</li>
+<li><p>docker save : 打成tarball(eg. docker save -o demo.tar user/demo)</p>
+<ul>
+<li>-o Write to a file, instead of STDOUT</li>
+</ul>
+</li>
+<li><p>docker load : 載入tarball還原回image(eg. docker load –input demo.tar)</p>
+<ul>
+<li>-i Read from tar archive file, instead of STDIN</li>
+</ul>
+</li>
+<li><p>docker rmi : 刪除映像檔</p>
+<ul>
+<li>-f 強迫刪除</li>
+<li>-no-prune=true這個參數，只殺掉有tag name的image。</li>
+</ul>
+</li>
+<li><p>docker rmi -f $(docker images -aq) : 一次刪掉所有image (Linux的批次指令) </p>
+</li>
+<li><p>docker tag : 給予image 一個tag名稱</p>
+</li>
+<li><p>docker build : 使用 Dockerfile create image </p>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/commandline/build/" target="_blank" rel="noopener">Docker build Options</a></li>
+</ul>
+</li>
+<li><p>docker history : 查看image歷史紀錄</p>
+</li>
+<li><p>docker push: 上傳image (若沒有登入會提示你輸入帳號、密碼及電子郵件，可以先使用docker login 處理) </p>
+</li>
+</ul>
+<h3 id="Docker有關Container的指令"><a href="#Docker有關Container的指令" class="headerlink" title="Docker有關Container的指令"></a>Docker有關Container的指令</h3><p>Container和image之間的操作:</p>
+<ul>
+<li>commit：將Container的改變存入image</li>
+<li>export：將Container存成快照</li>
+<li>import：從Container快照恢復成image   </li>
+</ul>
+<p>Container執行操作:</p>
+<ul>
+<li>create：建立Container並執行指令</li>
+<li>run：同create<ul>
+<li>-d 背景執行</li>
+<li>-p 對外port號(eg. docker run -p 8080:8080 -p 8081:8081 demo)</li>
+<li>–name Container名稱</li>
+<li>-t：attach時Container的螢幕會接到原來的螢幕上。</li>
+<li>-i：attach時鍵盤輸入會被Container接手<br>註: docker run -it 會切入到要執行 Container內部終端操作介面</li>
+</ul>
+</li>
+<li>kill：刪除執行中的Container，但Container還是存在，只是沒啟動。</li>
+<li>rm：刪除Container(停止或運行中都行)，Container完整移除</li>
+<li>pause：暫停執行中的Container，仍暫有記憶體停，服務不中斷</li>
+<li>unpause：恢復暫停中的Container</li>
+<li>stop：停止執行中的Container，但不暫有記憶體，服務中斷</li>
+<li>start：啟動停止中的Container</li>
+<li>restart：重新啟動Container</li>
+<li>wait：讓Container暫停直到Container停止為止</li>
+<li>rename： 更名Container</li>
+</ul>
+<p>查詢Container的狀態:  </p>
+<ul>
+<li>inspect：檢查Container的狀態</li>
+<li>stats：查看Container的CPU、記憶體及網路使用</li>
+<li>port：查看Container的通訊埠使用</li>
+<li>ps：查看Container使用狀態</li>
+<li>top：查看Container在主系統中的記憶體使用</li>
+<li>dip：查看Container的IP</li>
+<li>dpid：查看Container的pid</li>
+</ul>
+<p>Container執行時的操作:</p>
+<ul>
+<li>docker attach : 進入執行中Container內部終端  (進入可用exit 離開該Container)<br>註: 不建議用，該指令受限於啟動時的參數影響之後的操作結果。如果知道了entrypoint或者有程式正在執行，通過docker attach進入之後是不能執行操作的，因為退出就會終止Container的運行(–sig-proxy=false 需下這個參數防止)。</li>
+<li>docker exec : 在外部向Container內執行指令。推薦使用該指令代替docker attach做日常維運用途</li>
+<li>docker denter ：進入Container</li>
+<li>docker logs ： 將Container內的輸出顯示</li>
+</ul>
+<p>Container和主系統之間的操作:</p>
+<ul>
+<li>cp：複製Container內的檔案到主系統</li>
+<li>diff：列出兩個Container之間檔案系統差異</li>
+<li>events：列出某個時間點之前或之後的事件</li>
+</ul>
+<p>More info: <a href="https://www.runoob.com/docker/docker-command-manual.html" target="_blank" rel="noopener">Docker 命令大全</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note.html" data-id="cl0fdrhf8001if0w14f3v50zw" class="article-share-link">Share</a>
+      
+        <a href="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note.html#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Docker/" rel="tag">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Blog/posts/Docker/20220306-docker-note-spring.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring 與 Docker 筆記
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/posts/JavaScript/20220303-javascript-reCAPTCHA-v2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">reCAPTCHA v2(Google)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Development/">Development</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Web/">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Web/" rel="tag">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Development/" style="font-size: 20px;">Development</a> <a href="/Blog/tags/Docker/" style="font-size: 12px;">Docker</a> <a href="/Blog/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/Blog/tags/Java/" style="font-size: 14px;">Java</a> <a href="/Blog/tags/JavaScript/" style="font-size: 16px;">JavaScript</a> <a href="/Blog/tags/Linux/" style="font-size: 16px;">Linux</a> <a href="/Blog/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/Blog/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/Blog/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/Blog/tags/Web/" style="font-size: 12px;">Web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">時間</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/posts/Docker/20220306-docker-note-spring.html">Spring 與 Docker 筆記</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Docker/20220306-docker-note.html">Docker 筆記</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/JavaScript/20220303-javascript-reCAPTCHA-v2.html">reCAPTCHA v2(Google)</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Development/20211127-DB2-CharConversionException.html">連線DB2有時會遇上java.io.CharConversionException</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/JavaScript/20211003-javascript-reCAPTCHA-v3.html">reCAPTCHA v3(Google)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 MaxHanChen<br/>
+      E-mail: <a href="mailto: maxdjkl@gmail.com"><u>maxdjkl@gmail.com</u></a><br/>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'maxhanchen';
+  
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Docker/20220306-docker-note.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

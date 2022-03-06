@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="mWgoNzG3TVNS-feQ3K-JpdegLev-LdDB23tvHMphDqc" />
+  
+
+  
+  <title>Spring 與 Docker 筆記 | Max&#39;s Blog-程式學習研究記錄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基本操作概念與參考整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 與 Docker 筆記">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note-spring.html">
+<meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
+<meta property="og:description" content="基本操作概念與參考整理。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://pic1.xuehuaimg.com/proxy/csdn/https://imgconvert.csdnimg.cn/aHR0cDovL3AxLnBzdGF0cC5jb20vbGFyZ2UvcGdjLWltYWdlL2MwMDAxZTY5MmUxNTQ5NGFhOGQ2MmFmOWE2NmVlMDli?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2022-03-06T12:30:20.000Z">
+<meta property="article:modified_time" content="2022-03-06T14:38:28.118Z">
+<meta property="article:author" content="MaxHanChen">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.xuehuaimg.com/proxy/csdn/https://imgconvert.csdnimg.cn/aHR0cDovL3AxLnBzdGF0cC5jb20vbGFyZ2UvcGdjLWltYWdlL2MwMDAxZTY5MmUxNTQ5NGFhOGQ2MmFmOWE2NmVlMDli?x-oss-process=image/format,png">
+  
+    <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/Blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/Blog/" id="logo">Max&#39;s Blog-程式學習研究記錄</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/Blog/" id="subtitle">求生是激發人的成長與潛能</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Blog/">Home</a>
+        
+          <a class="main-nav-link" href="/Blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/Blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hand79.github.io/Blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Development/SpringBoot與docker打包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Blog/posts/Docker/20220306-docker-note-spring.html" class="article-date">
+  <time datetime="2022-03-06T12:30:20.000Z" itemprop="datePublished">2022-03-06 20:30:20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/Blog/categories/Docker/">Docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring 與 Docker 筆記
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>基本操作概念與參考整理。</p>
+<a id="more"></a>
+
+<h3 id="SpringBoot構建Docker鏡像的-3-種方式"><a href="#SpringBoot構建Docker鏡像的-3-種方式" class="headerlink" title="SpringBoot構建Docker鏡像的 3 種方式"></a>SpringBoot構建Docker鏡像的 3 種方式</h3><ul>
+<li>使用 spring-boot-maven-plugin 內置的 build-image.<ul>
+<li>mvn spring-boot:build-image</li>
+</ul>
+</li>
+<li>使用 Google 的 jib-maven-plugin。<ul>
+<li>mvn compile jib:build (Build your container image) - 會推送</li>
+<li>mvn compile jib:dockerBuild (Build to Docker daemon) - local</li>
+<li>mvn compile jib:buildTar  - local</li>
+</ul>
+</li>
+<li>使用 dockerfle-maven-plugin。</li>
+</ul>
+<h3 id="一般docker打包流程"><a href="#一般docker打包流程" class="headerlink" title="一般docker打包流程"></a>一般docker打包流程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+---------+     +---------+           +-----------------------------------------------+</span><br><span class="line">| Project |----&gt;|   JAR   |-------+   |   Docker Daemon                               |</span><br><span class="line">+---------+     +---------+       |   | +---------------+  build  +-----------------+ |     +------------------+</span><br><span class="line">                                  +----&gt;| Build context |--------&gt;| Container Image |------&gt;| Container Image  |</span><br><span class="line">                +------------+    |   | +---------------+         | (docker cache)  | |     | (registry)       |</span><br><span class="line">                | Dockerfile |----+   |                           +-----------------+ |     +------------------+</span><br><span class="line">                +------------+        +-----------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="JIB-打包-唯一無須本機須安裝docker環境，就可打包成tarball"><a href="#JIB-打包-唯一無須本機須安裝docker環境，就可打包成tarball" class="headerlink" title="JIB 打包(唯一無須本機須安裝docker環境，就可打包成tarball)"></a>JIB 打包(唯一無須本機須安裝docker環境，就可打包成tarball)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+---------+       Jib      +------------------+</span><br><span class="line">| Project |---------------&gt;| Container Image  |</span><br><span class="line">+---------+                | (registry)       |</span><br><span class="line">                           +------------------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">      &lt;groupId&gt;com.google.cloud.tools&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;jib-maven-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;$&#123;jib.version&#125;&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">        &lt;skip&gt;$&#123;jib.skip&#125;&lt;&#x2F;skip&gt;</span><br><span class="line">        &lt;!-- 配置基礎鏡像--&gt;</span><br><span class="line">        &lt;from&gt;</span><br><span class="line">          &lt;image&gt;openjdk:8-jre-alpine&lt;&#x2F;image&gt;</span><br><span class="line">        &lt;&#x2F;from&gt;</span><br><span class="line">        &lt;!-- 配置推送地址，倉庫名，image名稱--&gt;</span><br><span class="line">        &lt;to&gt;</span><br><span class="line">          &lt;image&gt;$&#123;推送地址&#125;&#x2F;$&#123;倉庫名&#125;&#x2F;$&#123;image名稱&#125;&lt;&#x2F;image&gt;</span><br><span class="line">          &lt;tags&gt;</span><br><span class="line">            &lt;!-- &lt;tag&gt;$&#123;jib.repository.name&#125;&lt;&#x2F;tag&gt;--&gt;</span><br><span class="line">            &lt;!-- &lt;tag&gt;$&#123;version&#125;&lt;&#x2F;tag&gt;--&gt;</span><br><span class="line">          &lt;&#x2F;tags&gt;</span><br><span class="line">          &lt;auth&gt;</span><br><span class="line">            &lt;username&gt;$&#123;帳號&#125;&lt;&#x2F;username&gt;</span><br><span class="line">            &lt;password&gt;$&#123;密碼&#125;&lt;&#x2F;password&gt;</span><br><span class="line">          &lt;&#x2F;auth&gt;</span><br><span class="line">        &lt;&#x2F;to&gt;</span><br><span class="line">        &lt;!-- jib默認不推送到非https的私服--&gt;</span><br><span class="line">        &lt;!--          &lt;allowInsecureRegistries&gt;true&lt;&#x2F;allowInsecureRegistries&gt;--&gt;</span><br><span class="line">        &lt;container&gt;</span><br><span class="line">          &lt;mainClass&gt;$&#123;jib.main.class&#125;&lt;&#x2F;mainClass&gt;</span><br><span class="line">          &lt;labels&gt;</span><br><span class="line">            &lt;name&gt;$&#123;artifactId&#125;&lt;&#x2F;name&gt;</span><br><span class="line">          &lt;&#x2F;labels&gt;</span><br><span class="line">		  &lt;ports&gt;</span><br><span class="line">			&lt;port&gt;8080&lt;&#x2F;port&gt;</span><br><span class="line">			&lt;port&gt;8081&lt;&#x2F;port&gt;</span><br><span class="line">		  &lt;&#x2F;ports&gt;</span><br><span class="line">        &lt;&#x2F;container&gt;</span><br><span class="line">      &lt;&#x2F;configuration&gt;</span><br><span class="line">      &lt;!--綁定到maven lifecicle--&gt;</span><br><span class="line">      &lt;!--        &lt;executions&gt;--&gt;</span><br><span class="line">      &lt;!--          &lt;execution&gt;--&gt;</span><br><span class="line">      &lt;!--            &lt;phase&gt;package&lt;&#x2F;phase&gt;--&gt;</span><br><span class="line">      &lt;!--            &lt;goals&gt;--&gt;</span><br><span class="line">      &lt;!--              &lt;goal&gt;build&lt;&#x2F;goal&gt;--&gt;</span><br><span class="line">      &lt;!--            &lt;&#x2F;goals&gt;--&gt;</span><br><span class="line">      &lt;!--          &lt;&#x2F;execution&gt;--&gt;</span><br><span class="line">      &lt;!--        &lt;&#x2F;executions&gt;--&gt;</span><br><span class="line">    &lt;&#x2F;plugin&gt;</span><br><span class="line">  &lt;&#x2F;plugins&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Maven-plugin-比較"><a href="#Maven-plugin-比較" class="headerlink" title="Maven plugin 比較"></a>Maven plugin 比較</h3><p><img src="https://pic1.xuehuaimg.com/proxy/csdn/https://imgconvert.csdnimg.cn/aHR0cDovL3AxLnBzdGF0cC5jb20vbGFyZ2UvcGdjLWltYWdlL2MwMDAxZTY5MmUxNTQ5NGFhOGQ2MmFmOWE2NmVlMDli?x-oss-process=image/format,png" alt="Maven plugin 比較"></p>
+<p>註:</p>
+<ul>
+<li>SpringBoot 原生的方式，什麼都不需要自己做，直接就能用。</li>
+<li>最有特點的是 Jib，不需要你本地安裝 Docker，可以直接推送到指定的倉庫。 </li>
+<li>前2個與比較吃網路環境狀態</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note-spring.html" data-id="cl0fdrhf30014f0w11v579xfc" class="article-share-link">Share</a>
+      
+        <a href="https://hand79.github.io/Blog/posts/Docker/20220306-docker-note-spring.html#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/Blog/posts/Docker/20220306-docker-note.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker 筆記</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分類</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Development/">Development</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Maven/">Maven</a></li><li class="category-list-item"><a class="category-list-link" href="/Blog/categories/Web/">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Maven/" rel="tag">Maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Spring/" rel="tag">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/Blog/tags/Web/" rel="tag">Web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Blog/tags/Development/" style="font-size: 20px;">Development</a> <a href="/Blog/tags/Docker/" style="font-size: 12px;">Docker</a> <a href="/Blog/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/Blog/tags/Java/" style="font-size: 14px;">Java</a> <a href="/Blog/tags/JavaScript/" style="font-size: 16px;">JavaScript</a> <a href="/Blog/tags/Linux/" style="font-size: 16px;">Linux</a> <a href="/Blog/tags/Maven/" style="font-size: 10px;">Maven</a> <a href="/Blog/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/Blog/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/Blog/tags/Web/" style="font-size: 12px;">Web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">時間</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/10/">十月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/09/">九月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/08/">八月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/02/">二月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/12/">十二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/Blog/archives/2020/02/">二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Blog/posts/Docker/20220306-docker-note-spring.html">Spring 與 Docker 筆記</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Docker/20220306-docker-note.html">Docker 筆記</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/JavaScript/20220303-javascript-reCAPTCHA-v2.html">reCAPTCHA v2(Google)</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/Development/20211127-DB2-CharConversionException.html">連線DB2有時會遇上java.io.CharConversionException</a>
+          </li>
+        
+          <li>
+            <a href="/Blog/posts/JavaScript/20211003-javascript-reCAPTCHA-v3.html">reCAPTCHA v3(Google)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 MaxHanChen<br/>
+      E-mail: <a href="mailto: maxdjkl@gmail.com"><u>maxdjkl@gmail.com</u></a><br/>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/Blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/Blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'maxhanchen';
+  
+  var disqus_url = 'https://hand79.github.io/Blog/posts/Docker/20220306-docker-note-spring.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/Blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/Blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/Blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
