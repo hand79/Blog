@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hand79.github.io/Blog/posts/Development/20210507-openshift.html</loc>
+    <loc>https://hand79.github.io/Blog/posts/Development/20220507-openshift.html</loc>
     
     <lastmod>2022-05-07</lastmod>
     
@@ -333,14 +333,14 @@
 
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Web/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Development/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Development/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Web/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -361,13 +361,6 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Spring/</loc>
-    <lastmod>2022-05-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hand79.github.io/Blog/tags/Hexo/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
@@ -375,14 +368,14 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/JavaScript/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Spring/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
+    <loc>https://hand79.github.io/Blog/tags/JavaScript/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -402,17 +395,24 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
+    <lastmod>2022-05-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Web/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Development/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Development/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Web/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -426,14 +426,14 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Java/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Java/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Maven/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Maven/</loc>
     <lastmod>2022-05-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
