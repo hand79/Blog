@@ -368,13 +368,6 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Spring/</loc>
-    <lastmod>2022-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hand79.github.io/Blog/tags/Hexo/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>daily</changefreq>
@@ -382,14 +375,7 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
-    <lastmod>2022-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hand79.github.io/Blog/tags/Linux/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Spring/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -404,6 +390,20 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/JavaScript/</loc>
+    <lastmod>2022-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
+    <lastmod>2022-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/tags/Linux/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -433,13 +433,6 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Java/</loc>
-    <lastmod>2022-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>daily</changefreq>
@@ -447,7 +440,7 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Java/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -462,6 +455,13 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/JavaScript/</loc>
+    <lastmod>2022-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
