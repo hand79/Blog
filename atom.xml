@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2022-09-29T12:05:31.383Z</updated>
+  <updated>2022-09-29T12:22:36.253Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://hand79.github.io/Blog/posts/Development/20220903-uml-tool.html"/>
     <id>https://hand79.github.io/Blog/posts/Development/20220903-uml-tool.html</id>
     <published>2022-09-03T06:30:30.000Z</published>
-    <updated>2022-09-29T12:05:31.383Z</updated>
+    <updated>2022-09-29T12:22:36.253Z</updated>
     
-    <content type="html"><![CDATA[<p>實務上覺得實用的工具</p><a id="more"></a><h3 id="PlantUml-推薦PG從這開始嘗試使用，跟寫code一樣方便"><a href="#PlantUml-推薦PG從這開始嘗試使用，跟寫code一樣方便" class="headerlink" title="PlantUml (推薦PG從這開始嘗試使用，跟寫code一樣方便)"></a>PlantUml (推薦PG從這開始嘗試使用，跟寫code一樣方便)</h3><ul><li>提供 Online Server 撰寫</li><li><a href="https://plantuml.com/zh/" target="_blank" rel="noopener">PlantUML</a></li></ul><h3 id="StarUML"><a href="#StarUML" class="headerlink" title="StarUML"></a>StarUML</h3><ul><li><a href="https://staruml.io/download" target="_blank" rel="noopener">StarUML</a></li></ul><h3 id="Draw-io"><a href="#Draw-io" class="headerlink" title="Draw.io"></a>Draw.io</h3><ul><li>提供 Online Server 撰寫</li><li><a href="https://app.diagrams.net/" target="_blank" rel="noopener">Draw.io</a></li><li>可存成可編輯的PNG</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>實務上覺得實用的工具</p><a id="more"></a><h3 id="PlantUML-推薦PG從這開始嘗試使用，跟寫code一樣方便"><a href="#PlantUML-推薦PG從這開始嘗試使用，跟寫code一樣方便" class="headerlink" title="PlantUML (推薦PG從這開始嘗試使用，跟寫code一樣方便)"></a>PlantUML (推薦PG從這開始嘗試使用，跟寫code一樣方便)</h3><ul><li>提供 Online Server 撰寫</li><li><a href="https://plantuml.com/zh/" target="_blank" rel="noopener">PlantUML</a></li></ul><h3 id="StarUML"><a href="#StarUML" class="headerlink" title="StarUML"></a>StarUML</h3><ul><li><a href="https://staruml.io/download" target="_blank" rel="noopener">StarUML</a></li></ul><h3 id="Draw-io"><a href="#Draw-io" class="headerlink" title="Draw.io"></a>Draw.io</h3><ul><li>提供 Online Server 撰寫</li><li>可存成可編輯的PNG</li><li><a href="https://app.diagrams.net/" target="_blank" rel="noopener">Draw.io</a></li></ul>]]></content>
     
     
     <summary type="html">&lt;p&gt;實務上覺得實用的工具&lt;/p&gt;</summary>
