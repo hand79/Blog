@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2022-05-07T10:09:39.095Z</updated>
+  <updated>2022-09-29T12:05:31.383Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UML工具推薦</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20220903-uml-tool.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20220903-uml-tool.html</id>
+    <published>2022-09-03T06:30:30.000Z</published>
+    <updated>2022-09-29T12:05:31.383Z</updated>
+    
+    <content type="html"><![CDATA[<p>實務上覺得實用的工具</p><a id="more"></a><h3 id="PlantUml-推薦PG從這開始嘗試使用，跟寫code一樣方便"><a href="#PlantUml-推薦PG從這開始嘗試使用，跟寫code一樣方便" class="headerlink" title="PlantUml (推薦PG從這開始嘗試使用，跟寫code一樣方便)"></a>PlantUml (推薦PG從這開始嘗試使用，跟寫code一樣方便)</h3><ul><li>提供 Online Server 撰寫</li><li><a href="https://plantuml.com/zh/" target="_blank" rel="noopener">PlantUML</a></li></ul><h3 id="StarUML"><a href="#StarUML" class="headerlink" title="StarUML"></a>StarUML</h3><ul><li><a href="https://staruml.io/download" target="_blank" rel="noopener">StarUML</a></li></ul><h3 id="Draw-io"><a href="#Draw-io" class="headerlink" title="Draw.io"></a>Draw.io</h3><ul><li>提供 Online Server 撰寫</li><li><a href="https://app.diagrams.net/" target="_blank" rel="noopener">Draw.io</a></li><li>可存成可編輯的PNG</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;實務上覺得實用的工具&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
   
   <entry>
     <title>OpenShift基本使用觀念</title>
@@ -419,27 +440,6 @@
     
     
     <summary type="html">&lt;p&gt;之前遇上的問題，劃個重點留個整理記錄。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kubernetes 故障排除流程圖</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210131-kubernetes.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210131-kubernetes.html</id>
-    <published>2021-01-31T13:47:30.000Z</published>
-    <updated>2021-01-31T14:07:06.524Z</updated>
-    
-    <content type="html"><![CDATA[<p>討論區看到的，留個記錄，某天遇上了可以參考。</p><a id="more"></a><p>*<em>Kubernetes 故障排除流程圖 參考 *</em><br><img src="https://learnk8s.io/a/7d3cde9ddb57e4246215de4be2f3dd71.png" alt="k8s"></p><p>more info:<a href="https://learnk8s.io/troubleshooting-deployments?fbclid=IwAR1q4Wu7GLSmmPlX7ooMK3W4lccZjwsqkygECROsyyvBe_o6YVv26Lz9PX4" target="_blank" rel="noopener">資料出處</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;討論區看到的，留個記錄，某天遇上了可以參考。&lt;/p&gt;</summary>
     
     
     
