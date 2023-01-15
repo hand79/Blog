@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2022-09-29T12:22:36.253Z</updated>
+  <updated>2023-01-15T12:27:52.897Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AS400程式版控流程規劃</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20230115-as400-version-control-system-design.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20230115-as400-version-control-system-design.html</id>
+    <published>2023-01-15T08:40:30.000Z</published>
+    <updated>2023-01-15T12:27:52.897Z</updated>
+    
+    <content type="html"><![CDATA[<p>最些與AS400程式版控流程規劃的紀錄，但可以針對一些類似的規則使用。<br>針對一些無法在本機上進行編譯、但又需要一些原因(例如:稽核)必須導入版控的流程設計，作為參考。<br><img src="https://drive.google.com/file/d/1-3zER2WIQbKHzOv9Hy1XM2ub6FKr-C6F/view?usp=sharing" alt="初步需求"></p><a id="more"></a><p>後續依需求陸續加入到流程規劃中，例如Jenkins、JIRA等服務。</p><p>參考: <a href="https://www.arcadsoftware.com/products/arcad-for-devops/" target="_blank" rel="noopener">ARCAD for DevOps for IBM i</a><br>參考: <a href="https://qiita.com/tomotagwork/items/0b25bbb9a72e37f4d98c" target="_blank" rel="noopener">Jenkins - z/OS</a><br>參考: <a href="https://www.imagazine.co.jp/ibm-i%E3%81%AE%E5%9F%BA%E5%B9%B9%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E9%96%8B%E7%99%BA%E3%81%AB%E3%82%82%E3%81%93%E3%82%8C%E3%81%8B%E3%82%89%E3%81%AFdevops%E3%82%A2%E3%83%97%E3%83%AD%E3%83%BC%E3%83%81/" target="_blank" rel="noopener">IBM iで利用可能な DevOpsツール</a><br>參考: <a href="https://www.imagazine.co.jp/ibm-i%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E7%AE%A1%E7%90%86%E3%80%80%EF%BD%9Eibm-i%E3%81%A7jenkins%E3%82%92%E4%BD%BF%E3%81%86%E3%80%81%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9/" target="_blank" rel="noopener">IBM iのビルド管理　～IBM iでJenkinsを使う、オープンソースベースの標準的なビルド管理</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最些與AS400程式版控流程規劃的紀錄，但可以針對一些類似的規則使用。&lt;br&gt;針對一些無法在本機上進行編譯、但又需要一些原因(例如:稽核)必須導入版控的流程設計，作為參考。&lt;br&gt;&lt;img src=&quot;https://drive.google.com/file/d/1-3zER2WIQbKHzOv9Hy1XM2ub6FKr-C6F/view?usp=sharing&quot; alt=&quot;初步需求&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
   
   <entry>
     <title>UML工具推薦</title>
@@ -426,27 +447,6 @@
     <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
     
     <category term="Spring" scheme="https://hand79.github.io/Blog/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>悲觀鎖與樂觀鎖(資料庫交易)</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html</id>
-    <published>2021-02-01T11:47:30.000Z</published>
-    <updated>2021-02-04T10:54:54.350Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前遇上的問題，劃個重點留個整理記錄。</p><a id="more"></a><p>資料庫交易特性ACID中的交易隔離(Isolation)通常利用「鎖(locking)」來實現，目的為避免同一筆資料在併行交易(concurrent transaction)中被不同的交易同時修改以確保資料的完整性。<br>交易鎖又分為「悲觀鎖(pessimistic locking)」與「樂觀鎖(optimistic locking)」。</p><p>常用鎖處理的例子: 電商商品庫存、銀行轉帳業務</p><p>##悲觀鎖(Pessimistic Locking)<br>時機: 悲觀並行控制主要用於資料爭用激烈的環境或發生並發衝突時，”使用鎖保護資料的成本”要低於”回復交易的成本”的環境中。</p><ul><li>悲觀並行控制實際上是「先取鎖再訪問」的保守策略，為資料處理的安全提供了保證。</li><li>在效率方面，處理加鎖的機制會讓資料庫產生額外的開銷，還有增加產生”死鎖”的機會</li><li>在只讀型交易處理中由於不會產生衝突，就沒必要使用鎖，這樣做只能增加系統負載，還有會降低了並行性。</li><li>一個交易如果鎖定了某行資料，其他交易就必須等待該交易處理完才可以處理那行資料。(當下資料有對其他執行存取有排他性)<br>典型的使用: synchronized (java)</li></ul><p>##樂觀鎖(Optimistic Locking)<br>時機: 樂觀並行控制多數用於”資料爭用不大”、”衝突較少的環境”中，”偶爾回復交易的成本”會低於”讀取資料時鎖定資料的成本”，因此可以獲得”比其他並行控制方法更高的吞吐量”。</p><ul><li>假設”多使用者並行的交易在處理時不會彼此互相影響”，”各交易能夠在不產生鎖”的情況下”處理各自影響的那部分資料”。在提交資料更新之前，每個交易會”先檢查在該交易讀取資料後，有沒有其他交易又修改了該資料”。如果其他交易有更新的話，正在提交的交易會進行rollback。</li></ul><p>缺點: 樂觀並行控制相信交易之間的資料競爭(data race)的概率是比較小的，因此儘可能直接做下去，直到提交的時候才去鎖定，所以不會產生任何鎖和死結。但如果直接簡單這麽做，還是有可能會遇到不可預期的結果，例如兩個交易都讀取了資料庫的某一行，經過修改以後寫回資料庫，這時就遇到了問題。(ABA问题) </p><ul><li>需要添加重試機制，舉個例子: 資料異動時衝突(JPA中的@version)，重新在執行失敗的動作</li></ul><h4 id="樂觀並行控制的交易包括以下階段："><a href="#樂觀並行控制的交易包括以下階段：" class="headerlink" title="樂觀並行控制的交易包括以下階段："></a>樂觀並行控制的交易包括以下階段：</h4><ul><li>讀取：交易將資料讀入快取，這時系統會給交易分派一個時間戳。</li><li>校驗：交易執行完畢後，進行提交。這時同步校驗所有交易，如果交易所讀取的資料在讀取之後又被其他交易修改，則產生衝突，交易被中斷回復。</li><li>寫入：通過校驗階段後，將更新的資料寫入資料庫。<br>典型的使用: Compare and Swap (CAS)、 AtomicReference class、 @Version(Java JPA中的@version 版本控制處理方式)</li></ul><p>##總結<br>樂觀鎖適用於讀大於寫、衝突少的的場景(省去了鎖的開銷，加大了系統的整個吞吐量。如果經常產生衝突，上層應用會不斷的進行retry可能須考慮是否用悲觀鎖)<br>悲觀鎖寫大於讀、衝突大的的場景(併發量不大且不允許髒讀適合)</p><p>more info:<a href="https://www.cnblogs.com/kismetv/p/10787228.html" target="_blank" rel="noopener">資料參考</a><br>more info:<a href="https://en.wikipedia.org/wiki/Optimistic_concurrency_control" target="_blank" rel="noopener">Optimistic Concurrency wiki</a><br>more info:<a href="https://zh.wikipedia.org/wiki/%E6%82%B2%E8%A7%82%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6" target="_blank" rel="noopener">Pessimistic Concurrency wiki</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;之前遇上的問題，劃個重點留個整理記錄。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
     
   </entry>
   
