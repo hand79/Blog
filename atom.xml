@@ -58,27 +58,6 @@
   </entry>
   
   <entry>
-    <title>reCAPTCHA v2(Google)</title>
-    <link href="https://hand79.github.io/Blog/posts/JavaScript/20230415-javascript-reCAPTCHA-v2.html"/>
-    <id>https://hand79.github.io/Blog/posts/JavaScript/20230415-javascript-reCAPTCHA-v2.html</id>
-    <published>2023-04-15T00:01:14.631Z</published>
-    <updated>2023-05-14T14:05:26.974Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近專案碰到的東西，研究一下該驗證機制的應用。</p><a id="more"></a><p>reCAPTCHA v2 目前普遍網站使用者常看到的模式，以下為google 提供的範例demo執行後的樣子。(目前僅供demo UI 樣式)</p><p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a> 。</p><script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script><script type="text/javascript">var site_key = "6LcGY6QcAAAAAD3IvqNqOPVW_l0U_3IeChVOL6nt";      var verifyCallback = function(response) {        alert(response);      };      var widgetId1;      var widgetId2;      var onloadCallback = function() {        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.        widgetId1 = grecaptcha.render('example1', {          'sitekey' : site_key,          'theme' : 'light'        });        widgetId2 = grecaptcha.render(document.getElementById('example2'), {          'sitekey' : site_key        });        grecaptcha.render('example3', {          'sitekey' : site_key,          'callback' : verifyCallback,          'theme' : 'dark'        });      };</script><!-- The g-recaptcha-response string displays in an alert message upon submit. --><form action="javascript:alert(grecaptcha.getResponse(widgetId1));">   <div id="example1"></div>   <br>     <input type="submit" value="getResponse"></form><br><!-- Resets reCAPTCHA widgetId2 upon submit. --><form action="javascript:grecaptcha.reset(widgetId2);"><div id="example2"></div><br><input type="submit" value="reset"></form><br><!-- POSTs back to the page's URL upon submit with a g-recaptcha-response POST parameter. --><form action="?" method="POST"> <div id="example3"></div>   <br>   <input type="submit" value="Submit"></form>‵<p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;最近專案碰到的東西，研究一下該驗證機制的應用。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
     <title>AS400程式版控流程規劃</title>
     <link href="https://hand79.github.io/Blog/posts/Development/20230115-as400-version-control-system-design.html"/>
     <id>https://hand79.github.io/Blog/posts/Development/20230115-as400-version-control-system-design.html</id>
@@ -437,6 +416,27 @@
     
     
     <summary type="html">&lt;p&gt;之前遇到問題查詢的資料，做個整理。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MVC模式 與 三層架構</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210202-mvc-tier.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210202-mvc-tier.html</id>
+    <published>2021-02-02T12:07:30.000Z</published>
+    <updated>2021-02-04T16:06:10.337Z</updated>
+    
+    <content type="html"><![CDATA[<p>MVC與三層架構解釋整理。</p><a id="more"></a><h2 id="MVC模式（Model–view–controller）"><a href="#MVC模式（Model–view–controller）" class="headerlink" title="MVC模式（Model–view–controller）"></a>MVC模式（Model–view–controller）</h2><p>是軟體工程中的一種軟體架構模式，把軟體系統分為三個基本部分：</p><ul><li>模型（Model): 用於封裝與應用程式的業務邏輯相關的資料以及對資料的處理方法。「 Model 」有對資料直接存取的權力，例如對資料庫的存取。<ul><li>「Model」不依賴「View」和「Controller」，也就是說， Model 不關心它會被如何顯示或是如何被操作。</li><li>但是 Model 中資料的變化一般會通過一種重新整理機制被公布。為了實現這種機制，那些用於監視此 Model 的 View 必須事先在此 Model 上註冊，從而，View 可以了解在資料 Model 上發生的改變。（比如：觀察者模式（軟體設計模式））</li></ul></li><li>視圖（View）:能夠實現資料有目的的顯示（理論上，這不是必需的）。在 View 中一般沒有程式上的邏輯。為了實現 View 上的重新整理功能，View 需要存取它監視的資料模型（Model），因此應該事先在被它監視的資料那裡註冊。 </li><li>控制器（Controller）: 起到不同層面間的組織作用，用於控制應用程式的流程。它處理事件並作出回應。「事件」包括使用者的行為和資料 Model 上的改變。</li></ul><p>MVC模式在概念上強調 Model, View, Controller 的分離，各個模組也遵循著由 Controller 來處理訊息，Model 掌管資料來源，View 負責資料顯示的職責分離原則，因此在實作上，MVC 模式的 Framework 通常會將 MVC 三個部份分離實作：</p><ul><li>Model 負責資料存取，較現代的 Framework 都會建議使用獨立的資料物件 (DTO, POCO, POJO 等) 來替代弱型別的集合物件。資料存取的程式碼會使用 Data Access 的程式碼或是 ORM-based Framework，也可以進一步使用 Repository Pattern 與 Unit of Works Pattern 來切割資料來源的相依性。</li><li>Controller 負責處理訊息，較高階的 Framework 會有一個預設的實作來作為 Controller 的基礎，例如 Spring 的 DispatcherServlet 或是 ASP.NET MVC 的 Controller 等，在職責分離原則的基礎上，每個 Controller 負責的部份不同，因此會將各個 Controller 切割成不同的檔案以利維護。</li><li>View 負責顯示資料，這個部份多為前端應用，而 Controller 會有一個機制將處理的結果 (可能是 Model, 集合或是狀態等) 交給 View，然後由 View 來決定怎麼顯示。例如 Spring Framework 使用 JSP 或相應技術，ASP.NET MVC 則使用 Razor 處理資料的顯示。</li></ul><h2 id="三層架構-3-tier-architecture"><a href="#三層架構-3-tier-architecture" class="headerlink" title="三層架構(3-tier architecture)"></a>三層架構(3-tier architecture)</h2><p>是一種軟體抽象的層次結構，從”整個應用程式架構的角度”來區分為三層。 </p><p>目的: 高內聚，低耦合的思想<br>優點: </p><ul><li>利於標準化</li><li>降低層與層之間的依賴</li><li>利於各層邏輯的復用，資源重用性好</li><li>開發人員可以只關注整個結構中的其中某一層</li><li>具有良好的開放性和可擴充性，維護和升級方便</li><li>提高系統的安全性</li></ul><p>缺點: </p><ul><li>有時會導致連動的修改。</li><li>如果在表現層中需要增加一個功能，為保證其設計符合分層式結構，可能需要在相應的商業邏輯層和資料存取層中都增加相應的程式碼。</li><li>相對於不分層，降低了系統的性能。</li><li>如果不採用分層式結構，很多業務可以直接造訪資料庫，以此獲取相應的數據，如今卻必須通過中間層來完成。</li><li>增加了開發成本。</li></ul><p>分層:</p><ul><li>表現層（Presentation layer）：通俗講就是展現給使用者的介面，即使用者在使用一個系統的時候他的所見所得。</li><li>業務邏輯層（Business Logic Layer）：針對具體問題的操作，也可以說是對資料層的操作，對資料業務邏輯處理。</li><li>資料訪問層（Data Access Layer）：該層所做事務直接運算元據庫，針對資料的增添、移除、修改、查找等。</li></ul><p><img src="https://www.itsfun.com.tw/cacheimg/d7/ce/3cf976ce330db425f6eb1a22d824.jpg" alt="3-tier architecture"></p><p><img src="https://qph.fs.quoracdn.net/main-qimg-91d0a36c056cce85cd3a941a730ef053" alt="3-tier architecture-en"></p><h2 id="兩者的差異"><a href="#兩者的差異" class="headerlink" title="兩者的差異"></a>兩者的差異</h2><ul><li>三層架構是一個分層式的軟件體系架構設計。 MVC是一個設計模式，它是根據項目的具體需求來決定是否適用於該項目。</li><li>三層架構的目的著重點是”高內聚，低耦合”，即解耦。 MVC的目的則是實現Web系統的職能分工，即職責劃分。</li><li>三層側重的是整體的一個解耦。 MVC側重的是web系統的解耦，即側重jsp和Servlet的一個解耦。</li><li>三層架構的分層模式是典型的上下關系，上層依賴於下層。 MVC作為表現模式是不存在上下關系的，而是相互協作關系。</li></ul><p>more info:<a href="https://zh.wikipedia.org/wiki/MVC" target="_blank" rel="noopener">MVC Wiki</a><br>more info:<a href="https://shunnien.github.io/2017/07/29/3-tier-and-mvc-introduction/" target="_blank" rel="noopener">三層結構與 Asp.Net MVC 的簡介 Wiki</a><br>more info:<a href="https://www.itread01.com/content/1514351052.html" target="_blank" rel="noopener">三層架構與MVC的區別</a><br>more info:<a href="https://www.itread01.com/content/1514351052.html" target="_blank" rel="noopener">三層架構與MVC的區別</a><br>more info:[softwareengineering討論區]<a href="https://softwareengineering.stackexchange.com/questions/299836/difference-between-3-tier-architecture-and-mvc-model-view-controller-in-asp-n" target="_blank" rel="noopener">https://softwareengineering.stackexchange.com/questions/299836/difference-between-3-tier-architecture-and-mvc-model-view-controller-in-asp-n</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;MVC與三層架構解釋整理。&lt;/p&gt;</summary>
     
     
     
