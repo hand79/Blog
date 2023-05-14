@@ -368,14 +368,14 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Web/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Java/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Java/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Web/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -389,13 +389,6 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Hexo/</loc>
-    <lastmod>2023-05-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hand79.github.io/Blog/tags/Spring/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
@@ -403,14 +396,7 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/JavaScript/</loc>
-    <lastmod>2023-05-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Hexo/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -424,7 +410,21 @@
   </url>
   
   <url>
+    <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
+    <lastmod>2023-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
+    <lastmod>2023-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/tags/JavaScript/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -454,13 +454,6 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
-    <lastmod>2023-05-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hand79.github.io/Blog/categories/Java/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
@@ -468,7 +461,7 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/JavaScript/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -483,6 +476,13 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Maven/</loc>
+    <lastmod>2023-05-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/categories/JavaScript/</loc>
     <lastmod>2023-05-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
