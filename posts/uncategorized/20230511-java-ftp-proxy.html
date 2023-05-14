@@ -6,19 +6,19 @@
   
 
   
-  <title>悲觀鎖與樂觀鎖(資料庫交易) | Max&#39;s Blog-程式學習研究記錄</title>
+  <title>Java Ftp(透過跳板) | Max&#39;s Blog-程式學習研究記錄</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前遇上的問題，劃個重點留個整理記錄。">
+  <meta name="description" content="FTP透過跳板的概念與參考整理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="悲觀鎖與樂觀鎖(資料庫交易)">
-<meta property="og:url" content="https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html">
+<meta property="og:title" content="Java Ftp(透過跳板)">
+<meta property="og:url" content="https://hand79.github.io/Blog/posts/uncategorized/20230511-java-ftp-proxy.html">
 <meta property="og:site_name" content="Max&#39;s Blog-程式學習研究記錄">
-<meta property="og:description" content="之前遇上的問題，劃個重點留個整理記錄。">
+<meta property="og:description" content="FTP透過跳板的概念與參考整理。">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2021-02-01T11:47:30.000Z">
-<meta property="article:modified_time" content="2021-02-04T10:54:54.350Z">
+<meta property="article:published_time" content="2023-05-11T12:30:20.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:41:42.276Z">
 <meta property="article:author" content="MaxHanChen">
-<meta property="article:tag" content="Development">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/Blog/atom.xml" title="Max&#39;s Blog-程式學習研究記錄" type="application/atom+xml">
@@ -72,16 +72,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Development/悲觀鎖與樂觀鎖" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Development/Java-Ftp-跳板" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html" class="article-date">
-  <time datetime="2021-02-01T11:47:30.000Z" itemprop="datePublished">2021-02-01 19:47:30</time>
+    <a href="/Blog/posts/uncategorized/20230511-java-ftp-proxy.html" class="article-date">
+  <time datetime="2023-05-11T12:30:20.000Z" itemprop="datePublished">2023-05-11 20:30:20</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/Blog/categories/Development/">Development</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -90,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      悲觀鎖與樂觀鎖(資料庫交易)
+      Java Ftp(透過跳板)
     </h1>
   
 
@@ -98,43 +94,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前遇上的問題，劃個重點留個整理記錄。</p>
+        <p>FTP透過跳板的概念與參考整理。</p>
 <a id="more"></a>
 
-<p>資料庫交易特性ACID中的交易隔離(Isolation)通常利用「鎖(locking)」來實現，目的為避免同一筆資料在併行交易(concurrent transaction)中被不同的交易同時修改以確保資料的完整性。<br>交易鎖又分為「悲觀鎖(pessimistic locking)」與「樂觀鎖(optimistic locking)」。</p>
-<p>常用鎖處理的例子: 電商商品庫存、銀行轉帳業務</p>
-<p>##悲觀鎖(Pessimistic Locking)<br>時機: 悲觀並行控制主要用於資料爭用激烈的環境或發生並發衝突時，”使用鎖保護資料的成本”要低於”回復交易的成本”的環境中。</p>
-<ul>
-<li>悲觀並行控制實際上是「先取鎖再訪問」的保守策略，為資料處理的安全提供了保證。</li>
-<li>在效率方面，處理加鎖的機制會讓資料庫產生額外的開銷，還有增加產生”死鎖”的機會</li>
-<li>在只讀型交易處理中由於不會產生衝突，就沒必要使用鎖，這樣做只能增加系統負載，還有會降低了並行性。</li>
-<li>一個交易如果鎖定了某行資料，其他交易就必須等待該交易處理完才可以處理那行資料。(當下資料有對其他執行存取有排他性)<br>典型的使用: synchronized (java)</li>
-</ul>
-<p>##樂觀鎖(Optimistic Locking)<br>時機: 樂觀並行控制多數用於”資料爭用不大”、”衝突較少的環境”中，”偶爾回復交易的成本”會低於”讀取資料時鎖定資料的成本”，因此可以獲得”比其他並行控制方法更高的吞吐量”。</p>
-<ul>
-<li>假設”多使用者並行的交易在處理時不會彼此互相影響”，”各交易能夠在不產生鎖”的情況下”處理各自影響的那部分資料”。在提交資料更新之前，每個交易會”先檢查在該交易讀取資料後，有沒有其他交易又修改了該資料”。如果其他交易有更新的話，正在提交的交易會進行rollback。</li>
-</ul>
-<p>缺點: 樂觀並行控制相信交易之間的資料競爭(data race)的概率是比較小的，因此儘可能直接做下去，直到提交的時候才去鎖定，所以不會產生任何鎖和死結。但如果直接簡單這麽做，還是有可能會遇到不可預期的結果，例如兩個交易都讀取了資料庫的某一行，經過修改以後寫回資料庫，這時就遇到了問題。(ABA问题) </p>
-<ul>
-<li>需要添加重試機制，舉個例子: 資料異動時衝突(JPA中的@version)，重新在執行失敗的動作</li>
-</ul>
-<h4 id="樂觀並行控制的交易包括以下階段："><a href="#樂觀並行控制的交易包括以下階段：" class="headerlink" title="樂觀並行控制的交易包括以下階段："></a>樂觀並行控制的交易包括以下階段：</h4><ul>
-<li>讀取：交易將資料讀入快取，這時系統會給交易分派一個時間戳。</li>
-<li>校驗：交易執行完畢後，進行提交。這時同步校驗所有交易，如果交易所讀取的資料在讀取之後又被其他交易修改，則產生衝突，交易被中斷回復。</li>
-<li>寫入：通過校驗階段後，將更新的資料寫入資料庫。<br>典型的使用: Compare and Swap (CAS)、 AtomicReference class、 @Version(Java JPA中的@version 版本控制處理方式)</li>
-</ul>
-<p>##總結<br>樂觀鎖適用於讀大於寫、衝突少的的場景(省去了鎖的開銷，加大了系統的整個吞吐量。如果經常產生衝突，上層應用會不斷的進行retry可能須考慮是否用悲觀鎖)<br>悲觀鎖寫大於讀、衝突大的的場景(併發量不大且不允許髒讀適合)</p>
-<p>more info:<a href="https://www.cnblogs.com/kismetv/p/10787228.html" target="_blank" rel="noopener">資料參考</a><br>more info:<a href="https://en.wikipedia.org/wiki/Optimistic_concurrency_control" target="_blank" rel="noopener">Optimistic Concurrency wiki</a><br>more info:<a href="https://zh.wikipedia.org/wiki/%E6%82%B2%E8%A7%82%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6" target="_blank" rel="noopener">Pessimistic Concurrency wiki</a></p>
+
+<h3 id="一般FTP-連線"><a href="#一般FTP-連線" class="headerlink" title="一般FTP 連線"></a>一般FTP 連線</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request ---&gt;  FTP Server</span><br></pre></td></tr></table></figure>
+
+<h3 id="一般FTP-連線-透過跳板"><a href="#一般FTP-連線-透過跳板" class="headerlink" title="一般FTP 連線(透過跳板)"></a>一般FTP 連線(透過跳板)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request ---&gt; Jump Server ---&gt; FTP Server</span><br></pre></td></tr></table></figure>
+
+<h3 id="實作參考-dependency-jsch"><a href="#實作參考-dependency-jsch" class="headerlink" title="實作參考(dependency: jsch)"></a>實作參考(dependency: jsch)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"> private static Session getJschSession(String username, String password, String host, int port) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            JSch jsch &#x3D; new JSch();</span><br><span class="line">            Session jschSession &#x3D; jsch.getSession(username, host);</span><br><span class="line">            jschSession.setPassword(password);</span><br><span class="line">            jschSession.setPort(port);</span><br><span class="line">            Properties sessionConfig &#x3D; new Properties();</span><br><span class="line">            sessionConfig.put(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);</span><br><span class="line">            jschSession.setConfig(sessionConfig);</span><br><span class="line">            return jschSession;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            log.error(&quot;Exception: &#123;&#125;&quot;, e);</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line">    public static void deployByJump(PathfinderProperties prop, List&lt;CompileOrder&gt; deployList) &#123;</span><br><span class="line">        Date now &#x3D; new Date();</span><br><span class="line">        String deployPath &#x3D; prop.getDeployPath();</span><br><span class="line">        String deployBackupFolder &#x3D; dateFormatToString(now, &quot;yyyyMMddHHmmss&quot;); &#x2F;&#x2F; test</span><br><span class="line">        Session jumpSession &#x3D; null;</span><br><span class="line">        Session sftpSession &#x3D; null;</span><br><span class="line">        ChannelSftp ftp &#x3D; null;</span><br><span class="line">        try &#123;</span><br><span class="line">        	   &#x2F;&#x2F; 先連線跳板</span><br><span class="line">            jumpSession &#x3D; getJschSession(prop.getJumpUserId(), prop.getJumpPassword(), prop.getJumpServer(), 22);</span><br><span class="line">            jumpSession.connect();</span><br><span class="line">            int portForwarding &#x3D; 2222;</span><br><span class="line">            jumpSession.setPortForwardingL(2222, prop.getFtpServer(), 22); &#x2F;&#x2F; 在該台綁定一個port</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F; 透過這個port轉送</span><br><span class="line">            sftpSession &#x3D; getJschSession(prop.getFtpUserId(), prop.getFtpPassword(), &quot;localhost&quot;, portForwarding);</span><br><span class="line">            sftpSession.connect();</span><br><span class="line">            </span><br><span class="line">            ftp &#x3D; (ChannelSftp) sftpSession.openChannel(&quot;sftp&quot;);</span><br><span class="line">            ftp.connect();</span><br><span class="line">&#x2F;&#x2F;            ftp.cd(deployPath); &#x2F;&#x2F; deployPath</span><br><span class="line">            ftp.mkdir(deployBackupFolder);</span><br><span class="line">            log.info(&quot;ftp.pwd():&#123;&#125;&quot;, ftp.pwd());</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            log.error(&quot;Exception: &#123;&#125;&quot;, e);</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            if(sftpSession !&#x3D; null) &#123;</span><br><span class="line">                jumpSession.disconnect();</span><br><span class="line">                log.info(&quot;sftp session close.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            if(ftp !&#x3D; null) &#123;</span><br><span class="line">                ftp.quit();</span><br><span class="line">                log.info(&quot;ftp quit.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            if(jumpSession !&#x3D; null) &#123;</span><br><span class="line">                jumpSession.disconnect();</span><br><span class="line">                log.info(&quot;jump session close.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static String dateFormatToString(Date date, String pattern) &#123;</span><br><span class="line">        return new SimpleDateFormat(pattern).format(date);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html" data-id="clhnh2twz00310guv35mrbj71" class="article-share-link">Share</a>
+      <a data-url="https://hand79.github.io/Blog/posts/uncategorized/20230511-java-ftp-proxy.html" data-id="clhnh2two00130guv9w742usi" class="article-share-link">Share</a>
       
-        <a href="https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html#disqus_thread" class="article-comment-link">留言</a>
+        <a href="https://hand79.github.io/Blog/posts/uncategorized/20230511-java-ftp-proxy.html#disqus_thread" class="article-comment-link">留言</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Development/" rel="tag">Development</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Blog/tags/Java/" rel="tag">Java</a></li></ul>
 
     </footer>
   </div>
@@ -142,19 +123,19 @@
     
 <nav id="article-nav">
   
-    <a href="/Blog/posts/Java/20210201-spring-annotation-component.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Blog/posts/Development/20230513-Jenkins-bash-script.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Spring註解 @Component @Service, @Controller, @Repository
+          Jenkins-實戰-bash script遠端不同帳號的問題.md
         
       </div>
     </a>
   
   
-    <a href="/Blog/posts/Development/20210131-kubernetes.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/Blog/posts/JavaScript/20230415-javascript-reCAPTCHA-v2.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Kubernetes 故障排除流程圖</div>
+      <div class="article-nav-title">reCAPTCHA v2(Google)</div>
     </a>
   
 </nav>
@@ -267,7 +248,7 @@
 <script>
   var disqus_shortname = 'maxhanchen';
   
-  var disqus_url = 'https://hand79.github.io/Blog/posts/Development/20210201-locking-pessimistic-optimistic.html';
+  var disqus_url = 'https://hand79.github.io/Blog/posts/uncategorized/20230511-java-ftp-proxy.html';
   
   (function(){
     var dsq = document.createElement('script');

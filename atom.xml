@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2023-01-15T12:37:00.170Z</updated>
+  <updated>2023-05-14T13:32:25.260Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jenkins-實戰-bash script遠端不同帳號的問題.md</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20230513-Jenkins-bash-script.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20230513-Jenkins-bash-script.html</id>
+    <published>2023-05-13T06:30:30.000Z</published>
+    <updated>2023-05-14T13:32:25.260Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般情況規劃好，通常一個帳號ssh到不同伺服器就好了。但是就偏偏遇上沒權限動jenkins又要在腳本中需要不同帳號，還要在遠端切成root，留個記錄。</p><p>備註: 請留意Jenkins，密碼參數會在console洩漏(Credentials 或 Mask Passwords處理)，注意權限管理上的問題。</p><a id="more"></a><h3 id="Install-sshpass"><a href="#Install-sshpass" class="headerlink" title="Install sshpass"></a>Install sshpass</h3><p>sshpass –p 密碼 遠端要執行的指令</p><h3 id="stdin-密碼輸入"><a href="#stdin-密碼輸入" class="headerlink" title="stdin 密碼輸入"></a>stdin 密碼輸入</h3><p>echo 密碼 | sudo -S  ls  –al</p><h3 id="上述兩項搭配"><a href="#上述兩項搭配" class="headerlink" title="上述兩項搭配"></a>上述兩項搭配</h3><ul><li>執行遠端登入並在遠端下sudo指令(利用stdin 密碼輸入sudo 需切換的帳號密碼)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshpass –p 密碼   ssh user@host  &quot;echo 密碼 | sudo -S  ls  –al&quot;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;一般情況規劃好，通常一個帳號ssh到不同伺服器就好了。但是就偏偏遇上沒權限動jenkins又要在腳本中需要不同帳號，還要在遠端切成root，留個記錄。&lt;/p&gt;
+&lt;p&gt;備註: 請留意Jenkins，密碼參數會在console洩漏(Credentials 或 Mask Passwords處理)，注意權限管理上的問題。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Ftp(透過跳板)</title>
+    <link href="https://hand79.github.io/Blog/posts/uncategorized/20230511-java-ftp-proxy.html"/>
+    <id>https://hand79.github.io/Blog/posts/uncategorized/20230511-java-ftp-proxy.html</id>
+    <published>2023-05-11T12:30:20.000Z</published>
+    <updated>2023-05-14T13:41:42.276Z</updated>
+    
+    <content type="html"><![CDATA[<p>FTP透過跳板的概念與參考整理。</p><a id="more"></a><h3 id="一般FTP-連線"><a href="#一般FTP-連線" class="headerlink" title="一般FTP 連線"></a>一般FTP 連線</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request ---&gt;  FTP Server</span><br></pre></td></tr></table></figure><h3 id="一般FTP-連線-透過跳板"><a href="#一般FTP-連線-透過跳板" class="headerlink" title="一般FTP 連線(透過跳板)"></a>一般FTP 連線(透過跳板)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Request ---&gt; Jump Server ---&gt; FTP Server</span><br></pre></td></tr></table></figure><h3 id="實作參考-dependency-jsch"><a href="#實作參考-dependency-jsch" class="headerlink" title="實作參考(dependency: jsch)"></a>實作參考(dependency: jsch)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"> private static Session getJschSession(String username, String password, String host, int port) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            JSch jsch &#x3D; new JSch();</span><br><span class="line">            Session jschSession &#x3D; jsch.getSession(username, host);</span><br><span class="line">            jschSession.setPassword(password);</span><br><span class="line">            jschSession.setPort(port);</span><br><span class="line">            Properties sessionConfig &#x3D; new Properties();</span><br><span class="line">            sessionConfig.put(&quot;StrictHostKeyChecking&quot;, &quot;no&quot;);</span><br><span class="line">            jschSession.setConfig(sessionConfig);</span><br><span class="line">            return jschSession;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            log.error(&quot;Exception: &#123;&#125;&quot;, e);</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line">    public static void deployByJump(PathfinderProperties prop, List&lt;CompileOrder&gt; deployList) &#123;</span><br><span class="line">        Date now &#x3D; new Date();</span><br><span class="line">        String deployPath &#x3D; prop.getDeployPath();</span><br><span class="line">        String deployBackupFolder &#x3D; dateFormatToString(now, &quot;yyyyMMddHHmmss&quot;); &#x2F;&#x2F; test</span><br><span class="line">        Session jumpSession &#x3D; null;</span><br><span class="line">        Session sftpSession &#x3D; null;</span><br><span class="line">        ChannelSftp ftp &#x3D; null;</span><br><span class="line">        try &#123;</span><br><span class="line">           &#x2F;&#x2F; 先連線跳板</span><br><span class="line">            jumpSession &#x3D; getJschSession(prop.getJumpUserId(), prop.getJumpPassword(), prop.getJumpServer(), 22);</span><br><span class="line">            jumpSession.connect();</span><br><span class="line">            int portForwarding &#x3D; 2222;</span><br><span class="line">            jumpSession.setPortForwardingL(2222, prop.getFtpServer(), 22); &#x2F;&#x2F; 在該台綁定一個port</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F; 透過這個port轉送</span><br><span class="line">            sftpSession &#x3D; getJschSession(prop.getFtpUserId(), prop.getFtpPassword(), &quot;localhost&quot;, portForwarding);</span><br><span class="line">            sftpSession.connect();</span><br><span class="line">            </span><br><span class="line">            ftp &#x3D; (ChannelSftp) sftpSession.openChannel(&quot;sftp&quot;);</span><br><span class="line">            ftp.connect();</span><br><span class="line">&#x2F;&#x2F;            ftp.cd(deployPath); &#x2F;&#x2F; deployPath</span><br><span class="line">            ftp.mkdir(deployBackupFolder);</span><br><span class="line">            log.info(&quot;ftp.pwd():&#123;&#125;&quot;, ftp.pwd());</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            log.error(&quot;Exception: &#123;&#125;&quot;, e);</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            if(sftpSession !&#x3D; null) &#123;</span><br><span class="line">                jumpSession.disconnect();</span><br><span class="line">                log.info(&quot;sftp session close.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            if(ftp !&#x3D; null) &#123;</span><br><span class="line">                ftp.quit();</span><br><span class="line">                log.info(&quot;ftp quit.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            if(jumpSession !&#x3D; null) &#123;</span><br><span class="line">                jumpSession.disconnect();</span><br><span class="line">                log.info(&quot;jump session close.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static String dateFormatToString(Date date, String pattern) &#123;</span><br><span class="line">        return new SimpleDateFormat(pattern).format(date);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;FTP透過跳板的概念與參考整理。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>reCAPTCHA v2(Google)</title>
+    <link href="https://hand79.github.io/Blog/posts/JavaScript/20230415-javascript-reCAPTCHA-v2.html"/>
+    <id>https://hand79.github.io/Blog/posts/JavaScript/20230415-javascript-reCAPTCHA-v2.html</id>
+    <published>2023-04-15T00:01:14.631Z</published>
+    <updated>2021-10-03T15:43:11.862Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近專案碰到的東西，研究一下該驗證機制的應用。</p><a id="more"></a><p>reCAPTCHA v2 目前普遍網站使用者常看到的模式，以下為google 提供的範例demo執行後的樣子。(目前僅供demo UI 樣式)</p><p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a> 。</p><script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script><script type="text/javascript">var site_key = "6LcGY6QcAAAAAD3IvqNqOPVW_l0U_3IeChVOL6nt";      var verifyCallback = function(response) {        alert(response);      };      var widgetId1;      var widgetId2;      var onloadCallback = function() {        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.        widgetId1 = grecaptcha.render('example1', {          'sitekey' : site_key,          'theme' : 'light'        });        widgetId2 = grecaptcha.render(document.getElementById('example2'), {          'sitekey' : site_key        });        grecaptcha.render('example3', {          'sitekey' : site_key,          'callback' : verifyCallback,          'theme' : 'dark'        });      };</script><!-- The g-recaptcha-response string displays in an alert message upon submit. --><form action="javascript:alert(grecaptcha.getResponse(widgetId1));">   <div id="example1"></div>   <br>     <input type="submit" value="getResponse"></form><br><!-- Resets reCAPTCHA widgetId2 upon submit. --><form action="javascript:grecaptcha.reset(widgetId2);"><div id="example2"></div><br><input type="submit" value="reset"></form><br><!-- POSTs back to the page's URL upon submit with a g-recaptcha-response POST parameter. --><form action="?" method="POST"> <div id="example3"></div>   <br>   <input type="submit" value="Submit"></form><p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;最近專案碰到的東西，研究一下該驗證機制的應用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
+    
+    
+    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>AS400程式版控流程規劃</title>
@@ -96,9 +158,9 @@
     <category term="Docker" scheme="https://hand79.github.io/Blog/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://hand79.github.io/Blog/tags/Docker/"/>
-    
     <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
+    
+    <category term="Docker" scheme="https://hand79.github.io/Blog/tags/Docker/"/>
     
   </entry>
   
@@ -120,27 +182,6 @@
     
     
     <category term="Docker" scheme="https://hand79.github.io/Blog/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>reCAPTCHA v2(Google)</title>
-    <link href="https://hand79.github.io/Blog/posts/JavaScript/20220303-javascript-reCAPTCHA-v2.html"/>
-    <id>https://hand79.github.io/Blog/posts/JavaScript/20220303-javascript-reCAPTCHA-v2.html</id>
-    <published>2022-03-03T11:53:39.796Z</published>
-    <updated>2021-10-03T15:43:11.862Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近專案碰到的東西，研究一下該驗證機制的應用。</p><a id="more"></a><p>reCAPTCHA v2 目前普遍網站使用者常看到的模式，以下為google 提供的範例demo執行後的樣子。(目前僅供demo UI 樣式)</p><p>拿到Token後進行後台驗證(會用到私鑰)， <a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Verifying the user’s response</a> 。</p><script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script><script type="text/javascript">var site_key = "6LcGY6QcAAAAAD3IvqNqOPVW_l0U_3IeChVOL6nt";      var verifyCallback = function(response) {        alert(response);      };      var widgetId1;      var widgetId2;      var onloadCallback = function() {        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.        widgetId1 = grecaptcha.render('example1', {          'sitekey' : site_key,          'theme' : 'light'        });        widgetId2 = grecaptcha.render(document.getElementById('example2'), {          'sitekey' : site_key        });        grecaptcha.render('example3', {          'sitekey' : site_key,          'callback' : verifyCallback,          'theme' : 'dark'        });      };</script><!-- The g-recaptcha-response string displays in an alert message upon submit. --><form action="javascript:alert(grecaptcha.getResponse(widgetId1));">   <div id="example1"></div>   <br>     <input type="submit" value="getResponse"></form><br><!-- Resets reCAPTCHA widgetId2 upon submit. --><form action="javascript:grecaptcha.reset(widgetId2);"><div id="example2"></div><br><input type="submit" value="reset"></form><br><!-- POSTs back to the page's URL upon submit with a g-recaptcha-response POST parameter. --><form action="?" method="POST"> <div id="example3"></div>   <br>   <input type="submit" value="Submit"></form><p>參考: <a href="https://support.google.com/a/answer/1217728?hl=zh-Hant" target="_blank" rel="noopener">什麼是人機驗證 (Captcha)？</a><br>參考: <a href="https://medium.com/@d101201007/google-recaptcha%E6%A9%9F%E5%99%A8%E4%BA%BA%E9%A9%97%E8%AD%89-%E6%95%99%E5%AD%B8-php%E7%AF%84%E4%BE%8B-3685a394dce2" target="_blank" rel="noopener">Google reCAPTCHA機器人驗證 教學 PHP範例</a><br>參考: <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">recaptcha Google 官網</a><br>參考: <a href="https://developers.google.com/recaptcha/docs/v3" target="_blank" rel="noopener">reCAPTCHA v3</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;最近專案碰到的東西，研究一下該驗證機制的應用。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/categories/JavaScript/"/>
-    
-    
-    <category term="JavaScript" scheme="https://hand79.github.io/Blog/tags/JavaScript/"/>
     
   </entry>
   
@@ -387,8 +428,8 @@
   
   <entry>
     <title>SOA架構 與 Microservice</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210205-microservice-soa.html</id>
+    <link href="https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html</id>
     <published>2021-02-04T15:07:30.000Z</published>
     <updated>2021-02-04T15:09:56.475Z</updated>
     
@@ -403,50 +444,6 @@
     
     
     <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MVC模式 與 三層架構</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210202-mvc-tier.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210202-mvc-tier.html</id>
-    <published>2021-02-02T12:07:30.000Z</published>
-    <updated>2021-02-04T16:06:10.337Z</updated>
-    
-    <content type="html"><![CDATA[<p>MVC與三層架構解釋整理。</p><a id="more"></a><h2 id="MVC模式（Model–view–controller）"><a href="#MVC模式（Model–view–controller）" class="headerlink" title="MVC模式（Model–view–controller）"></a>MVC模式（Model–view–controller）</h2><p>是軟體工程中的一種軟體架構模式，把軟體系統分為三個基本部分：</p><ul><li>模型（Model): 用於封裝與應用程式的業務邏輯相關的資料以及對資料的處理方法。「 Model 」有對資料直接存取的權力，例如對資料庫的存取。<ul><li>「Model」不依賴「View」和「Controller」，也就是說， Model 不關心它會被如何顯示或是如何被操作。</li><li>但是 Model 中資料的變化一般會通過一種重新整理機制被公布。為了實現這種機制，那些用於監視此 Model 的 View 必須事先在此 Model 上註冊，從而，View 可以了解在資料 Model 上發生的改變。（比如：觀察者模式（軟體設計模式））</li></ul></li><li>視圖（View）:能夠實現資料有目的的顯示（理論上，這不是必需的）。在 View 中一般沒有程式上的邏輯。為了實現 View 上的重新整理功能，View 需要存取它監視的資料模型（Model），因此應該事先在被它監視的資料那裡註冊。 </li><li>控制器（Controller）: 起到不同層面間的組織作用，用於控制應用程式的流程。它處理事件並作出回應。「事件」包括使用者的行為和資料 Model 上的改變。</li></ul><p>MVC模式在概念上強調 Model, View, Controller 的分離，各個模組也遵循著由 Controller 來處理訊息，Model 掌管資料來源，View 負責資料顯示的職責分離原則，因此在實作上，MVC 模式的 Framework 通常會將 MVC 三個部份分離實作：</p><ul><li>Model 負責資料存取，較現代的 Framework 都會建議使用獨立的資料物件 (DTO, POCO, POJO 等) 來替代弱型別的集合物件。資料存取的程式碼會使用 Data Access 的程式碼或是 ORM-based Framework，也可以進一步使用 Repository Pattern 與 Unit of Works Pattern 來切割資料來源的相依性。</li><li>Controller 負責處理訊息，較高階的 Framework 會有一個預設的實作來作為 Controller 的基礎，例如 Spring 的 DispatcherServlet 或是 ASP.NET MVC 的 Controller 等，在職責分離原則的基礎上，每個 Controller 負責的部份不同，因此會將各個 Controller 切割成不同的檔案以利維護。</li><li>View 負責顯示資料，這個部份多為前端應用，而 Controller 會有一個機制將處理的結果 (可能是 Model, 集合或是狀態等) 交給 View，然後由 View 來決定怎麼顯示。例如 Spring Framework 使用 JSP 或相應技術，ASP.NET MVC 則使用 Razor 處理資料的顯示。</li></ul><h2 id="三層架構-3-tier-architecture"><a href="#三層架構-3-tier-architecture" class="headerlink" title="三層架構(3-tier architecture)"></a>三層架構(3-tier architecture)</h2><p>是一種軟體抽象的層次結構，從”整個應用程式架構的角度”來區分為三層。 </p><p>目的: 高內聚，低耦合的思想<br>優點: </p><ul><li>利於標準化</li><li>降低層與層之間的依賴</li><li>利於各層邏輯的復用，資源重用性好</li><li>開發人員可以只關注整個結構中的其中某一層</li><li>具有良好的開放性和可擴充性，維護和升級方便</li><li>提高系統的安全性</li></ul><p>缺點: </p><ul><li>有時會導致連動的修改。</li><li>如果在表現層中需要增加一個功能，為保證其設計符合分層式結構，可能需要在相應的商業邏輯層和資料存取層中都增加相應的程式碼。</li><li>相對於不分層，降低了系統的性能。</li><li>如果不採用分層式結構，很多業務可以直接造訪資料庫，以此獲取相應的數據，如今卻必須通過中間層來完成。</li><li>增加了開發成本。</li></ul><p>分層:</p><ul><li>表現層（Presentation layer）：通俗講就是展現給使用者的介面，即使用者在使用一個系統的時候他的所見所得。</li><li>業務邏輯層（Business Logic Layer）：針對具體問題的操作，也可以說是對資料層的操作，對資料業務邏輯處理。</li><li>資料訪問層（Data Access Layer）：該層所做事務直接運算元據庫，針對資料的增添、移除、修改、查找等。</li></ul><p><img src="https://www.itsfun.com.tw/cacheimg/d7/ce/3cf976ce330db425f6eb1a22d824.jpg" alt="3-tier architecture"></p><p><img src="https://qph.fs.quoracdn.net/main-qimg-91d0a36c056cce85cd3a941a730ef053" alt="3-tier architecture-en"></p><h2 id="兩者的差異"><a href="#兩者的差異" class="headerlink" title="兩者的差異"></a>兩者的差異</h2><ul><li>三層架構是一個分層式的軟件體系架構設計。 MVC是一個設計模式，它是根據項目的具體需求來決定是否適用於該項目。</li><li>三層架構的目的著重點是”高內聚，低耦合”，即解耦。 MVC的目的則是實現Web系統的職能分工，即職責劃分。</li><li>三層側重的是整體的一個解耦。 MVC側重的是web系統的解耦，即側重jsp和Servlet的一個解耦。</li><li>三層架構的分層模式是典型的上下關系，上層依賴於下層。 MVC作為表現模式是不存在上下關系的，而是相互協作關系。</li></ul><p>more info:<a href="https://zh.wikipedia.org/wiki/MVC" target="_blank" rel="noopener">MVC Wiki</a><br>more info:<a href="https://shunnien.github.io/2017/07/29/3-tier-and-mvc-introduction/" target="_blank" rel="noopener">三層結構與 Asp.Net MVC 的簡介 Wiki</a><br>more info:<a href="https://www.itread01.com/content/1514351052.html" target="_blank" rel="noopener">三層架構與MVC的區別</a><br>more info:<a href="https://www.itread01.com/content/1514351052.html" target="_blank" rel="noopener">三層架構與MVC的區別</a><br>more info:[softwareengineering討論區]<a href="https://softwareengineering.stackexchange.com/questions/299836/difference-between-3-tier-architecture-and-mvc-model-view-controller-in-asp-n" target="_blank" rel="noopener">https://softwareengineering.stackexchange.com/questions/299836/difference-between-3-tier-architecture-and-mvc-model-view-controller-in-asp-n</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;MVC與三層架構解釋整理。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring註解 @Component @Service, @Controller, @Repository</title>
-    <link href="https://hand79.github.io/Blog/posts/Java/20210201-spring-annotation-component.html"/>
-    <id>https://hand79.github.io/Blog/posts/Java/20210201-spring-annotation-component.html</id>
-    <published>2021-02-01T14:47:33.000Z</published>
-    <updated>2021-02-04T13:51:20.482Z</updated>
-    
-    <content type="html"><![CDATA[<p>以前留下整理的資料的記錄。</p><a id="more"></a><h2 id="spring註解"><a href="#spring註解" class="headerlink" title="spring註解"></a>spring註解</h2><p>@Component, @Service, @Controller, @Repository是spring註解，註解後可以被spring框架所掃描並註入到spring容器來進行管理</p><ul><li>@Component是通用註解，其他三個註解是這個註解的拓展，並且具有了特定的功能(generic stereotype for any Spring-managed component)。</li><li>@Repository註解在持久層中，具有將數據庫操作拋出的原生異常翻譯轉化為spring的持久層異常的功能。(stereotype for persistence layer)</li><li>@Controller層是spring-mvc的註解，具有將請求進行轉發，重定向的功能。(stereotype for presentation layer)</li><li>@Service層是業務邏輯層註解，這個註解只是標註該類處於業務邏輯層。 (stereotype for service layer)<br>用這些註解對應用進行分層之後，就能將請求處理，義務邏輯處理，數據庫操作處理分離出來，為代碼解耦，也方便了以後項目的維護和開發。</li></ul><p>註解:<br>Spring2.0時提供的: @Repository(在Spring2.5有修改部分內容)<br>Spring2.5時提供的: @Component, @Controller, @Service</p><p>more info:<a href="https://stackoverflow.com/posts/6897038/edit" target="_blank" rel="noopener">stackoverflow 參考</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Repository.html" target="_blank" rel="noopener">@Repository doc</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html" target="_blank" rel="noopener">@Component doc</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html" target="_blank" rel="noopener">@Controller doc</a><br>more info:<a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Service.html" target="_blank" rel="noopener">@Service doc</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;以前留下整理的資料的記錄。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Java" scheme="https://hand79.github.io/Blog/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
-    
-    <category term="Spring" scheme="https://hand79.github.io/Blog/tags/Spring/"/>
     
   </entry>
   
