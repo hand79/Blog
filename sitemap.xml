@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hand79.github.io/Blog/posts/Development/20230513-Jenkins-bash-script.html</loc>
+    
+    <lastmod>2023-05-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hand79.github.io/Blog/posts/uncategorized/20230511-java-ftp-proxy.html</loc>
     
     <lastmod>2023-05-15</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/posts/JavaScript/20211002-javascript-reCAPTCHA-v2.html</loc>
-    
-    <lastmod>2023-05-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hand79.github.io/Blog/posts/Development/20230513-Jenkins-bash-script.html</loc>
     
     <lastmod>2023-05-14</lastmod>
     
@@ -361,14 +361,14 @@
 
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Development/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Java/</loc>
     <lastmod>2023-05-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Java/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Development/</loc>
     <lastmod>2023-05-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -410,7 +410,7 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
     <lastmod>2023-05-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -424,7 +424,7 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
+    <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
     <lastmod>2023-05-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -475,14 +475,14 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Maven/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
     <lastmod>2023-05-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Maven/</loc>
     <lastmod>2023-05-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

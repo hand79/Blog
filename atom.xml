@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2023-05-14T13:32:25.260Z</updated>
+  <updated>2023-05-15T15:23:15.978Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Jenkins-實戰-bash script遠端不同帳號的問題.md</title>
+    <title>Jenkins-實戰-bash script遠端不同帳號的問題</title>
     <link href="https://hand79.github.io/Blog/posts/Development/20230513-Jenkins-bash-script.html"/>
     <id>https://hand79.github.io/Blog/posts/Development/20230513-Jenkins-bash-script.html</id>
     <published>2023-05-13T06:30:30.000Z</published>
-    <updated>2023-05-14T13:32:25.260Z</updated>
+    <updated>2023-05-15T15:23:15.978Z</updated>
     
     <content type="html"><![CDATA[<p>一般情況規劃好，通常一個帳號ssh到不同伺服器就好了。但是就偏偏遇上沒權限動jenkins又要在腳本中需要不同帳號，還要在遠端切成root，留個記錄。</p><p>備註: 請留意Jenkins，密碼參數會在console洩漏(Credentials 或 Mask Passwords處理)，注意權限管理上的問題。</p><a id="more"></a><h3 id="Install-sshpass"><a href="#Install-sshpass" class="headerlink" title="Install sshpass"></a>Install sshpass</h3><p>sshpass –p 密碼 遠端要執行的指令</p><h3 id="stdin-密碼輸入"><a href="#stdin-密碼輸入" class="headerlink" title="stdin 密碼輸入"></a>stdin 密碼輸入</h3><p>echo 密碼 | sudo -S  ls  –al</p><h3 id="上述兩項搭配"><a href="#上述兩項搭配" class="headerlink" title="上述兩項搭配"></a>上述兩項搭配</h3><ul><li>執行遠端登入並在遠端下sudo指令(利用stdin 密碼輸入sudo 需切換的帳號密碼)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshpass –p 密碼   ssh user@host  &quot;echo 密碼 | sudo -S  ls  –al&quot;</span><br></pre></td></tr></table></figure>]]></content>
     
