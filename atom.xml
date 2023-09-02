@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2023-05-15T15:23:15.978Z</updated>
+  <updated>2023-09-02T13:35:40.796Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jenkins-實戰-bash script遠端不同帳號的問題</title>
+    <link href="https://hand79.github.io/Blog/posts/Development/20230901-Jenkins-script-for-pw.html"/>
+    <id>https://hand79.github.io/Blog/posts/Development/20230901-Jenkins-script-for-pw.html</id>
+    <published>2023-09-01T06:30:30.000Z</published>
+    <updated>2023-09-02T13:35:40.796Z</updated>
+    
+    <content type="html"><![CDATA[<p>各種原因客戶沒有plugin也不給裝，只好繞個路解決密碼的問題了。</p><a id="more"></a><h3 id="Window-處理例子"><a href="#Window-處理例子" class="headerlink" title="Window 處理例子"></a>Window 處理例子</h3><ul><li>防止批次檔中的所有命令 (包括 回應 命令) 在畫面上顯示，批次檔案類型的第一行：</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br></pre></td></tr></table></figure><p> 若要再次顯示命令提示字元，請輸入echo</p><ul><li>echo off / echo off 下一行開始”關閉/打開”回顯</li></ul><h3 id="Linux-處理例子"><a href="#Linux-處理例子" class="headerlink" title="Linux 處理例子"></a>Linux 處理例子</h3><ul><li>OpenShift 登入範例 ， 透過set指令</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set +x</span><br><span class="line">   oc login -u $&#123;user&#125; -p $&#123;pw&#125;;</span><br><span class="line">set -x</span><br></pre></td></tr></table></figure><ul><li>sshpass ，利用讀檔避開印出</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">writeFile file: &quot;p&quot;, text: &quot;$&#123;pw&#125;&quot; # jenkins feature</span><br><span class="line">sshpass -f p scp -o UserKnownHostsFile&#x3D;&#x2F;dev&#x2F;null -o StrictHostKeyChecking&#x3D;no  -q $&#123;user&#125;@localhost:~&#x2F;deploy&#x2F;$&#123;profile&#125;&#x2F;test.tar test.tar</span><br><span class="line">rm p</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;各種原因客戶沒有plugin也不給裝，只好繞個路解決密碼的問題了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
+    
+    
+    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
+    
+  </entry>
   
   <entry>
     <title>Jenkins-實戰-bash script遠端不同帳號的問題</title>
@@ -416,27 +437,6 @@
     
     
     <summary type="html">&lt;p&gt;相關文章重點整理。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SOA架構 與 Microservice</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210204-microservice-soa.html</id>
-    <published>2021-02-04T15:07:30.000Z</published>
-    <updated>2021-02-04T15:09:56.475Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前遇到問題查詢的資料，做個整理。</p><a id="more"></a><h2 id="Service-Oriented-Architecture-SOA-服務導向架構"><a href="#Service-Oriented-Architecture-SOA-服務導向架構" class="headerlink" title="Service Oriented Architecture(SOA) 服務導向架構"></a>Service Oriented Architecture(SOA) 服務導向架構</h2><p>特性:</p><ul><li>針對某特定要求的輸出，該服務就是運作一項商業邏輯</li><li>具有完備的特性（self-contained）</li><li>消費者並不需要瞭解此服務的運作過程</li><li>可能由底層其他服務組成</li></ul><p>原則:</p><ul><li>可重複使用、粒度、模組性、可組合型、物件化原件、構件化以及具互動操作性</li><li>符合開放標準（通用的或行業的）</li><li>服務的識別和分類，提供和發布，監控和跟蹤。</li></ul><h2 id="SOA-所解決的核心問題"><a href="#SOA-所解決的核心問題" class="headerlink" title="SOA 所解決的核心問題"></a>SOA 所解決的核心問題</h2><ul><li>系統整合(技術層面)</li><li>系統的服務化(技術層面)</li><li>業務的服務化(是以業務驅動把一個 業務單元封裝成一項服務）</li></ul><p><img src="https://img-blog.csdnimg.cn/20181029125611787.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x4X0Zyb2xm,size_27,color_FFFFFF,t_70" alt="SOA"></p><h2 id="Microservices-微服務"><a href="#Microservices-微服務" class="headerlink" title="Microservices 微服務"></a>Microservices 微服務</h2><ul><li>通過服務實現元件化</li><li>按業務能力來劃分服務和開發團隊</li><li>去中心化</li><li>基礎設施自動化（devops、自動化部署）<br>與服務導向架構（Service-Oriented Architecture）不同，後者是整合各種業務的應用程式，但微服務只屬於一個應用程式。(強調單一業務組件化)</li></ul><h2 id="Microservices-特性"><a href="#Microservices-特性" class="headerlink" title="Microservices 特性"></a>Microservices 特性</h2><ul><li>每個服務都容易被取代。</li><li>服務是以能力來組織的，例如使用者介面、前端、推薦系統、帳單或是物流等。</li><li>由於功能被拆成多個服務，因此可以由不同的程式語言、資料庫實作。</li><li>架構是對稱而非分層（即生產者與消費者的關係）</li></ul><p><img src="http://www.45fan.com/uploads/allimg/190414/03110Jc9-1.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NTI1MzAw,size_16,color_FFFFFF,t_70" alt="Microservices"></p><h2 id="Microservices-資料庫三種設計模式"><a href="#Microservices-資料庫三種設計模式" class="headerlink" title="Microservices 資料庫三種設計模式"></a>Microservices 資料庫三種設計模式</h2><ol><li>每個服務都各有一個數據庫，同屬性的服務可共享同個資料庫。</li><li>所有服務都共享同個資料庫，但是不同表格，並且不會跨域存取。</li><li>每個服務都有自己的資料庫，就算是同屬性的也是，資料庫並不會共</li></ol><p>資料庫的可棄性:<br>實踐微服務架構中有許多的做法。但是其中一種的做法是將資料庫視作短期的儲存空間而不是長期的資料。因為他們可以在上線時從事件中心回覆，因此可以快速的從記憶體中快速存取（例：Redis）作為資料庫伺服器。這種做法需要將每個請求當作事件來進行廣播，這樣就可以從事件儲存中心重播所有的事件。</p><p>在微服務中，則通過 API 調用來完成。這些模塊或者服務間調用，大部分時候是為了共享數據。<br>共享數據最賤的方式當然就是採用一種共享資料庫的模式，也就是單體應用常用的方式。應用可以有多個系統模塊，但一般都是只有一個資料庫。</p><p><img src="https://twgreatdaily.com/images/elastic/SnG/SnG8WHMBiuFnsJQVaRyz.jpg" alt="一庫一服  vs 一庫多服"></p><p>一庫多服，這種架構模式通常會被認為是 微服務架構下的反範式，它的問題在於:</p><ul><li>單點故障：一個資料庫倒下，整批服務全部停止。何來的服務獨立性？</li><li>數據在同一個地方，會給貪圖方便的開發或者 DBA 工程師編寫很多數據間高度依賴的程序或者工具。</li><li>無法針對某一個服務進行精準優化或擴展。<br>所以一般推薦的做法，是為每一個微服務準備一個單獨的資料庫，也即一庫一服(Database per Service)模式。這種模式更加適合微服務架構，它滿足每一個服務是獨立開發、獨立部署、獨立擴展的特性。需要對一個服務進行升級或者數據架構改動的時候，不會影響到其他的服務。需要對某個服務進行擴展的時候，也可以手術式的對某一個服務進行局部擴容。</li></ul><h2 id="微服務的切割"><a href="#微服務的切割" class="headerlink" title="微服務的切割"></a>微服務的切割</h2><ol><li>domain-driven design (DDD) 領域驅動設計</li></ol><ul><li>Infrastructure（基礎實施層）</li><li>Domain（領域層）</li><li>Application（應用層）</li><li>Interfaces（表示層，也叫用戶界面層或是接口層）</li></ul><p><img src="https://res.cloudinary.com/dgzowpeqr/image/upload/v1562839291/levp4f9usxwzlrlk1dou.jpg" alt="domain-driven design(DDD)"></p><ol start="2"><li>資料結構</li></ol><h2 id="微服務的利和弊"><a href="#微服務的利和弊" class="headerlink" title="微服務的利和弊"></a>微服務的利和弊</h2><p><img src="https://res.cloudinary.com/dgzowpeqr/image/upload/v1562839370/wgkwtaplr4keahh9ojsa.jpg" alt="Microservices 利與弊"></p><ul><li>利: 單一服務組件化、可獨立部署、技術多樣性</li><li>弊: 分佈式的系統複雜性(各別服務的溝通複雜化)、最終一致性、運維複雜性</li></ul><h2 id="微服務-設計模式"><a href="#微服務-設計模式" class="headerlink" title="微服務(設計模式)"></a>微服務(設計模式)</h2><p><img src="https://codertw.com/wp-content/uploads/img/15JGg8G9K0.jpg" alt="鏈式設計模式"></p><p><img src="https://codertw.com/wp-content/uploads/img/IEq6ZUD3Og.jpg" alt="聚合器設計模式"></p><p><img src="https://i.iter01.com/images/a65374eb32d49af469d0f73fa247e018af4ad67156d77ca20232556c48804cb6.png" alt="代理設計模式"></p><p><img src="https://i.iter01.com/images/a6d2c4c0b8e7cde26918b623c0fdd67f0603e723d1090c6197711638a0a8b3f7.png" alt="分支設計模式"></p><p><img src="https://codertw.com/wp-content/uploads/img/2hmI3o1N3Y.jpg" alt="資料庫共享模式"></p><p><img src="https://codertw.com/wp-content/uploads/img/M2dJFZmv5O.jpg" alt="異部消息設計模式"></p><h2 id="Service-Oriented-Architecture-與-Microservice-差別"><a href="#Service-Oriented-Architecture-與-Microservice-差別" class="headerlink" title="Service Oriented Architecture 與 Microservice 差別"></a>Service Oriented Architecture 與 Microservice 差別</h2><ul><li>微服務不再強調傳統SOA架構裡面比較重的ESB(企業服務匯流排)，進入到單個業務系統內部實現真正的元件化。</li><li>SOA注重的是系統整合方面，而微服務關注的是組件服務完全分離 。<br>more info:<a href="https://en.wikipedia.org/wiki/Microservices" target="_blank" rel="noopener">Microservices wiki 英文</a><br>more info:<a href="https://zh.wikipedia.org/wiki/%E5%BE%AE%E6%9C%8D%E5%8B%99" target="_blank" rel="noopener">微服務(Microservices) wiki</a><br>more info:<a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/735003/" target="_blank" rel="noopener">微服務(Microservices) 設計模式</a><br>more info:<a href="https://iter01.com/513031.html" target="_blank" rel="noopener">架構設計思想-微服務架構設計模式</a><br>more info:<a href="https://twgreatdaily.com/I_S-V3MBfGB4SiUw1uN0.html" target="_blank" rel="noopener">如何在微服務架構下進行數據設計？</a><br>more info:<a href="https://www.cnblogs.com/takumicx/p/10021538.html" target="_blank" rel="noopener">微服務-柔性事务</a><br>more info:<a href="https://www.itread01.com/content/1542762129.html" target="_blank" rel="noopener">微服務-DB規劃</a><br>more info:<a href="https://morosedog.gitlab.io/technology-20200304-tech-10/" target="_blank" rel="noopener">技術觀念 | 淺談分散式系統 - 微服務淺談</a><br>more info:<a href="https://blog.csdn.net/xybelieve1990/article/details/84958671" target="_blank" rel="noopener">关于分布式事务BASE模型和柔性事务TCC</a><br>more info:<a href="https://www.itread01.com/content/1542394146.html" target="_blank" rel="noopener">SOA架構和微服務架構的比較</a><br>more info:<a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/588191/" target="_blank" rel="noopener">架構師必看：微服務架構綜述</a><br>more info:<a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">SOA Wiki</a><br>more info:<a href="https://www.ipshop.xyz/16625.html" target="_blank" rel="noopener">我只是下了個訂單，鬼知道我在微服務里經歷了什麼？ (DDD 領域驅動設計-微服務切割-訂單設計)</a><br>more info:<a href="https://kknews.cc/zh-tw/news/p95rx6e.html" target="_blank" rel="noopener">老司機避坑指南：如何快速搞定微服務架構？</a><br>more info:<a href="https://www.martinfowler.com/articles/microservices.html#HowBigIsAMicroservice" target="_blank" rel="noopener">martinfowler blog原文</a><br>more info:<a href="https://dzone.com/articles/6-data-management-patterns-for-microservices-1" target="_blank" rel="noopener">6 Data Management Patterns for Microservices</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;之前遇到問題查詢的資料，做個整理。&lt;/p&gt;</summary>
     
     
     
