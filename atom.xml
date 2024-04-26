@@ -42,11 +42,11 @@
   </entry>
   
   <entry>
-    <title>Jenkins-實戰-bash script遠端不同帳號的問題</title>
+    <title>Jenkins-實戰-console-密碼隱藏</title>
     <link href="https://hand79.github.io/Blog/posts/Development/20230901-Jenkins-script-for-pw.html"/>
     <id>https://hand79.github.io/Blog/posts/Development/20230901-Jenkins-script-for-pw.html</id>
     <published>2023-09-01T06:30:30.000Z</published>
-    <updated>2023-09-02T13:35:40.796Z</updated>
+    <updated>2024-04-26T23:29:49.098Z</updated>
     
     <content type="html"><![CDATA[<p>各種原因客戶沒有plugin也不給裝，只好繞個路解決密碼的問題了。</p><a id="more"></a><h3 id="Window-處理例子"><a href="#Window-處理例子" class="headerlink" title="Window 處理例子"></a>Window 處理例子</h3><ul><li>防止批次檔中的所有命令 (包括 回應 命令) 在畫面上顯示，批次檔案類型的第一行：</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br></pre></td></tr></table></figure><p> 若要再次顯示命令提示字元，請輸入echo</p><ul><li>echo off / echo off 下一行開始”關閉/打開”回顯</li></ul><h3 id="Linux-處理例子"><a href="#Linux-處理例子" class="headerlink" title="Linux 處理例子"></a>Linux 處理例子</h3><ul><li>OpenShift 登入範例 ， 透過set指令</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set +x</span><br><span class="line">   oc login -u $&#123;user&#125; -p $&#123;pw&#125;;</span><br><span class="line">set -x</span><br></pre></td></tr></table></figure><ul><li>sshpass ，利用讀檔避開印出</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">writeFile file: &quot;p&quot;, text: &quot;$&#123;pw&#125;&quot; # jenkins feature</span><br><span class="line">sshpass -f p scp -o UserKnownHostsFile&#x3D;&#x2F;dev&#x2F;null -o StrictHostKeyChecking&#x3D;no  -q $&#123;user&#125;@localhost:~&#x2F;deploy&#x2F;$&#123;profile&#125;&#x2F;test.tar test.tar</span><br><span class="line">rm p</span><br></pre></td></tr></table></figure>]]></content>
     

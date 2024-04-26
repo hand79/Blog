@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hand79.github.io/Blog/posts/Java/20240427-java-jboss-eap-srping-boot.html</loc>
+    <loc>https://hand79.github.io/Blog/posts/Development/20230901-Jenkins-script-for-pw.html</loc>
     
     <lastmod>2024-04-26</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/posts/Development/20230901-Jenkins-script-for-pw.html</loc>
+    <loc>https://hand79.github.io/Blog/posts/Java/20240427-java-jboss-eap-srping-boot.html</loc>
     
-    <lastmod>2023-09-02</lastmod>
+    <lastmod>2024-04-26</lastmod>
     
   </url>
   
@@ -382,13 +382,6 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Java/</loc>
-    <lastmod>2024-04-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hand79.github.io/Blog/tags/Web/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>daily</changefreq>
@@ -396,7 +389,21 @@
   </url>
   
   <url>
+    <loc>https://hand79.github.io/Blog/tags/Java/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hand79.github.io/Blog/tags/Docker/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/tags/Hexo/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -417,20 +424,6 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/tags/Hexo/</loc>
-    <lastmod>2024-04-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
-    <lastmod>2024-04-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hand79.github.io/Blog/tags/Ubuntu/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>daily</changefreq>
@@ -439,6 +432,13 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/tags/Linux/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hand79.github.io/Blog/tags/Maven/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -468,6 +468,13 @@
   </url>
   
   <url>
+    <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
+    <lastmod>2024-04-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hand79.github.io/Blog/categories/Java/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>daily</changefreq>
@@ -482,7 +489,7 @@
   </url>
   
   <url>
-    <loc>https://hand79.github.io/Blog/categories/Hexo/</loc>
+    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -490,13 +497,6 @@
   
   <url>
     <loc>https://hand79.github.io/Blog/categories/Maven/</loc>
-    <lastmod>2024-04-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hand79.github.io/Blog/categories/Linux/</loc>
     <lastmod>2024-04-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
