@@ -6,7 +6,7 @@
   <link href="https://hand79.github.io/Blog/atom.xml" rel="self"/>
   
   <link href="https://hand79.github.io/Blog/"/>
-  <updated>2023-09-02T13:35:40.796Z</updated>
+  <updated>2024-04-26T23:25:24.354Z</updated>
   <id>https://hand79.github.io/Blog/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring boot(3.2.5) 搭建於JBoss EAP (JDK 17)</title>
+    <link href="https://hand79.github.io/Blog/posts/Java/20240427-java-jboss-eap-srping-boot.html"/>
+    <id>https://hand79.github.io/Blog/posts/Java/20240427-java-jboss-eap-srping-boot.html</id>
+    <published>2024-04-26T23:30:00.000Z</published>
+    <updated>2024-04-26T23:25:24.354Z</updated>
+    
+    <content type="html"><![CDATA[<p>其餘設定遇到問題在想怎處理，基本頁面處理有了。</p><h4 id="使用spring-boot-3-2-5踩了一些坑"><a href="#使用spring-boot-3-2-5踩了一些坑" class="headerlink" title="使用spring boot 3.2.5踩了一些坑"></a>使用spring boot 3.2.5踩了一些坑</h4><ul><li>Log conflict (Logback)</li><li>Context path</li><li>JBoss EAP 8.0(JBoss EAP 7.4 不支援spring 6.x只能用這了 )</li></ul><p>more info:<a href="https://access.redhat.com/articles/2026253" target="_blank" rel="noopener">Red Hat JBoss Enterprise Application Platform (EAP) 7 Supported Configurations</a><br>more info:<a href="https://access.redhat.com/articles/6961381" target="_blank" rel="noopener">Red Hat JBoss Enterprise Application Platform (EAP) 8 Supported Configurations</a><br>more info:<a href="https://github.com/hand79/demo-package-war" target="_blank" rel="noopener">Demo實作</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;其餘設定遇到問題在想怎處理，基本頁面處理有了。&lt;/p&gt;
+&lt;h4 id=&quot;使用spring-boot-3-2-5踩了一些坑&quot;&gt;&lt;a href=&quot;#使用spring-boot-3-2-5踩了一些坑&quot; class=&quot;headerlink&quot; title=&quot;使用spring boot</summary>
+      
+    
+    
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/categories/Java/"/>
+    
+    
+    <category term="Java" scheme="https://hand79.github.io/Blog/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Jenkins-實戰-bash script遠端不同帳號的問題</title>
@@ -416,27 +441,6 @@
     
     
     <summary type="html">&lt;p&gt;閱讀DDD相關文章重點整理。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/categories/Development/"/>
-    
-    
-    <category term="Development" scheme="https://hand79.github.io/Blog/tags/Development/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>資料庫Connection pool設定</title>
-    <link href="https://hand79.github.io/Blog/posts/Development/20210217-database-connection-pool.html"/>
-    <id>https://hand79.github.io/Blog/posts/Development/20210217-database-connection-pool.html</id>
-    <published>2021-02-17T09:30:30.000Z</published>
-    <updated>2021-02-17T13:39:03.307Z</updated>
-    
-    <content type="html"><![CDATA[<p>相關文章重點整理。</p><a id="more"></a> <h2 id="誤區"><a href="#誤區" class="headerlink" title="誤區"></a>誤區</h2><p>資料庫連線池的大小越大越好? Ans: 絕對不是</p><h2 id="正確觀念"><a href="#正確觀念" class="headerlink" title="正確觀念"></a>正確觀念</h2><p>(maximumPoolSize: 連線池中允許的最大連線數) 連線數 = ((核心數 * 2) + 有效磁碟數)</p><h2 id="主要影響資料庫的效能瓶頸因素"><a href="#主要影響資料庫的效能瓶頸因素" class="headerlink" title="主要影響資料庫的效能瓶頸因素"></a>主要影響資料庫的效能瓶頸因素</h2><ul><li>CPU</li><li>磁碟 IO (SSD由於不像傳統硬碟需要定址、旋轉碟片，因此更少的阻塞 ，會更近似於CPU核心數)</li><li>網路 IO </li><li>SQL語法 </li></ul><p><a href="https://www.itread01.com/content/1547137124.html" target="_blank" rel="noopener">資料庫連線池DataSource (解釋連線池為何要使用)</a><br><a href="https://www.mdeditor.tw/pl/2FBd/zh-tw" target="_blank" rel="noopener">如何正確設定資料庫連線池的大小？</a><br><a href="https://www.youtube.com/watch?v=xNDnVOCdvQ0" target="_blank" rel="noopener">OLTP Performance - Concurrent Mid-Tier Connections (Oracle Learning Youtube)</a><br><a href="https://github.com/brettwooldridge/HikariCP" target="_blank" rel="noopener">HikariCP 設定參數 (Github)</a><br><a href="https://www.mdeditor.tw/pl/piUT/zh-tw" target="_blank" rel="noopener">HikariCP 設定參數 (翻譯)</a><br><a href="https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing" target="_blank" rel="noopener">About Pool Sizing - HikariCP (Github)</a><br><a href="https://www.itread01.com/content/1548895884.html" target="_blank" rel="noopener">Springboot datasource 常用配置說明</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;相關文章重點整理。&lt;/p&gt;</summary>
     
     
     
